@@ -10,7 +10,4 @@ anda
 anda
 anda
 
-aaaaaaaaaaaaaaa
-anda
 
-anda
