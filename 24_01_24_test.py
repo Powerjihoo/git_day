@@ -1,6 +1,30 @@
-print('hello world')
-print(divmod(5,3))
+aaaaaaaaaaaaaaa
+anda
+anda
+anda
+anda
+
+aaaaaaaaaaaaaaa
+anda
+anda
+anda
+anda
+
+aaaaaaaaaaaaaaa
+anda
+anda
+anda
+anda
 
 
-for i in range(10):
-    print(i)
+aaaaaaaaaaaaaaa
+anda
+anda
+anda
+anda
+
+aaaaaaaaaaaaaaa
+anda
+anda
+anda
+anda
