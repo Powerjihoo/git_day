@@ -1,3 +1,6 @@
 print('hello world')
 print(divmod(5,3))
-ddf
+
+
+for i in range(10):
+    print(i)
