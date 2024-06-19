@@ -1,0 +1,16 @@
+	# input - 스케일링한거 , model - 안한거, for weight - 한거
+def aakr(input_data, model_data, model_data_for_weight):
+
+	# 유클리드 거리 계산
+    _distance = np.sqrt(np.power((input_data - model_data_for_weight), 2).sum(axis=1))
+
+    _distance_min = _distance.min()
+	
+	# h값 루트2 곱해서 계산
+    _kb = _distance_min * _kernel_band_factor if _distance_min != 0 else 0.000001
+
+	# 가중치 계산
+    _weight = (np.exp(-1 * np.power((_distance / _kb), 2) / 2)) * (
+        np.sqrt(2 * CONST_PI * _kb) ** -1
+    )
+    return ((model_data * _weight.reshape(-1, 1)).sum(axis=0)) / _weight.sum(0)
