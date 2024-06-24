@@ -2,7 +2,6 @@ import asyncio
 import datetime
 import json
 import random
-
 import websockets
 
 
@@ -17,10 +16,11 @@ async def send_data():
                 'quality': 'good'
             }
             await websocket.send(json.dumps(data))
-            print(data['values'])
+            print(f"Sent: {data['values']}")
             await asyncio.sleep(random.uniform(1, 10))
 
             response = await websocket.recv()
             print(f"Received: {response}")
 
-asyncio.get_event_loop().run_until_complete(send_data())
+# asyncio.get_event_loop().run_until_complete(send_data())  # 권장되지 않음
+asyncio.run(send_data())  # 권장 방법

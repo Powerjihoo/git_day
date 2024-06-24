@@ -2,6 +2,7 @@ import asyncio
 import datetime
 import json
 import warnings
+import redis
 
 import numpy as np
 import uvicorn
@@ -10,6 +11,9 @@ from fastapi.responses import JSONResponse
 from statsmodels.tsa.arima.model import ARIMA
 
 warnings.filterwarnings('ignore')
+
+# Redis 클라이언트 초기화
+redis_client = redis.Redis(host='localhost', port=6379, db=0)
 
 # 예시 DB 데이터
 DB = [
@@ -92,6 +96,10 @@ async def websocket_endpoint(websocket: WebSocket):
                     'forecast': arima_model.predict(),
                     'formatted_time': timestamp_str
                 }
+                # Redis에 데이터 저장
+                redis_key = f"{tag_name}:{timestamp_str}"
+                redis_value = json.dumps(response)
+                redis_client.set(redis_key, redis_value)
             else:
                 response = {
                     'tagname': tag_name,
