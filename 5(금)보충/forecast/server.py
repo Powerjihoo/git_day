@@ -62,6 +62,10 @@ class ARIMA_model:
         else:
             return []
 
+# ARIMA 모델 초기화
+arima_models = {item["tagname"]: ARIMA_model(item["tagname"]) for item in DB}
+
+
 async def handle_client(websocket, path):
     print('server start')
     async for message in websocket:
@@ -91,8 +95,6 @@ async def handle_client(websocket, path):
         
         await websocket.send(json.dumps(response))
 
-# ARIMA 모델 초기화
-arima_models = {item["tagname"]: ARIMA_model(item["tagname"]) for item in DB}
 
 start_server = websockets.serve(handle_client, 'localhost', 1111)
 

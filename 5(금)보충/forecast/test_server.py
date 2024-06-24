@@ -4,9 +4,7 @@ import json
 import warnings
 
 import numpy as np
-import uvicorn
-from fastapi import FastAPI, WebSocket
-from fastapi.responses import JSONResponse
+import websockets
 from statsmodels.tsa.arima.model import ARIMA
 
 warnings.filterwarnings('ignore')
@@ -64,47 +62,39 @@ class ARIMA_model:
         else:
             return []
 
+async def handle_client(websocket, path):
+    print('server start')
+    async for message in websocket:
+        data = json.loads(message)
+        tag_name = data['tagname']
+        value = data['values']
+        timestamp_str = data['timestamp']
+        timestamp = datetime.datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S").timestamp()
+        
+        if tag_name in arima_models:
+            arima_model = arima_models[tag_name]
+            arima_model.update_data(value, timestamp)
+            
+            response = {
+                'tagname': tag_name,
+                'real_value': value,
+                'forecast': arima_model.predict(),
+                'formatted_time': timestamp_str
+            }
+        else:
+            response = {
+                'tagname': tag_name,
+                'error': 'Model not found for this tagname. No model created.',
+                'formatted_time': timestamp_str
+            }
+            print(f"Received data for unknown tagname: {tag_name}")
+        
+        await websocket.send(json.dumps(response))
+
 # ARIMA 모델 초기화
 arima_models = {item["tagname"]: ARIMA_model(item["tagname"]) for item in DB}
 
-app = FastAPI()
+start_server = websockets.serve(handle_client, 'localhost', 1111)
 
-@app.websocket("/ws")
-async def websocket_endpoint(websocket: WebSocket):
-    await websocket.accept()
-    print('WebSocket client connected')
-    try:
-        while True:
-            message = await websocket.receive_text()
-            data = json.loads(message)
-            tag_name = data['tagname']
-            value = data['values']
-            timestamp_str = data['timestamp']
-            timestamp = datetime.datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S").timestamp()
-            
-            if tag_name in arima_models:
-                arima_model = arima_models[tag_name]
-                arima_model.update_data(value, timestamp)
-                
-                response = {
-                    'tagname': tag_name,
-                    'real_value': value,
-                    'forecast': arima_model.predict(),
-                    'formatted_time': timestamp_str
-                }
-            else:
-                response = {
-                    'tagname': tag_name,
-                    'error': '해당 태그명에 대한 모델을 찾을 수 없습니다. 모델이 생성되지 않았습니다.',
-                    'formatted_time': timestamp_str
-                }
-                print(f"알 수 없는 태그명으로 데이터 수신: {tag_name}")
-            
-            await websocket.send_text(json.dumps(response))
-    except Exception as e:
-        print(f"WebSocket 연결 오류: {str(e)}")
-    finally:
-        await websocket.close()
-
-if __name__ == "__main__":
-    uvicorn.run(app, host="localhost", port=1111)
+asyncio.get_event_loop().run_until_complete(start_server)
+asyncio.get_event_loop().run_forever()
