@@ -7,9 +7,8 @@ import warnings
 import numpy as np
 import redis
 import uvicorn
-from statsmodels.tsa.arima.model import ARIMA
-
 from fastapi import FastAPI, WebSocket
+from statsmodels.tsa.arima.model import ARIMA
 
 warnings.filterwarnings('ignore')
 
@@ -37,7 +36,7 @@ class ARIMA_model:
         self.tagname = tagname
         self.window_size = window_size
         self.timestamps = np.zeros(shape=self.window_size, dtype=np.uint64)
-        self.values = np.full(shape=self.window_size, fill_value=np.nan, dtype=np.float32)  # 초기값을 NaN으로 설정
+        self.values = np.full(shape=self.window_size, fill_value=np.nan, dtype=np.float32)
         self.model = None
         self.initialize_redis()
 
@@ -56,7 +55,6 @@ class ARIMA_model:
         return f"[{self.__class__.__name__}] {self.tagname}"
     
     def update_data(self, data, timestamp):
-        data = round(data,2)
         if not self.timestamps.any() or timestamp - self.timestamps[-1] >= 5:
             self.values[:-1] = self.values[1:]
             self.timestamps[:-1] = self.timestamps[1:]
@@ -68,7 +66,7 @@ class ARIMA_model:
                 self.train_predict()
                 
             # 최근 window_size개의 데이터를 Redis에 저장
-            recent_values = self.values.tolist()
+            recent_values = [round(value, 2) if not np.isnan(value) else 'nan' for value in self.values.tolist()]
             redis_key = f"{self.tagname}:recent_values"
             redis_value = json.dumps(recent_values)
             redis_client.set(redis_key, redis_value)
