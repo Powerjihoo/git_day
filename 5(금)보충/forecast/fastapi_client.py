@@ -8,8 +8,8 @@ import websockets
 
 
 async def send_data():
-    uri = 'ws://localhost:1111/ws'  # FastAPI 서버의 WebSocket 엔드포인트 주소로 변경
-    async with websockets.connect(uri) as websocket:
+    url = 'ws://localhost:1111/ws'
+    async with websockets.connect(url) as websocket:
         while True:
             data = {
                 'tagname': 'TagName3',  # TagName1, TagName2, TagName3 중 하나를 선택
@@ -18,10 +18,7 @@ async def send_data():
                 'quality': 'good'
             }
             await websocket.send(json.dumps(data))
-            print(f"Sent: {data['values']}")
-            await asyncio.sleep(random.uniform(1, 10))
-
-            response = await websocket.recv()
-            print(f"Received: {response}")
+            print(f"Sent({data['tagname']}) : {data['values']}")
+            await asyncio.sleep(random.uniform(3, 7))
 
 asyncio.get_event_loop().run_until_complete(send_data())
