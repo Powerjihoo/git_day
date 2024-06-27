@@ -41,13 +41,13 @@ class ARIMA_model:
     def __repr__(self):
         return f"[{self.__class__.__name__}] {self.tagname}"
     
-    def update_data(self, data, timestamp):
+    def update_data(self, tag_name, data, timestamp):
         if not self.timestamps.any() or timestamp - self.timestamps[-1] >= 5:
             self.values[:-1] = self.values[1:]
             self.timestamps[:-1] = self.timestamps[1:]
             self.values[-1] = data
             self.timestamps[-1] = timestamp
-            print(f"updated_value : {self.values[-1]:.2f}")
+            print(f"updated_value : {tag_name} : {self.values[-1]:.2f}")
 
             if not np.isnan(self.values).any():
                 self.train_predict()
@@ -70,7 +70,7 @@ class ARIMA_model:
             redis_forecast = json.dumps(forecast_values)
             redis_client.set(redis_key, redis_forecast)
         else:
-            print("not updated(time <= 5)")
+            print(f"{tag_name} not updated(time <= 5)")
     
     def train_predict(self):
         self.model = ARIMA(self.values, order=(1, 1, 1)).fit()
@@ -90,16 +90,17 @@ async def websocket_endpoint(websocket: WebSocket):
         while True:
             message = await websocket.receive_text()
             data = json.loads(message)
-            tag_name = data['tagname']
-            value = data['values']
-            timestamp_str = data['timestamp']
-            timestamp = datetime.datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S").timestamp()
-            
-            if tag_name in arima_models:
-                arima_model = arima_models[tag_name]
-                arima_model.update_data(value, timestamp)
-            else:
-                print(f"알 수 없는 태그명으로 데이터 수신: {tag_name}")
+            for item in data:
+                tag_name = item['tagname']
+                value = item['values']
+                timestamp_str = item['timestamp']
+                timestamp = datetime.datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S").timestamp()
+                
+                if tag_name in arima_models:
+                    arima_model = arima_models[tag_name]
+                    arima_model.update_data(tag_name, value, timestamp)
+                else:
+                    print(f"알 수 없는 태그명으로 데이터 수신: {tag_name}")
             
     except Exception as e:
         print(f"WebSocket 연결 오류: {str(e)}")
