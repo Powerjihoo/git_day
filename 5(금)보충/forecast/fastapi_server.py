@@ -19,7 +19,7 @@ db = psycopg2.connect(host='localhost', dbname='postgres', user='postgres', pass
 
 def fetch_db_data():
     with db.cursor() as cursor:
-        cursor.execute("SELECT id, descript FROM forecast ORDER BY id ASC;")
+        cursor.execute("SELECT id, descript FROM forecast;")
         return cursor.fetchall()
 
 result = fetch_db_data()

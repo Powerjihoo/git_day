@@ -30,8 +30,9 @@ def check_redis_data():
 
 
 def monitor_redis_data():
-    check_redis_data()
-    time.sleep(5)  # 5초마다 확인
+    while True:
+        check_redis_data()
+        time.sleep(5)  # 5초마다 확인
 
 if __name__ == "__main__":
     monitor_redis_data()
