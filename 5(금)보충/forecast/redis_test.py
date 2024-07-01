@@ -8,7 +8,7 @@ import redis
 redis_client = redis.Redis(host='localhost', port=6379, db=0)
 
 def check_redis_data():
-    for tagname in ['TagName1','TagName2','TagName3']:  # 감시할 태그명 리스트
+    for tagname in ['tagname3']:  # 감시할 태그명 리스트
         recent_values_key = f"{tagname}:recent_values"
         forecast_key = f"{tagname}:forecast"
         timestamps_key = f"{tagname}:recent_timestamps"
@@ -30,9 +30,8 @@ def check_redis_data():
 
 
 def monitor_redis_data():
-    while True:
-        check_redis_data()
-        time.sleep(5)  # 5초마다 확인
+    check_redis_data()
+    time.sleep(5)  # 5초마다 확인
 
 if __name__ == "__main__":
     monitor_redis_data()

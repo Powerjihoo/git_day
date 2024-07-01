@@ -12,15 +12,15 @@ async def send_data():
         while True:
             data = [
                 {
-                    'tagname': 'TagName1',
+                    'tagname': 'tagName1',
                     'values': round(random.random(), 2),
                     'timestamp': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")                },
                 {
-                    'tagname': 'TagName2',
+                    'tagname': 'tagName2',
                     'values': round(random.random(), 2),
                     'timestamp': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")                },
                 {
-                    'tagname': 'TagName3',
+                    'tagname': 'tagName3',
                     'values': round(random.random(), 2),
                     'timestamp': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")                }
             ]

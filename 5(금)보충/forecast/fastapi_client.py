@@ -12,7 +12,7 @@ async def send_data():
     async with websockets.connect(url) as websocket:
         while True:
             data = {
-                'tagname': 'TagName3',  # TagName1, TagName2, TagName3 중 하나를 선택
+                'tagname': 'tagname3',  # TagName1, TagName2, TagName3 중 하나를 선택
                 'values': round(random.random(), 2),  # 랜덤 데이터 생성
                 'timestamp': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 # ,'quality': 'good'    #####db에서 정상데이터만 불러서 쏴줄 예정이라 quailty는 없을예정

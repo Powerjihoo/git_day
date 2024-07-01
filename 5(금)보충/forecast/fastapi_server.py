@@ -3,6 +3,7 @@ import json
 import warnings
 
 import numpy as np
+import psycopg2
 import redis
 import uvicorn
 from fastapi import FastAPI, WebSocket
@@ -13,21 +14,15 @@ warnings.filterwarnings('ignore')
 # Redis 연결
 redis_client = redis.Redis(host='localhost', port=6379, db=0)
 
-# 예시 DB 데이터
-DB = [
-    {
-        "tagname": "TagName1",
-        "description": "TEMP"
-    },
-    {
-        "tagname": "TagName2",
-        "description": "PRESS"
-    },
-    {
-        "tagname": "TagName3",
-        "description": "FLOW"
-    }
-]
+# 데이터베이스에서 데이터 가져오기
+db = psycopg2.connect(host='localhost', dbname='postgres', user='postgres', password='1234', port=5432)
+
+def fetch_db_data():
+    with db.cursor() as cursor:
+        cursor.execute("SELECT id, descript FROM forecast ORDER BY id ASC;")
+        return cursor.fetchall()
+
+result = fetch_db_data()
 
 class ARIMA_model:
     def __init__(self, tagname: str, window_size: int = 5):
@@ -79,8 +74,7 @@ class ARIMA_model:
         self.forecast[-1] = forecast[0]
 
 # ARIMA 모델 초기화
-arima_models = {item["tagname"]: ARIMA_model(item["tagname"]) for item in DB}
-
+arima_models = {item[1]: ARIMA_model(item[1]) for item in result}
 app = FastAPI()
 
 @app.websocket("/ws")
