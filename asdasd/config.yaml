@@ -1,0 +1,3 @@
+forecast_setting:
+  - interval=5
+  - num_forecast=10
