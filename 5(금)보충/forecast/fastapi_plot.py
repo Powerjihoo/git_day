@@ -16,46 +16,40 @@ def check_redis_data(tagname):
     
     recent_values = json.loads(recent_values) if recent_values else []
     forecast = json.loads(forecast) if forecast else []
-    
+
+    print(f"태그명 : {tagname}")
+    print(f"최근 데이터: {recent_values}")
+    print(f"예측 데이터: {forecast}")
+    print("------------------------------------")
     return recent_values, forecast
 
 # 그래프 설정
-plt.ion()  # Interactive mode on
+plt.ion()  
 fig, ax = plt.subplots()
 x, y_values, y_forecast = [], [], []
 
-# Initial plot for recent values
 line_values, = ax.plot(x, y_values, 'bo-', label="Recent Values")
-# Initial plot for forecast
 line_forecast, = ax.plot(x, y_forecast, 'ro-', label="Forecast")
 ax.legend()
-ax.set_xlim(0, 10)
-ax.set_ylim(0, 1)
+ax.set_xlim(0, 5)
+ax.set_ylim(0, 10)
 
-# Function to update plot
 def update_plot(recent_values, forecast):
     global x, y_values, y_forecast
-    
-    if len(recent_values) < 10:
-        x = list(range(len(recent_values)))
-    else:
-        x = list(range(10))
-    
-    y_values = recent_values[-10:]
-    y_forecast = forecast[-10:]
+    x = list(range(len(recent_values)))
 
     line_values.set_xdata(x)
-    line_values.set_ydata(y_values)
+    line_values.set_ydata(recent_values)
     line_forecast.set_xdata(x)
-    line_forecast.set_ydata(y_forecast)
+    line_forecast.set_ydata(forecast)
     
-    ax.relim()  # Recompute limits
-    ax.autoscale_view()  # Autoscale
+    ax.relim()  
+    ax.autoscale_view()  
     plt.draw()
-    plt.pause(1)  # Pause for 1 second
+    plt.pause(1)  
 
 def monitor_redis_data():
-    tagname = 'tagname3'  # 감시할 태그명
+    tagname = 1  # 감시할 태그명
     while True:
         recent_values, forecast = check_redis_data(tagname)
         if recent_values and forecast:

@@ -11,18 +11,18 @@ from statsmodels.tsa.arima.model import ARIMA
 
 warnings.filterwarnings('ignore')
 
+# DB연결해서 데이터 ID값 불러오기
+def fetch_db_data():
+    db = psycopg2.connect(host='192.168.110.11', dbname='thermal_imaging', user='gaonpf', password='gaonpf', port=15432)
+    with db.cursor() as cursor:
+        cursor.execute("SELECT id FROM spot;")
+        result = cursor.fetchall()
+    db.close()
+    return result
+DB = fetch_db_data()
+
 # Redis 연결
 redis_client = redis.Redis(host='localhost', port=6379, db=0)
-
-# 데이터베이스에서 데이터 가져오기
-db = psycopg2.connect(host='localhost', dbname='postgres', user='postgres', password='1234', port=5432)
-
-def fetch_db_data():
-    with db.cursor() as cursor:
-        cursor.execute("SELECT id, descript FROM forecast;")
-        return cursor.fetchall()
-
-result = fetch_db_data()
 
 class ARIMA_model:
     def __init__(self, tagname: str, window_size: int = 5):
@@ -37,7 +37,7 @@ class ARIMA_model:
         return f"[{self.__class__.__name__}] {self.tagname}"
     
     def update_data(self, data, timestamp):
-        if not self.timestamps.any() or timestamp - self.timestamps[-1] >= 5:
+        if not self.timestamps.any() or timestamp - self.timestamps[-1] >= 5: #timestamp가 비었거나 직전 timestamp와 5초이상 차이가 나면 업데이트
             self.values[:-1] = self.values[1:]
             self.timestamps[:-1] = self.timestamps[1:]
             self.values[-1] = data
@@ -47,19 +47,19 @@ class ARIMA_model:
             if not np.isnan(self.values).any():
                 self.train_predict()
                     
-            # 최근 window_size개의 데이터를 Redis에 저장
+            # 최근 window_size개의 time을 Redis에 저장
+            recent_timestamps = [datetime.datetime.fromtimestamp(ts).strftime('%y-%m-%d %H:%M:%S') for ts in self.timestamps.tolist()]
+            redis_key = f"{self.tagname}:recent_timestamps"
+            redis_timestamp = json.dumps(recent_timestamps)
+            redis_client.set(redis_key, redis_timestamp)
+
+            # 최근 window_size개의 value를 Redis에 저장
             recent_values = [round(value, 2) for value in self.values.tolist()]
             redis_key = f"{self.tagname}:recent_values"
             redis_value = json.dumps(recent_values)
             redis_client.set(redis_key, redis_value)
 
-            # time
-            recent_timestamps = [datetime.datetime.fromtimestamp(ts).strftime('%y-%m-%d %H:%M:%S') if ts != 0 else 'nan' for ts in self.timestamps.tolist()]
-            redis_key = f"{self.tagname}:recent_timestamps"
-            redis_timestamp = json.dumps(recent_timestamps)
-            redis_client.set(redis_key, redis_timestamp)
-
-            # forecast
+            # window_size만큼의 데이터가 쌓이면 forecast시작 후 Redis에 저장
             forecast_values = [round(value, 2) for value in self.forecast.tolist()]
             redis_key = f"{self.tagname}:forecast"
             redis_forecast = json.dumps(forecast_values)
@@ -74,10 +74,10 @@ class ARIMA_model:
         self.forecast[-1] = forecast[0]
 
 # ARIMA 모델 초기화
-arima_models = {item[1]: ARIMA_model(item[1]) for item in result}
+arima_models = {item[0]: ARIMA_model(item[0]) for item in DB}
 app = FastAPI()
 
-@app.websocket("/ws")
+@app.websocket("/forecast")
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     try:

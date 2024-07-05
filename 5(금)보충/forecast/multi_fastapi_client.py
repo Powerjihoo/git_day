@@ -12,17 +12,17 @@ async def send_data():
         while True:
             data = [
                 {
-                    'tagname': 'tagName1',
+                    'tagname': 1,
                     'values': round(random.random(), 2),
-                    'timestamp': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")                },
+                    'timestamp': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")},
                 {
-                    'tagname': 'tagName2',
+                    'tagname': 2,
                     'values': round(random.random(), 2),
-                    'timestamp': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")                },
+                    'timestamp': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")},
                 {
-                    'tagname': 'tagName3',
+                    'tagname': 4,
                     'values': round(random.random(), 2),
-                    'timestamp': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")                }
+                    'timestamp': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
             ]
             await websocket.send(json.dumps(data))
             print(f"Sent({data[0]['tagname']}) : {data[0]['values']}")
