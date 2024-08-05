@@ -70,6 +70,7 @@ class ARIMA_model:
         forecast = self.model.forecast(steps=self.window_size)
         self.forecast[:-1] = self.forecast[1:]
         self.forecast[-1] = forecast[0]
+        
 
 # ARIMA 모델 초기화
 arima_models = {item[0]: ARIMA_model(item[0]) for item in result}

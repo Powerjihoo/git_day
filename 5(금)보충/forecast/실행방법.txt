@@ -3,7 +3,7 @@
 
 2. 적절한 가상환경 연결
    conda activate server
-   conda activate home
+   conda activate home(집에서 test할때 사용)
 
 3. 한쪽에서는 server.py를 열고 다른한쪽에서는 client.py파일 실행
    (server.py를 먼저 실행해야함)

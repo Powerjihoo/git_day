@@ -1,0 +1,18 @@
+[servers]
+    [servers.Algorithm]
+    host = "0.0.0.0"
+    port = 51001
+
+[log]
+level_file = "TRACE"
+level_console = "TRACE"
+uvicorn_log_level = "debug"
+use_api_timing = false
+uvicorn_log_level_timing = "debug"
+
+[directory]
+model_path_1 = 'model/classifier_model1.pkl'
+model_path_2 = 'model/classifier_model2.pkl'
+model_path_3 = 'model/classifier_model3.pkl'
+model_path_4 = 'model/classifier_model4.pkl'
+
