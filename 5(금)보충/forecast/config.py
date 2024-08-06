@@ -18,6 +18,7 @@ SERVER_CONFIG = {
 }
 
 
+#모델 정보
 MODEL_CONFIG = {
     'test_model': {
         'window_size': 5,
