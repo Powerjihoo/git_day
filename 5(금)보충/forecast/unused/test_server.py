@@ -97,7 +97,7 @@ async def websocket_endpoint(websocket: WebSocket):
                     'formatted_time': timestamp_str
                 }
                 # Redis에 데이터 저장
-                redis_key = f"{tag_name}:{tiptmestamp_str}"
+                redis_key = f"{tag_name}:{timestamp_str}"
                 redis_value = json.dumps(response)
                 redis_client.set(redis_key, redis_value)
             else:
