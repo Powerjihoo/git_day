@@ -14,18 +14,26 @@ SERVER_CONFIG = {
 
 
     'Fastapi_host' : 'localhost',
-    'Fastapi_port' : 1111
+    'Fastapi_port' : 1111,
+
+
+    'Influx_host' : "http://localhost:8086",    
+    'Influx_token' : "TwrNN4J0ablMZFPFRB9GsUahs-uESVsM6WU0KKtY-jvJrFbhnxt7atnPg2wyU801B2GbFprJtomq5N1jog9uAg==",
+    'Influx_org' : "gaonpf",
+    'Influx_bucket' : "thermal_data",
 }
 
 
 #모델 정보
 MODEL_CONFIG = {
     'test_model': {
-        'window_size': 5,
-        'step_size': 5
+        'window_size': 120, #10분
+        'step_size'  : 120,    #1분
+        'start_date' : "-10m"
     },
     'real_model': {
-        'window_size': 100,
-        'step_size': 50
+        'window_size': 720, #1시간
+        'step_size'  : 720,    #1시간
+        'start_date' : "-1hour"
     }
 }

@@ -31,8 +31,9 @@ x, y_values, y_forecast = [], [], []
 line_values, = ax.plot(x, y_values, 'bo-', label="Recent Values")
 line_forecast, = ax.plot(x, y_forecast, 'ro-', label="Forecast")
 ax.legend()
-ax.set_xlim(0, 10)
-ax.set_ylim(0, 10)
+
+# X축의 범위를 10분에 맞게 설정 (예: 0~120)
+ax.set_xlim(0, 240)  # 10분 단위의 데이터 포인트 수 (예: 12개의 포인트)
 
 def update_plot(recent_values, forecast):
     global x, y_values, y_forecast
@@ -53,7 +54,7 @@ def update_plot(recent_values, forecast):
     plt.pause(1)
 
 def monitor_redis_data():
-    tagname = 21  # 감시할 태그명
+    tagname = 1  # 감시할 태그명
     while True:
         recent_values, forecast = check_redis_data(tagname)
         if recent_values and forecast:

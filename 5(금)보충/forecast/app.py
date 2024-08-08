@@ -1,3 +1,5 @@
+#app.py
+
 import datetime
 import json
 
@@ -19,7 +21,8 @@ def fetch_db_data():
     return result
 
 # ARIMA 모델 초기화
-DB = fetch_db_data()
+# DB = fetch_db_data()
+DB= [(1,), (2,)]
 arima_models = {item[0]: ARIMA_model(item[0]) for item in DB}
 
 app = FastAPI()
@@ -46,3 +49,5 @@ async def websocket_endpoint(websocket: WebSocket):
         print(f"WebSocket 연결 오류: {str(e)}")
     finally:
         await websocket.close()
+
+

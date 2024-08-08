@@ -1,3 +1,5 @@
+##model.py
+
 import datetime
 import json
 
@@ -6,14 +8,16 @@ import redis
 from statsmodels.tsa.arima.model import ARIMA
 
 import config
+from influx import InfluxConnector
 
 server_info = config.SERVER_CONFIG
+model_info = config.MODEL_CONFIG['test_model']
 
 # Redis 연결
 redis_client = redis.Redis(host=server_info['redis_host'], port=server_info['redis_port'], db=server_info['redis_db'])
 
 class ARIMA_model:
-    def __init__(self, tagname: str, window_size: int = config.MODEL_CONFIG['test_model']['window_size'], step_size: int = config.MODEL_CONFIG['test_model']['step_size']):
+    def __init__(self, tagname: str, window_size: int = model_info['window_size'], step_size: int = model_info['step_size']):
         self.tagname = tagname
         self.window_size = window_size
         self.step_size = step_size
@@ -22,11 +26,33 @@ class ARIMA_model:
         self.forecast = np.full(shape=self.window_size, fill_value=np.nan, dtype=np.float32)
         self.model = None
 
+        # InfluxDB 연결 설정
+        self.influx_connector = InfluxConnector(
+            url=server_info['Influx_host'],
+            token=server_info['Influx_token'],
+            org=server_info['Influx_org'],
+            bucket=server_info['Influx_bucket']
+        )
+
     def __repr__(self):
         return f"[{self.__class__.__name__}] {self.tagname}"
-    
+        
     def update_data(self, data, timestamp):
-        if not self.timestamps.any() or timestamp - self.timestamps[-1] >= 5: #timestamp가 비었거나 직전 timestamp와 5초이상 차이가 나면 업데이트
+        # 직전 timestamp가 현재 timestamp와 5초 이상 차이가 나면 업데이트
+        if timestamp - self.timestamps[-1] >= 5:  
+            # 만약 값이 없다면 InfluxDB에서 과거 데이터 불러오기
+            if np.isnan(self.values).all():  # 모든 값이 NaN인 경우
+                print("Fetching historical data from InfluxDB...")
+                df = self.influx_connector.load_from_influx(tagnames=[self.tagname], start=model_info['start_date'], end="now()")
+                if not df.empty:
+                    self.timestamps = (df['_time'].astype('int64') // 10**9).astype(np.uint64)
+                    self.values = df['_value'].astype(np.float32).values
+                    print("Historical data loaded.")
+                else:
+                    print("No historical data available.")
+                    return
+
+            # 아래 부분은 timestamp가 5초 이상 차이가 날 때의 업데이트 로직입니다.
             self.values[:-1] = self.values[1:]
             self.timestamps[:-1] = self.timestamps[1:]
             self.values[-1] = data
@@ -54,10 +80,17 @@ class ARIMA_model:
             redis_forecast = json.dumps(forecast_values)
             redis_client.set(redis_key, redis_forecast)
         else:
-            print("not updated(time <= 5)")
+            print("not updated (time <= 5)")
+
     
     def train_predict(self):
-        self.model = ARIMA(self.values, order=(2, 1, 2)).fit()
+        self.model = ARIMA(self.values, order=(2, 0, 1)).fit()
         forecast = self.model.forecast(steps=self.step_size)
-        self.forecast[:-5] = self.forecast[5:]
-        self.forecast[-5:] = forecast[:]
+        
+        # 예측 결과가 self.forecast의 크기보다 크다면 크기를 조정
+        if len(forecast) > len(self.forecast):
+            self.forecast = np.full(shape=len(forecast), fill_value=np.nan, dtype=np.float32)
+
+        # 예측값 업데이트
+        self.forecast[:] = np.nan  # 이전 예측값 초기화
+        self.forecast[:len(forecast)] = forecast  # 새 예측값 할당
