@@ -17,10 +17,16 @@ SERVER_CONFIG = {
     'Fastapi_port' : 1111,
 
 
-    'Influx_host' : "http://localhost:8086",    
-    'Influx_token' : "TwrNN4J0ablMZFPFRB9GsUahs-uESVsM6WU0KKtY-jvJrFbhnxt7atnPg2wyU801B2GbFprJtomq5N1jog9uAg==",
+    'Influx_host' : "http://192.168.10.60:8086",
+    'Influx_token' : "tzxpkRANOkRZsCxEDEDyxKHNFTzt6pIQYJcJY5o_9wCM0QNaTfxuKWstSYMzZnCe7lBTv0Ai7flewVI4CuqILA==",
     'Influx_org' : "gaonpf",
     'Influx_bucket' : "thermal_data",
+
+
+    # 'Influx_host' : "http://localhost:8086",    
+    # 'Influx_token' : "TwrNN4J0ablMZFPFRB9GsUahs-uESVsM6WU0KKtY-jvJrFbhnxt7atnPg2wyU801B2GbFprJtomq5N1jog9uAg==",
+    # 'Influx_org' : "gaonpf",
+    # 'Influx_bucket' : "thermal_data",
 }
 
 
@@ -29,7 +35,9 @@ MODEL_CONFIG = {
     'test_model': {
         'window_size': 120, #10분
         'step_size'  : 120,    #1분
-        'start_date' : "-10m"
+        'start_date' : "-10m",
+        'duration_start' : "2024-08-08 13:17",
+        'duration_end' : "2024-08-08 13:27"
     },
     'real_model': {
         'window_size': 720, #1시간

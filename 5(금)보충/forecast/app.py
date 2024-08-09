@@ -49,5 +49,3 @@ async def websocket_endpoint(websocket: WebSocket):
         print(f"WebSocket 연결 오류: {str(e)}")
     finally:
         await websocket.close()
-
-
