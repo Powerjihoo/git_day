@@ -37,7 +37,7 @@ class ARIMA_model:
     def __repr__(self):
         return f"[{self.__class__.__name__}] {self.tagname}"
         
-    def update_data(self, data, timestamp):
+    def update_data(self, data, tag_name, timestamp):
         # 직전 timestamp가 현재 timestamp와 5초 이상 차이가 나면 업데이트
         if timestamp - self.timestamps[-1] >= 5:  
             # 만약 값이 없다면 InfluxDB에서 과거 데이터 불러오기
@@ -57,7 +57,7 @@ class ARIMA_model:
             self.timestamps[:-1] = self.timestamps[1:]
             self.values[-1] = data
             self.timestamps[-1] = timestamp
-            print(f"updated_value : {self.values[-1]:.2f}")
+            print(f"updated_value : {tag_name} : {self.values[-1]:.2f}")
 
             if not np.isnan(self.values).any():
                 self.train_predict()
@@ -79,12 +79,21 @@ class ARIMA_model:
             redis_key = f"{self.tagname}:forecast"
             redis_forecast = json.dumps(forecast_values)
             redis_client.set(redis_key, redis_forecast)
+            
+            redis_key = f"{self.tagname}:alarm"
+            if forecast_values[-1] > forecast_values[0]:
+                redis_alarm = 'upper'
+            elif forecast_values[-1] < forecast_values[0]:
+                redis_alarm = 'lower'
+            else:
+                redis_alarm = 'same'
+            redis_client.set(redis_key, redis_alarm)
         else:
-            print("not updated (time <= 5)")
+            print(f"{tag_name} not updated(time <= 5)")
 
     
     def train_predict(self):
-        self.model = ARIMA(self.values, order=(2, 0, 1)).fit()
+        self.model = ARIMA(self.values, order=(1, 2, 1)).fit()
         forecast = self.model.forecast(steps=self.step_size)
         
         # 예측 결과가 self.forecast의 크기보다 크다면 크기를 조정

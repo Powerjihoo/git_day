@@ -3,11 +3,15 @@ import time
 
 import redis
 
+import config
+
+server_info = config.SERVER_CONFIG
+
 # Redis 연결
-redis_client = redis.Redis(host='localhost', port=6379, db=0)
+redis_client = redis.Redis(host=server_info['redis_host'], port=server_info['redis_port'], db=server_info['redis_db'])
 
 def check_redis_data():
-    tagnames = ['1', '2', '4']  # 감시할 태그명 리스트 (문자열로 변경)
+    tagnames = ['1', '2']  # 감시할 태그명 리스트 (문자열로 변경)
 
     for tagname in tagnames:
         recent_values_key = f"{tagname}:recent_values"

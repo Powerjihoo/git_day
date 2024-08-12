@@ -21,8 +21,8 @@ def fetch_db_data():
     return result
 
 # ARIMA 모델 초기화
-# DB = fetch_db_data()
-DB= [(1,), (2,)]
+DB = fetch_db_data()
+# DB= [(1,), (2,)]
 arima_models = {item[0]: ARIMA_model(item[0]) for item in DB}
 
 app = FastAPI()
@@ -34,16 +34,18 @@ async def websocket_endpoint(websocket: WebSocket):
         while True:
             message = await websocket.receive_text()
             data = json.loads(message)
-            tag_name = data['tagname']
-            value = data['values']
-            timestamp_str = data['timestamp']
-            timestamp = datetime.datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S").timestamp()
-            
-            if tag_name in arima_models:
-                arima_model = arima_models[tag_name]
-                arima_model.update_data(value, timestamp)
-            else:
-                print(f"알 수 없는 태그명으로 데이터 수신: {tag_name}")
+            for item in data:
+                tag_name = item['tagname']
+                value = item['values']
+                timestamp_str = item['timestamp']
+                timestamp = datetime.datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S").timestamp()
+                print(f"Received: tagname={tag_name}, value={value}, timestamp={timestamp}")
+
+                if tag_name in arima_models:
+                    arima_model = arima_models[tag_name]
+                    arima_model.update_data(value, tag_name, timestamp)
+                else:
+                    print(f"알 수 없는 태그명으로 데이터 수신: {tag_name}")
             
     except Exception as e:
         print(f"WebSocket 연결 오류: {str(e)}")
