@@ -14,7 +14,7 @@ SERVER_CONFIG = {
 
 
     'Fastapi_host' : 'localhost',
-    'Fastapi_port' : 1112,
+    'Fastapi_port' : 1113,
 
 
     # 'Influx_host' : "http://192.168.10.60:8086",
@@ -40,6 +40,6 @@ MODEL_CONFIG = {
     'real_model': {
         'window_size': 720, #1시간
         'step_size'  : 720,    #1시간
-        'start_date' : "-1hour"
+        'start_date' : "-1h"
     }
 }

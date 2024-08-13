@@ -38,7 +38,7 @@ class InfluxConnector(metaclass=SingletonInstance):
         df = pd.DataFrame(records)
         return df
 
-    def load_from_influx(self, tagnames: str | list[str], start: str, end: str) -> pd.DataFrame:
+    def load_from_influx(self, tagnames: str | list[str], start: str, end: str, desired_len) -> pd.DataFrame:
         query = self.__create_query(tagnames, start, end)
         tables = self.query_api.query(query)
         df = self.__parse_influx_res(tables)
@@ -46,7 +46,9 @@ class InfluxConnector(metaclass=SingletonInstance):
             df['_time'] = pd.to_datetime(df['_time'], utc=True)
             df['_time'] = df['_time'].dt.tz_convert('Asia/Seoul')
             df.set_index('_time', inplace=True)
-            resampled_df = df.resample('5S').bfill().dropna().reset_index()
+            resampled_df = df.resample('5S').bfill().dropna()
+            resampled_df = resampled_df.iloc[:desired_len].reset_index()
+            
             return resampled_df
 
         return pd.DataFrame()

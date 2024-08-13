@@ -11,7 +11,7 @@ import config
 from influx import InfluxConnector
 
 server_info = config.SERVER_CONFIG
-model_info = config.MODEL_CONFIG['test_model']
+model_info = config.MODEL_CONFIG['real_model']
 
 # Redis 연결
 redis_client = redis.Redis(host=server_info['redis_host'], port=server_info['redis_port'], db=server_info['redis_db'])
@@ -43,22 +43,23 @@ class ARIMA_model:
             # 만약 값이 없다면 InfluxDB에서 과거 데이터 불러오기
             if np.isnan(self.values).all():  # 모든 값이 NaN인 경우
                 print("Fetching historical data from InfluxDB...")
-                df = self.influx_connector.load_from_influx(tagnames=[self.tagname], start=model_info['start_date'], end="now()")
+                df = self.influx_connector.load_from_influx(tagnames=[self.tagname], start=model_info['start_date'], end="now()", desired_len=self.window_size)
                 if not df.empty:
-                    self.timestamps = (df['_time'].astype('int64') // 10**9).astype(np.uint64)
+                    self.timestamps = (df['_time'].astype('int64') // 10**9).astype(np.uint64).values
                     self.values = df['_value'].astype(np.float32).values
                     print("Historical data loaded.")
                 else:
                     print("No historical data available.")
                     return
-
+                
             # 아래 부분은 timestamp가 5초 이상 차이가 날 때의 업데이트 로직입니다.
             self.values[:-1] = self.values[1:]
-            self.timestamps[:-1] = self.timestamps[1:]
             self.values[-1] = data
-            self.timestamps[-1] = timestamp
-            print(f"updated_value : {tag_name} : {self.values[-1]:.2f}")
 
+            self.timestamps[:-1] = self.timestamps[1:]
+            self.timestamps[-1] = np.uint64(timestamp)
+            
+            print(f"updated_value : {tag_name} : {self.values[-1]:.2f}")
             if not np.isnan(self.values).any():
                 self.train_predict()
                     
@@ -88,6 +89,19 @@ class ARIMA_model:
             else:
                 redis_alarm = 'same'
             redis_client.set(redis_key, redis_alarm)
+
+            # 통계값 계산
+            forecast_values = np.array(forecast_values)  # NumPy 배열로 변환
+
+            statistics = {
+                'max': forecast_values.max(),
+                'min': forecast_values.min(),
+                'mean': forecast_values.mean(),
+                'var': forecast_values.var(),
+                'std': forecast_values.std()
+            }
+            redis_key = f"{self.tagname}:statistics"
+            redis_client.set(redis_key, json.dumps(statistics))  # JSON 문자열로 저장
         else:
             print(f"{tag_name} not updated(time <= 5)")
 

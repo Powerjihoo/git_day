@@ -7,7 +7,7 @@ import websockets
 
 
 async def send_data():
-    uri = 'ws://localhost:1112/forecast'
+    uri = 'ws://localhost:1113/forecast'
     inc = 0.005
     async with websockets.connect(uri) as websocket:
         while True:

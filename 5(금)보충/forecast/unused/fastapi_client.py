@@ -7,10 +7,12 @@ import websockets
 
 
 async def send_data():
-    url = 'ws://localhost:1111/forecast'
+    url = 'ws://localhost:1112/forecast'
+    inc = 0.005
     async with websockets.connect(url) as websocket:
         while True:
-            random_value = random.uniform(39, 41)
+            random_value = random.uniform(39, 41)+inc
+            inc+=0.005
             
             data = {
                 'tagname': 1,  # TagName1, TagName2, TagName3 중 하나를 선택
