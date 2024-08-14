@@ -3,10 +3,11 @@
 import datetime
 import json
 
-from fastapi import FastAPI, WebSocket
+from fastapi import FastAPI, HTTPException, WebSocket
 
 import config
 from model import ARIMA_model
+from model2 import ARIMAForecastModel
 
 server_info = config.SERVER_CONFIG
 
@@ -51,3 +52,13 @@ async def websocket_endpoint(websocket: WebSocket):
         print(f"WebSocket 연결 오류: {str(e)}")
     finally:
         await websocket.close()
+
+@app.get("/duration")
+async def get_forecast(tagname: str, start_date: str, end_date: str, step_size: int):
+    forecast_model = ARIMAForecastModel(tagname, start_date, end_date, step_size)
+    forecast = forecast_model.predict()
+    
+    if forecast is None:
+        raise HTTPException(status_code=404, detail="No data available for the specified time range.")
+    
+    return {"tagname": tagname, "forecast": forecast}

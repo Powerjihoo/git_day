@@ -38,8 +38,13 @@ MODEL_CONFIG = {
         'start_date' : "-10m"
     },
     'real_model': {
-        'window_size': 720, #1시간
+        'window_size': 720,    #1시간
         'step_size'  : 720,    #1시간
         'start_date' : "-1h"
     }
+}
+
+
+duration_config = {
+    ''
 }
