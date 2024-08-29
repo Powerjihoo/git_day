@@ -22,8 +22,8 @@ def fetch_db_data():
     return result
 
 # ARIMA 모델 초기화
-DB = fetch_db_data()
-# DB= [(1,), (2,)]
+# DB = fetch_db_data()
+DB= [(1,), (2,)]
 arima_models = {item[0]: ARIMA_model(item[0]) for item in DB}
 
 app = FastAPI()
@@ -54,8 +54,8 @@ async def websocket_endpoint(websocket: WebSocket):
         await websocket.close()
 
 @app.get("/duration")
-async def get_forecast(tagname: str, start_date: str, end_date: str, step_size: int):
-    forecast_model = ARIMAForecastModel(tagname, start_date, end_date, step_size)
+async def get_forecast(tagname: str, start_date: str, end_date: str):
+    forecast_model = ARIMAForecastModel(tagname, start_date, end_date)
     forecast = forecast_model.predict()
     
     if forecast is None:

@@ -42,10 +42,6 @@ class ARIMAForecastModel:
 
     def predict(self):
         data = self.fetch_data()
-        if data is None:
-            return None
-        
         model = ARIMA(data, order=(1, 2, 1)).fit()
         forecast = model.forecast(steps=self.step_size)
-        
         return forecast.tolist()
