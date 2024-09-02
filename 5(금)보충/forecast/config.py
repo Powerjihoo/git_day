@@ -33,8 +33,8 @@ SERVER_CONFIG = {
 #모델 정보
 MODEL_CONFIG = {
     'test_model': {
-        'window_size': 120, #10분
-        'step_size'  : 120,    #1분
+        'window_size': 5, #10분
+        'step_size'  : 5,    #10분
         'start_date' : "-10m"
     },
     'real_model': {

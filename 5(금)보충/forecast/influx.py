@@ -2,7 +2,6 @@
 
 import pandas as pd
 from influxdb_client import InfluxDBClient
-
 from utils.singleton import SingletonInstance
 
 

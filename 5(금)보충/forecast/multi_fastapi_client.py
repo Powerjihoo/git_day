@@ -1,3 +1,5 @@
+## client.py
+
 import asyncio
 import datetime
 import json
@@ -27,8 +29,14 @@ async def send_data():
             await websocket.send(json.dumps(data))
             print(f"Sent({data[0]['tagname']}) : {data[0]['values']}")
             print(f"Sent({data[1]['tagname']}) : {data[1]['values']}")
+
+            response = await websocket.recv()
+            result = json.loads(response)
+            if result:
+                print(f"Received result from server: {result}")
+            else:
+                print("Received no result from server, skipping to next data")
+                continue  # result가 없으면 다음 반복으로 넘어갑니다
             await asyncio.sleep(random.uniform(3, 7))
 
 asyncio.get_event_loop().run_until_complete(send_data())
-
-

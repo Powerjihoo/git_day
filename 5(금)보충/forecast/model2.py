@@ -8,7 +8,7 @@ import config
 from influx import InfluxConnector
 
 server_info = config.SERVER_CONFIG
-model_info = config.MODEL_CONFIG['real_model']
+model_info = config.MODEL_CONFIG['test_model']
 
 def convert_to_iso_format(date_str: str) -> str:
     dt = datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S")
