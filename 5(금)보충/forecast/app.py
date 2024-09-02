@@ -3,7 +3,7 @@
 import datetime
 import json
 
-from fastapi import FastAPI, HTTPException, WebSocket
+from fastapi import FastAPI, WebSocket
 
 import config
 from model import ARIMA_model
@@ -20,8 +20,7 @@ server_info = config.SERVER_CONFIG
 #     db.close()
 #     return result
 
-
-
+# DB = fetch_db_data()
 DB = [(1,), (2,)]
 arima_models = {item[0]: ARIMA_model(item[0]) for item in DB}
 

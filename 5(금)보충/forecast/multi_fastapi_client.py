@@ -32,11 +32,9 @@ async def send_data():
 
             response = await websocket.recv()
             result = json.loads(response)
-            if result:
-                print(f"Received result from server: {result}")
-            else:
-                print("Received no result from server, skipping to next data")
-                continue  # result가 없으면 다음 반복으로 넘어갑니다
+
+            #결과 출력
+            print(f"Received result from server: {result}")
             await asyncio.sleep(random.uniform(3, 7))
 
 asyncio.get_event_loop().run_until_complete(send_data())

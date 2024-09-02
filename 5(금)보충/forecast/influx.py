@@ -2,6 +2,7 @@
 
 import pandas as pd
 from influxdb_client import InfluxDBClient
+
 from utils.singleton import SingletonInstance
 
 
@@ -32,10 +33,10 @@ class InfluxConnector(metaclass=SingletonInstance):
                     "_value": record.get_value(),
                     "tagName": record.values.get("tagName")
                 })
-        if not records:
+        if records:
+            return pd.DataFrame(records)
+        else:
             return pd.DataFrame()
-        df = pd.DataFrame(records)
-        return df
 
     def load_from_influx(self, tagnames: str | list[str], start: str, end: str, desired_len) -> pd.DataFrame:
         query = self.__create_query(tagnames, start, end)
@@ -47,7 +48,6 @@ class InfluxConnector(metaclass=SingletonInstance):
             df.set_index('_time', inplace=True)
             resampled_df = df.resample('5S').bfill().dropna()
             resampled_df = resampled_df.iloc[:desired_len].reset_index()
-            
             return resampled_df
-
-        return pd.DataFrame()
+        else:
+            return pd.DataFrame()
