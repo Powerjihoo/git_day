@@ -20,6 +20,14 @@ class ARIMA_model:
         self.values = np.full(shape=self.window_size, fill_value=np.nan, dtype=np.float32)
         self.forecast = np.full(shape=self.window_size, fill_value=np.nan, dtype=np.float32)
 
+        # # InfluxDB 연결 설정
+        # self.influx_connector = InfluxConnector(
+        #     url=server_info['Influx_host'],
+        #     token=server_info['Influx_token'],
+        #     org=server_info['Influx_org'],
+        #     bucket=server_info['Influx_bucket']
+        # )
+
     def __repr__(self):
         return f"[{self.__class__.__name__}] {self.tagname}"
 
@@ -62,7 +70,7 @@ class ARIMA_model:
                     ]}
             else:
                 # 데이터가 채워지지 않은 경우 return으로 알려주기
-                print(f"{tag_name} data is not enough")
+                print(f"{tag_name} data is not enough  windsow_size = {self.values.shape[0]}, nan_count = {np.isnan(self.values).sum()}")
                 result = {
                     "tagname": tag_name,
                     "nan_error":f"Data is not enought windsow_size = {self.values.shape[0]}, nan_count = {np.isnan(self.values).sum()}"}
