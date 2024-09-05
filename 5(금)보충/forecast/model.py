@@ -20,19 +20,19 @@ class ARIMA_model:
         self.values = np.full(shape=self.window_size, fill_value=np.nan, dtype=np.float32)
         self.forecast = np.full(shape=self.window_size, fill_value=np.nan, dtype=np.float32)
 
-        # # InfluxDB 연결 설정
-        # self.influx_connector = InfluxConnector(
-        #     url=server_info['Influx_host'],
-        #     token=server_info['Influx_token'],
-        #     org=server_info['Influx_org'],
-        #     bucket=server_info['Influx_bucket']
-        # )
+        # InfluxDB 연결 설정
+        self.influx_connector = InfluxConnector(
+            url=server_info['Influx_host'],
+            token=server_info['Influx_token'],
+            org=server_info['Influx_org'],
+            bucket=server_info['Influx_bucket']
+        )
 
     def __repr__(self):
         return f"[{self.__class__.__name__}] {self.tagname}"
 
     def update_data(self, data, tag_name, timestamp):
-        # # 처음 데이터를 확인하고 만약 전체 데이터가 비어있다면 Influx에서 불러오기
+        # 처음 데이터를 확인하고 만약 전체 데이터가 비어있다면 Influx에서 불러오기
         # if np.isnan(self.values).all():
         #     print("Fetching historical data from InfluxDB...")
         #     df = self.influx_connector.load_from_influx(tagnames=[self.tagname], start=model_info['start_date'], end="now()", desired_len=self.window_size)
@@ -42,7 +42,6 @@ class ARIMA_model:
         #         print("Historical data loaded.")
         #     else:
         #         print("No historical data available.")
-        #         return  # 데이터가 없으면 함수 종료하기
             
         # 시간 차이 체크 (업데이트 되는 시간이 5초보다 짧을경우 결과 반환 X)
         if timestamp - self.timestamps[-1] >= 5:

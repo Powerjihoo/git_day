@@ -35,16 +35,11 @@ MODEL_CONFIG = {
     'test_model': {
         'window_size': 5, #10분
         'step_size'  : 5,    #10분
-        'start_date' : "-10m"
+        'start_date' : "-25"
     },
     'real_model': {
         'window_size': 720,    #1시간
         'step_size'  : 720,    #1시간
         'start_date' : "-1h"
     }
-}
-
-
-duration_config = {
-    ''
 }

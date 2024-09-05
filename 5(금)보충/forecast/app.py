@@ -3,11 +3,11 @@
 import datetime
 import json
 
-from fastapi import FastAPI, WebSocket
+from fastapi import FastAPI, HTTPException, WebSocket
 
+# from model2 import ARIMAForecastModel
 import config
 from model import ARIMA_model
-from model2 import ARIMAForecastModel
 
 server_info = config.SERVER_CONFIG
 
@@ -40,7 +40,7 @@ async def websocket_endpoint(websocket: WebSocket):
                 value = item['values']
                 timestamp_str = item['timestamp']
                 timestamp = datetime.datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S").timestamp()
-                print(f"Received: tagname={tag_name}, value={value}, timestamp={timestamp}")
+                print(f"Received: tagname={tag_name}, value={value}, timestamp={timestamp_str}")
 
                 if tag_name in arima_models:
                     arima_model = arima_models[tag_name]
