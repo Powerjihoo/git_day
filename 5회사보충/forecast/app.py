@@ -3,9 +3,8 @@
 import datetime
 import json
 
-from fastapi import FastAPI, HTTPException, WebSocket
+from fastapi import APIRouter, FastAPI, WebSocket
 
-# from model2 import ARIMAForecastModel
 import config
 from model import ARIMA_model
 
@@ -21,12 +20,12 @@ server_info = config.SERVER_CONFIG
 #     return result
 
 # DB = fetch_db_data()
-DB = [(1,), (2,)]
+DB = [(1,), (2,)]  #Postgre연결후 위의 코드로 실행
 arima_models = {item[0]: ARIMA_model(item[0]) for item in DB}
-
 app = FastAPI()
+router = APIRouter()
 
-@app.websocket("/forecast")
+@router.websocket("/forecast")
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     try:
@@ -37,14 +36,14 @@ async def websocket_endpoint(websocket: WebSocket):
 
             for item in data:
                 tag_name = item['tagname']
-                value = item['values']
+                values = item['values']
                 timestamp_str = item['timestamp']
                 timestamp = datetime.datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S").timestamp()
-                print(f"Received: tagname={tag_name}, value={value}, timestamp={timestamp_str}")
+                print(f"Received: tagname={tag_name}, value={values}, timestamp={timestamp_str}")
 
                 if tag_name in arima_models:
                     arima_model = arima_models[tag_name]
-                    result = arima_model.update_data(value, tag_name, timestamp)
+                    result = arima_model.update_data(values, tag_name, timestamp)
                     results.append(result)
                 else:
                     print(f"알 수 없는 태그명으로 데이터 수신: {tag_name}")
@@ -55,3 +54,7 @@ async def websocket_endpoint(websocket: WebSocket):
         print(f"WebSocket 연결 오류: {str(e)}")
     finally:
         await websocket.close()
+
+        
+
+app.include_router(router)
