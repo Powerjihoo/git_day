@@ -17,3 +17,6 @@ Python 3.11.0
 
 다른 패키지 정보는 requirements.txt확인
 pip install -r requirements.txt
+
+
+curl -X POST "http://127.0.0.1:1113/duration" -H "Content-Type: application/json" -d "{\"tagname\": 2, \"start\": \"2024-08-12 00:00:00\", \"end\": \"2024-09-12 00:00:00\"}"

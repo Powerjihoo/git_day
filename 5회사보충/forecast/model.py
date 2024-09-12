@@ -53,26 +53,34 @@ class ARIMA_model:
 
 
     def update_data(self, values, tag_name, timestamp):
-        # # 처음으로 시작할때 만약 전체 데이터가 비어있다면 Influx에서 불러오기
-        # if np.isnan(self.values).all():
-        #     print("Fetching historical data from InfluxDB...")
-        #     df = self.influx_connector.load_from_influx(tagnames=[self.tagname], start=model_info['start_date'], end="now()", desired_len=self.window_size)
-        #     if not df.empty:
-        #         self.timestamps = (df['_time'].astype('int64') // 10**9).astype(np.uint64).values
-        #         self.values = df['_value'].astype(np.float32).values
-        #         print("Historical data loaded.")
-        #     else:
-        #         print("No historical data available.")
-            
-        # 시간 차이 체크 (업데이트 되는 시간이 5초보다 짧을경우 결과 반환 X)
+        # 처음으로 시작할때 만약 전체 데이터가 비어있다면 Influx에서 불러오기
+        if np.isnan(self.values).all():
+            print("Fetching historical data from InfluxDB...")
+            df = self.influx_connector.load_from_influx(tagname=tag_name, start=model_info['start_date'], end="now()", desired_len=self.window_size)
+            if not df.empty:
+                self.timestamps[:len(df)] = (df['_time'].astype('int64') // 10**9).astype(np.uint64).values
+                self.values[:len(df)] = df['_value'].astype(np.float32).values
+                print("Historical data loaded.")
+        
+        # InfluxDB에서 데이터를 가져온 후에도 계속 새로운 값을 추가할 수 있도록 처리
+        # 시간 차이 체크 (업데이트 되는 시간이 5초보다 짧을 경우 결과 반환 X)
         if timestamp - self.timestamps[-1] >= 5:
-            self.values[:-1] = self.values[1:]
-            self.values[-1] = values
-            self.timestamps[:-1] = self.timestamps[1:]
-            self.timestamps[-1] = np.uint64(timestamp)
+            # 아직 window_size만큼 데이터가 차지 않았을 경우 추가적으로 데이터를 쌓음
+            nan_count = np.count_nonzero(np.isnan(self.values))
+            if nan_count > 0:
+                # 빈 공간이 있으면 그 위치에 새 값을 넣음
+                self.values[-nan_count] = values
+                self.timestamps[-nan_count] = np.uint64(timestamp)
+            else:
+                # 빈 공간이 없을 때는 기존 방식대로 가장 오래된 데이터를 제거하고 새 데이터를 추가
+                self.values[:-1] = self.values[1:]
+                self.values[-1] = values
+                self.timestamps[:-1] = self.timestamps[1:]
+                self.timestamps[-1] = np.uint64(timestamp)
 
             # 모든 값이 채워졌는지 확인(설정한 window_size만큼 채워져있을때부터 예측시작)
-            if not np.isnan(self.values).any():
+            filled_count = np.count_nonzero(~np.isnan(self.values))
+            if filled_count >= self.window_size:
                 self.train_predict()
                 self.update_statistics()
                 self.create_time()
@@ -84,11 +92,12 @@ class ARIMA_model:
                         {"value": self.forecast.tolist()[i], "time": self.forecast_times[i]} for i in range(len(self.forecast.tolist()))]
                         }
             else:
-                # 데이터가 채워지지 않은 경우 return으로 알려주기
-                print(f"tag : {tag_name} nan_count = {np.isnan(self.values).sum()}")
+                # 데이터가 채워지지 않은 경우 채워진 양을 출력하고 return으로 알려주기
+                print(f"tag : {tag_name} filled_count = {filled_count} / {self.window_size}")
                 return None
         else:
             # 시간 차이가 5초보다 짧을경우 return으로 알려주기
             print(f"tag : {tag_name} not updated(time <= 5)")
             return None
+        
         return result

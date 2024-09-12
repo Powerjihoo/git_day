@@ -33,9 +33,9 @@ SERVER_CONFIG = {
 #모델 정보
 MODEL_CONFIG = {
     'test_model': {
-        'window_size': 5, #10분
-        'step_size'  : 5,    #10분
-        'start_date' : "-25"
+        'window_size': 120,      #5초에 한번임으로 25초임
+        'step_size'  : 120,      #5초에 한번임으로 25초임
+        'start_date' : "-10m",  #influx기준 과거 시작시간
     },
     'real_model': {
         'window_size': 720,    #1시간

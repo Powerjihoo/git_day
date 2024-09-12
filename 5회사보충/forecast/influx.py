@@ -12,14 +12,11 @@ class InfluxConnector(metaclass=SingletonInstance):
         self.query_api = self.client.query_api()
         self.bucket = bucket
 
-    def __create_query(self, tagnames: str | list[str], start: str, end: str):
-        if isinstance(tagnames, str):
-            tagnames = [tagnames]
-        tag_conditions = " or ".join([f'r["tagName"] == "{tagname}"' for tagname in tagnames])
+    def __create_query(self, tagname: str, start: str, end: str):
         query = f'''
             from(bucket: "{self.bucket}")
             |> range(start: {start}, stop: {end})
-            |> filter(fn: (r) => {tag_conditions})
+            |> filter(fn: (r) => r["tagName"] == "{tagname}")
             |> keep(columns: ["_time", "_value", "tagName"])
         '''
         return query
@@ -38,14 +35,16 @@ class InfluxConnector(metaclass=SingletonInstance):
         else:
             return pd.DataFrame()
 
-    def load_from_influx(self, tagnames: str | list[str], start: str, end: str, desired_len) -> pd.DataFrame:
-        query = self.__create_query(tagnames, start, end)
+
+    def load_from_influx(self, tagname: str, start: str, end: str, desired_len) -> pd.DataFrame:
+        query = self.__create_query(tagname, start, end)
         tables = self.query_api.query(query)
         df = self.__parse_influx_res(tables)
         if not df.empty:
             df['_time'] = pd.to_datetime(df['_time'], utc=True)
             df['_time'] = df['_time'].dt.tz_convert('Asia/Seoul')
             df.set_index('_time', inplace=True)
+            
             resampled_df = df.resample('5S').bfill().dropna()
             resampled_df = resampled_df.iloc[:desired_len].reset_index()
             return resampled_df
