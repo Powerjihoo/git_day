@@ -14,31 +14,26 @@ model_info = config.MODEL_CONFIG["test_model"]
 class ARIMA_model:
     def __init__(
         self,
-        tagname: str,
+        tagname: int,
         window_size: int = model_info["window_size"],
         step_size: int = model_info["step_size"],
         duration_size: int = model_info["duration_size"],
     ):
-        # 초기 self 값 설정
+        #forecast초기값 설정
         self.tagname = tagname
         self.window_size = window_size
         self.step_size = step_size
         self.forecast = np.full(
-            shape=self.step_size, fill_value=np.nan, dtype=np.float32
-        )
+            shape=self.step_size, fill_value=np.nan, dtype=np.float32)
         self.timestamps = np.zeros(shape=self.window_size, dtype=np.uint64)
         self.values = np.full(
             shape=self.window_size, fill_value=np.nan, dtype=np.float32
-        )
-
+)
+        #duration초기값 설정
         self.duration_size = duration_size
-        self.duration_timestamps = np.zeros(shape=self.duration_size, dtype=np.uint64)
-        self.duration_values = np.full(
-            shape=self.duration_size, fill_value=np.nan, dtype=np.float32
-        )
         self.duration_trend = np.full(
-            shape=self.duration_size, fill_value=np.nan, dtype=np.float32
-        )
+            shape=self.duration_size, fill_value=np.nan, dtype=np.float32)
+
 
         # InfluxDB 연결 설정
         self.influx_connector = InfluxConnector(
@@ -70,13 +65,16 @@ class ARIMA_model:
             "std": round(float(forecast_values.std()), 2),
         }
 
-    def train_predict(self, forecast_array, step_size):  # ARIMA 모델 예측
-        self.model = ARIMA(self.values, order=(1, 2, 0)).fit()
+    def train_predict(self, values, forecast_array, step_size):  # ARIMA 모델 예측
+        self.model = ARIMA(values, order=(1, 2, 0)).fit()
         forecast = self.model.forecast(steps=step_size)  # 예측
         forecast_array[: len(forecast)] = forecast  # 예측 결과를 전달된 배열에 할당
 
+    
     def convert_to_utc(self, local_time_str: str) -> str:
+        kst = pytz.timezone('Asia/Seoul')
         local_time = datetime.datetime.strptime(local_time_str, "%Y-%m-%d %H:%M:%S")
+        local_time = kst.localize(local_time)
         utc_time = local_time.astimezone(pytz.UTC)
         return utc_time.isoformat()
 
@@ -84,18 +82,12 @@ class ARIMA_model:
     def update_data(self, values, tag_name, timestamp):
         # 처음으로 시작할 때 만약 전체 데이터가 비어있다면 Influx에서 불러오기
         if np.isnan(self.values).all():
-            print("Fetching historical data from InfluxDB...")
-            df = self.influx_connector.load_from_influx(
-                tagname=tag_name, start=model_info["start_date"], end="now()"
-            )
+            df = self.influx_connector.load_from_influx(tagname=tag_name, start=model_info["start_date"], end="now()").iloc[: self.window_size].reset_index()
             if not df.empty:
-                df = df.iloc[: self.window_size].reset_index()
-                self.timestamps[: len(df)] = (
+                self.timestamps = (
                     (df["_time"].astype("int64") // 10**9).astype(np.uint64).values
                 )
-                self.values[: len(df)] = df["_value"].astype(np.float32).values
-                print("Historical data loaded.")
-
+                self.values = df["_value"].astype(np.float32).values
         # InfluxDB에서 데이터를 가져온 후에도 계속 새로운 값을 추가할 수 있도록 처리
         # 시간 차이 체크 (업데이트 되는 시간이 5초보다 짧을 경우 결과 반환 X)
         if timestamp - self.timestamps[-1] >= 5:
@@ -113,8 +105,8 @@ class ARIMA_model:
 
             filled_count = np.count_nonzero(~np.isnan(self.values))
             if filled_count >= self.window_size:
+                self.train_predict(self.values, self.forecast, self.step_size)
                 self.update_statistics(self.forecast)
-                self.train_predict(self.forecast, self.step_size)
                 self.create_time(self.timestamps[-1], self.step_size)
 
                 result = {
@@ -125,7 +117,7 @@ class ARIMA_model:
                             "value": self.forecast.tolist()[i],
                             "time": self.forecast_times[i],
                         }
-                        for i in range(len(self.forecast.tolist()))
+                        for i in range(self.step_size)
                     ],
                 }
             else:
@@ -139,26 +131,20 @@ class ARIMA_model:
 
         return result
 
+
+
+
     ##########trend
     def duration_forecast(self, tag_name, start, end):
         start_utc = self.convert_to_utc(start)
         end_utc = self.convert_to_utc(end)
-        print("Fetching historical data from InfluxDB...")
-        df = self.influx_connector.load_from_influx(
-            tagname=tag_name, start=start_utc, end=end_utc
-        )
-        df = df.iloc[: self.window_size].reset_index()
+        df = self.influx_connector.load_from_influx(tagname=tag_name, start=start_utc, end=end_utc).reset_index()
         if not df.empty:
-            self.duration_timestamps[: len(df)] = (
-                (df["_time"].astype("int64") // 10**9).astype(np.uint64).values
-            )
-            self.duration_values[: len(df)] = df["_value"].astype(np.float32).values
-            print("Historical data loaded.")
-            self.train_predict(self.duration_size, self.duration_trend)
+            self.duration_values = df["_value"].astype(np.float32).values
+            self.train_predict(self.duration_values, self.duration_trend, self.duration_size)
             self.update_statistics(self.duration_trend)
             end_timestamp = int(
-                datetime.datetime.strptime(end, "%Y-%m-%d %H:%M:%S").timestamp()
-            )
+                datetime.datetime.strptime(end, "%Y-%m-%d %H:%M:%S").timestamp())
             self.create_time(end_timestamp, self.duration_size)
 
             result = {
@@ -169,7 +155,7 @@ class ARIMA_model:
                         "value": self.duration_trend.tolist()[i],
                         "time": self.forecast_times[i],
                     }
-                    for i in range(len(self.duration_trend.tolist()))
+                    for i in range(self.duration_size)
                 ],
             }
         else:

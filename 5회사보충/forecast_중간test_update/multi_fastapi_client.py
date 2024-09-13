@@ -18,11 +18,11 @@ async def send_data():
             inc+=0.005
             data = [
                 {
-                    'tagname': 1,
+                    'tagname': int(1),
                     'values': random_value1,
                     'timestamp': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")},
                 {
-                    'tagname': 2,
+                    'tagname': int(2),
                     'values': random_value2,
                     'timestamp': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
             ]

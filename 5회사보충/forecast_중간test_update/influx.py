@@ -12,7 +12,7 @@ class InfluxConnector(metaclass=SingletonInstance):
         self.query_api = self.client.query_api()
         self.bucket = bucket
 
-    def __create_query(self, tagname: str, start: str, end: str):
+    def __create_query(self, tagname: int, start: str, end: str):
         query = f'''
             from(bucket: "{self.bucket}")
             |> range(start: {start}, stop: {end})
@@ -36,7 +36,8 @@ class InfluxConnector(metaclass=SingletonInstance):
             return pd.DataFrame()
 
 
-    def load_from_influx(self, tagname: str, start: str, end: str) -> pd.DataFrame:
+    def load_from_influx(self, tagname: int, start: str, end: str) -> pd.DataFrame:
+        print("Fetching historical data from InfluxDB...")
         query = self.__create_query(tagname, start, end)
         tables = self.query_api.query(query)
         df = self.__parse_influx_res(tables)
@@ -44,8 +45,8 @@ class InfluxConnector(metaclass=SingletonInstance):
             df['_time'] = pd.to_datetime(df['_time'], utc=True)
             df['_time'] = df['_time'].dt.tz_convert('Asia/Seoul')
             df.set_index('_time', inplace=True)
-            
             resampled_df = df.resample('5S').bfill().dropna()
+            print("Historical data loaded.")
             return resampled_df
         else:
             return pd.DataFrame()

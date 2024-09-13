@@ -24,10 +24,10 @@ MODEL_CONFIG = {
     'test_model': {
         #forecast용
         'window_size': 720,
-        'step_size'  : 720,    
+        'step_size'  : 120,    
         'start_date' : "-1h",
         
         #trend용
-        'duration_size' : 720
+        'duration_size' : 120
     }
 }

@@ -19,4 +19,11 @@ Python 3.11.0
 pip install -r requirements.txt
 
 
-curl -X POST "http://127.0.0.1:1113/duration" -H "Content-Type: application/json" -d "{\"tagname\": 2, \"start\": \"2024-08-12 00:00:00\", \"end\": \"2024-09-12 00:00:00\"}"
+#명령어
+curl -X POST "http://127.0.0.1:1113/duration" -H "Content-Type: application/json" -d "{\"tagname\": 2, \"start\": \"2024-09-13 09:00:00\", \"end\": \"2024-09-13 10:25:00\"}"
+
+{
+  "tagname": 2,
+  "start": "2024-09-13 09:00:00",
+  "end": "2024-09-13 11:00:00"
+}
