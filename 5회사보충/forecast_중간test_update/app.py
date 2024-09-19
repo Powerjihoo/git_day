@@ -1,25 +1,15 @@
-##app.py
-
 import datetime
 import json
+import zlib  # 또는 gzip
 
 from fastapi import APIRouter, FastAPI, WebSocket
 from pydantic import BaseModel
 
-# import psycopg2
 import config
 from model import ARIMA_model
+from utils.logger import logger
 
 server_info = config.SERVER_CONFIG
-
-# def fetch_db_data():
-#     db = psycopg2.connect(host=server_info['postgre_host'], dbname=server_info['postgre_dbname'], user=server_info['postgre_user'], password=server_info['postgre_pw'], port=server_info['postgre_port'])
-#     with db.cursor() as cursor:
-#         cursor.execute("SELECT id FROM spot;")
-#         result = cursor.fetchall()
-#     db.close()
-#     return result
-# DB = fetch_db_data()
 
 DB = [(1,), (2,)]  # Postgre연결후 위의 코드로 실행
 arima_models = {item[0]: ARIMA_model(item[0]) for item in DB}
@@ -37,28 +27,27 @@ async def websocket_endpoint(websocket: WebSocket):
             results = []
 
             for item in data:
-                tag_name = item['tagname']
+                tag_name: int = item['tagname']
                 values = item['values']
                 timestamp_str = item['timestamp']
                 timestamp = datetime.datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S").timestamp()
-                print(f"Received: tagname={tag_name}, value={values}, timestamp={timestamp_str}")
+                logger.info(f"Received: tagname={tag_name}, value={values}, timestamp={timestamp_str}")
 
                 if tag_name in arima_models:
                     arima_model = arima_models[tag_name]
                     result = arima_model.update_data(values, tag_name, timestamp)
                     results.append(result)
                 else:
-                    print(f"알 수 없는 태그명으로 데이터 수신: {tag_name}")
-            
-            await websocket.send_text(json.dumps(results))
+                    logger.warning(f"Unknown tagname received: {tag_name}")
+
+            # JSON 인코딩 및 압축
+            compressed_results = zlib.compress(json.dumps(results).encode())
+            await websocket.send_bytes(compressed_results)
 
     except Exception as e:
-        print(f"WebSocket 연결 오류: {str(e)}")
+        logger.error(f"WebSocket connection error: {str(e)}")
     finally:
         await websocket.close()
-
-
-
 
 class DurationRequest(BaseModel):
     tagname: int
@@ -71,17 +60,18 @@ async def duration_forecast(request: DurationRequest):
     start = request.start
     end = request.end
     
-    # 요청된 tagname에 해당하는 ARIMA 모델이 이미 생성되어 있는지 확인
+    # Check if the ARIMA model for the requested tagname is already created
     if tag_name in arima_models:
         arima_model = arima_models[tag_name]
 
-        # duration_forecast 메서드 호출하여 예측 결과 얻기
+        # Call the duration_forecast method to get prediction results
         result = arima_model.duration_forecast(tag_name=tag_name, start=start, end=end)
         if result:
             return result
         else:
+            logger.warning(f"No data available for the given range: {start} to {end}")
             return {"error": f"No data available for the given range: {start} to {end}"}
     else:
-        print(f"알 수 없는 태그명으로 데이터 수신: {tag_name}")
+        logger.warning(f"Unknown tagname received: {tag_name}")
 
 app.include_router(router)

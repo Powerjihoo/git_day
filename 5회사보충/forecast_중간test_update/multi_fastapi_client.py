@@ -4,6 +4,8 @@ import asyncio
 import datetime
 import json
 import random
+import sys
+import zlib
 
 import websockets
 
@@ -31,10 +33,15 @@ async def send_data():
             print(f"Sent({data[1]['tagname']}) : {data[1]['values']}")
 
             response = await websocket.recv()
-            result = json.loads(response)
+            print(sys.getsizeof(response))
+            decompressed_response = zlib.decompress(response)
+            print(sys.getsizeof(decompressed_response))
+            result = json.loads(decompressed_response)
+            
 
             #결과 출력
             print(f"Received result from server: {result}")
-            await asyncio.sleep(random.uniform(3, 7))
+            # await asyncio.sleep(random.uniform(3, 7))
+            await asyncio.sleep(5)
 
 asyncio.get_event_loop().run_until_complete(send_data())
