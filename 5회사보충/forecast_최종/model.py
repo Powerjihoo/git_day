@@ -46,7 +46,8 @@ class ARIMA_model:
         """
         미래에 대한 예측시간 생성
         
-        Parameters:
+        Parameters
+        ----------
         - end_timestamp : 마지막 데이터의 타임스탬프(이 시점부터 미래예측시작)
         - step_size : 예측 단계 크기
         """
@@ -59,9 +60,6 @@ class ARIMA_model:
     def update_statistics(self, forecast_array: np.ndarray):
         """
         예측값에 대한 통계값 계산
-        
-        Parameters
-        - forecast_array : 예측된 값의 배열
         """
         forecast_values = np.array(
             [value for value in forecast_array if not np.isnan(value)]
@@ -87,24 +85,20 @@ class ARIMA_model:
         try:
             self.model = ARIMA(values, order=(1, 2, 0)).fit()
             forecast = self.model.forecast(steps=step_size)  # 예측
-            forecast_array[: len(forecast)] = forecast  # 예측 결과를 전달된 배열에 할당
-            logger.info(f"Model training and forecasting successful for tagname={self.tagname}")
+            forecast_array[: len(forecast)] = forecast       # 예측 결과를 전달된 배열에 할당
         except Exception as e:
             logger.error(f"Error during ARIMA model training and forecasting: {e}")
 
     def convert_to_utc(self, local_time_str: str) -> str:
         """
         로컬 시간을 UTC 시간으로 변환
-        
-        Parameters
-        ----------
-        local_time_str (str): 변환할 로컬 시간 문자열
         """
         kst = pytz.timezone('Asia/Seoul')
         local_time = datetime.datetime.strptime(local_time_str, "%Y-%m-%d %H:%M:%S")
         local_time = kst.localize(local_time)
         utc_time = local_time.astimezone(pytz.UTC)
         return utc_time.isoformat()
+    
 
     ########## forecast
     def update_data(self, values: float, tag_name: int, timestamp: int):
@@ -122,6 +116,7 @@ class ARIMA_model:
         예측이 성공했을 때: {'tagname': 1, 'statistics': {...}, 'forecast': [{'value': ..., 'time': ...}, ...]}.
         예측이 실패했을 때: None.
         """
+        #데이터가 비어있을때(처음으로 시작했을때) InfluxDB에서 데이터 조회
         if np.isnan(self.values).all():
             df = self.influx_connector.load_from_influx(tagname=tag_name, start=model_info["start_date"], end="now()").iloc[: self.window_size].reset_index()
             if not df.empty:
@@ -129,20 +124,20 @@ class ARIMA_model:
                     (df["_time"].astype("int64") // 10**9).astype(np.uint64).values
                 )
                 self.values = df["_value"].astype(np.float32).values
-                logger.info(f"Loaded initial data from InfluxDB for tagname={tag_name}")
+                logger.info(f"Loaded initial data from InfluxDB for tagname = {tag_name}")
+            else:
+                logger.warning(f"No data available for the given range: {model_info['start_date']} to now")
 
         if timestamp - self.timestamps[-1] >= 5:
             nan_count = np.count_nonzero(np.isnan(self.values))
             if nan_count > 0:
                 self.values[-nan_count] = values
                 self.timestamps[-nan_count] = np.uint64(timestamp)
-                logger.debug(f"Inserted new value {values} at position {nan_count} for tagname={tag_name}")
             else:
                 self.values[:-1] = self.values[1:]
                 self.values[-1] = values
                 self.timestamps[:-1] = self.timestamps[1:]
                 self.timestamps[-1] = np.uint64(timestamp)
-                logger.debug(f"Updated oldest data and inserted new value {values} for tagname={tag_name}")
 
             filled_count = np.count_nonzero(~np.isnan(self.values))
             if filled_count >= self.window_size:
@@ -155,21 +150,23 @@ class ARIMA_model:
                     "statistics": self.statistics,
                     "forecast": [
                         {
-                            "value": self.forecast.tolist()[i],
-                            "time": self.forecast_times[i],
+                            "v": round(self.forecast.tolist()[i],1),
+                            "t": self.forecast_times[i],
                         }
                         for i in range(self.step_size)
                     ],
                 }
-                logger.info(f"Prediction successful for tagname={tag_name}")
+                logger.info(f"Prediction successful for tagname = {tag_name}")
             else:
-                logger.warning(f"tagname={tag_name} - Filled count is {filled_count}. Not enough data to forecast.")
+                logger.warning(f"tagname = {tag_name} - Filled count is {filled_count} / {self.window_size}. Not enough data to forecast.")
                 return None
         else:
-            logger.warning(f"tagname={tag_name} - Update ignored (time difference <= 5 seconds)")
+            logger.warning(f"tagname = {tag_name} - Update ignored (time difference <= 5 seconds)")
             return None
 
         return result
+
+
 
     ########## trend
     def duration_forecast(self, tag_name: int, start: str, end: str):
@@ -184,11 +181,10 @@ class ARIMA_model:
         
         Returns
         ----------
-        예측이 성공했을때 : {tagname:1, statistic:{--}, forecast:{[values,],[time,]} }
-        예측이 실패했을때 : None
+        예측이 성공했을 때: {'tagname': 1, 'statistics': {...}, 'forecast': [{'value': ..., 'time': ...}, ...]}.
+        예측이 실패했을 때: None.
         """
-        start_utc = self.convert_to_utc(start)
-        end_utc = self.convert_to_utc(end)
+        start_utc, end_utc = self.convert_to_utc(start), self.convert_to_utc(end)
         df = self.influx_connector.load_from_influx(tagname=tag_name, start=start_utc, end=end_utc).reset_index()
         if not df.empty:
             self.duration_values = df["_value"].astype(np.float32).values
@@ -202,14 +198,14 @@ class ARIMA_model:
                 "statistics": self.statistics,
                 "forecast": [
                     {
-                        "value": self.duration_trend.tolist()[i],
-                        "time": self.forecast_times[i],
+                        "v": round(self.duration_trend.tolist()[i],1),
+                        "t": self.forecast_times[i],
                     }
                     for i in range(self.duration_size)
                 ],
             }
         else:
-            print(f"tag: {tag_name} -  {start} ~ {end} 해당 구간에는 데이터가 없음")
-            return None
+            logger.warning(f"No data available for the given range: {start} to {end}")
+            result = {"error": f"No data available for the given range: {start} to {end}"}
 
         return result

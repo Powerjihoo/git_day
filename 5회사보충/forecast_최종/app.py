@@ -1,6 +1,5 @@
 import datetime
 import json
-import zlib  # 또는 gzip
 
 from fastapi import APIRouter, FastAPI, WebSocket
 from pydantic import BaseModel
@@ -11,6 +10,16 @@ from utils.logger import logger
 
 server_info = config.SERVER_CONFIG
 
+# def fetch_db_data():
+#     import psycopg2
+#     db = psycopg2.connect(host=server_info['postgre_host'], dbname=server_info['postgre_dbname'], user=server_info['postgre_user'], password=server_info['postgre_pw'], port=server_info['postgre_port'])
+#     with db.cursor() as cursor:
+#         cursor.execute("SELECT id FROM spot;")
+#         result = cursor.fetchall()
+#     db.close()
+#     return result
+
+# DB = fetch_db_data()
 DB = [(1,), (2,)]  # Postgre연결후 위의 코드로 실행
 arima_models = {item[0]: ARIMA_model(item[0]) for item in DB}
 
@@ -31,7 +40,7 @@ async def websocket_endpoint(websocket: WebSocket):
                 values = item['values']
                 timestamp_str = item['timestamp']
                 timestamp = datetime.datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S").timestamp()
-                logger.info(f"Received: tagname={tag_name}, value={values}, timestamp={timestamp_str}")
+                logger.info(f"Received: tagname = {tag_name}, value={values}, timestamp={timestamp_str}")
 
                 if tag_name in arima_models:
                     arima_model = arima_models[tag_name]
@@ -39,10 +48,8 @@ async def websocket_endpoint(websocket: WebSocket):
                     results.append(result)
                 else:
                     logger.warning(f"Unknown tagname received: {tag_name}")
-
-            # JSON 인코딩 및 압축
-            compressed_results = zlib.compress(json.dumps(results).encode())
-            await websocket.send_bytes(compressed_results)
+            
+            await websocket.send_text(json.dumps(results))
 
     except Exception as e:
         logger.error(f"WebSocket connection error: {str(e)}")
@@ -60,18 +67,12 @@ async def duration_forecast(request: DurationRequest):
     start = request.start
     end = request.end
     
-    # Check if the ARIMA model for the requested tagname is already created
     if tag_name in arima_models:
         arima_model = arima_models[tag_name]
-
-        # Call the duration_forecast method to get prediction results
         result = arima_model.duration_forecast(tag_name=tag_name, start=start, end=end)
-        if result:
-            return result
-        else:
-            logger.warning(f"No data available for the given range: {start} to {end}")
-            return {"error": f"No data available for the given range: {start} to {end}"}
+        return result
     else:
         logger.warning(f"Unknown tagname received: {tag_name}")
+
 
 app.include_router(router)

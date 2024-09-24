@@ -1,0 +1,874 @@
+2024-09-19 15:52:33|INFO    | >> Received: tagname=1, value=37.0467073489474, timestamp=2024-09-19 15:52:33
+2024-09-19 15:52:33|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-19 15:52:33|INFO    | >> Received: tagname=2, value=36.28516257131393, timestamp=2024-09-19 15:52:33
+2024-09-19 15:52:33|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-19 15:52:33|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 15:52:33|INFO    | >> Prediction successful for tagname=2
+2024-09-19 15:52:36|ERROR   | >> WebSocket connection error: 1006
+2024-09-19 16:55:52|INFO    | >> Received: tagname=1, value=36.05998904135797, timestamp=2024-09-19 16:55:52
+2024-09-19 16:55:52|WARNING | >> tagname=1 - Filled count is 2. Not enough data to forecast.
+2024-09-19 16:55:52|INFO    | >> Received: tagname=2, value=37.76058150497762, timestamp=2024-09-19 16:55:52
+2024-09-19 16:55:52|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 16:55:52|INFO    | >> Prediction successful for tagname=2
+2024-09-19 16:55:57|INFO    | >> Received: tagname=1, value=36.54006902346897, timestamp=2024-09-19 16:55:57
+2024-09-19 16:55:57|WARNING | >> tagname=1 - Filled count is 3. Not enough data to forecast.
+2024-09-19 16:55:57|INFO    | >> Received: tagname=2, value=36.83215520422019, timestamp=2024-09-19 16:55:57
+2024-09-19 16:55:57|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 16:55:57|INFO    | >> Prediction successful for tagname=2
+2024-09-19 16:56:02|INFO    | >> Received: tagname=1, value=37.35074468327775, timestamp=2024-09-19 16:56:02
+2024-09-19 16:56:02|WARNING | >> tagname=1 - Filled count is 4. Not enough data to forecast.
+2024-09-19 16:56:02|INFO    | >> Received: tagname=2, value=36.09481957244067, timestamp=2024-09-19 16:56:02
+2024-09-19 16:56:02|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 16:56:02|INFO    | >> Prediction successful for tagname=2
+2024-09-19 16:56:07|INFO    | >> Received: tagname=1, value=36.365537598773145, timestamp=2024-09-19 16:56:07
+2024-09-19 16:56:07|WARNING | >> tagname=1 - Filled count is 5. Not enough data to forecast.
+2024-09-19 16:56:07|INFO    | >> Received: tagname=2, value=37.814121523050595, timestamp=2024-09-19 16:56:07
+2024-09-19 16:56:07|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 16:56:07|INFO    | >> Prediction successful for tagname=2
+2024-09-19 16:56:12|INFO    | >> Received: tagname=1, value=37.53315578953647, timestamp=2024-09-19 16:56:12
+2024-09-19 16:56:12|WARNING | >> tagname=1 - Filled count is 6. Not enough data to forecast.
+2024-09-19 16:56:12|INFO    | >> Received: tagname=2, value=37.217647223508486, timestamp=2024-09-19 16:56:12
+2024-09-19 16:56:12|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 16:56:12|INFO    | >> Prediction successful for tagname=2
+2024-09-19 16:56:17|INFO    | >> Received: tagname=1, value=36.4716034091142, timestamp=2024-09-19 16:56:17
+2024-09-19 16:56:17|WARNING | >> tagname=1 - Filled count is 7. Not enough data to forecast.
+2024-09-19 16:56:17|INFO    | >> Received: tagname=2, value=37.27446594086918, timestamp=2024-09-19 16:56:17
+2024-09-19 16:56:17|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 16:56:18|INFO    | >> Prediction successful for tagname=2
+2024-09-19 16:56:23|INFO    | >> Received: tagname=1, value=37.36843403108928, timestamp=2024-09-19 16:56:23
+2024-09-19 16:56:23|WARNING | >> tagname=1 - Filled count is 8. Not enough data to forecast.
+2024-09-19 16:56:23|INFO    | >> Received: tagname=2, value=36.69892453901524, timestamp=2024-09-19 16:56:23
+2024-09-19 16:56:23|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 16:56:23|INFO    | >> Prediction successful for tagname=2
+2024-09-19 16:56:27|ERROR   | >> WebSocket connection error: 1012
+2024-09-19 16:56:44|INFO    | >> Received: tagname=1, value=37.98768811481191, timestamp=2024-09-19 16:56:44
+2024-09-19 16:56:44|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-19 16:56:44|INFO    | >> Received: tagname=2, value=37.22199160574832, timestamp=2024-09-19 16:56:44
+2024-09-19 16:56:44|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-19 16:56:44|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 16:56:44|INFO    | >> Prediction successful for tagname=2
+2024-09-19 16:56:49|INFO    | >> Received: tagname=1, value=37.834568620312155, timestamp=2024-09-19 16:56:49
+2024-09-19 16:56:49|WARNING | >> tagname=1 - Filled count is 2. Not enough data to forecast.
+2024-09-19 16:56:49|INFO    | >> Received: tagname=2, value=37.13322404368687, timestamp=2024-09-19 16:56:49
+2024-09-19 16:56:49|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 16:56:49|INFO    | >> Prediction successful for tagname=2
+2024-09-19 16:56:54|INFO    | >> Received: tagname=1, value=36.852974814790095, timestamp=2024-09-19 16:56:54
+2024-09-19 16:56:54|WARNING | >> tagname=1 - Filled count is 3. Not enough data to forecast.
+2024-09-19 16:56:54|INFO    | >> Received: tagname=2, value=37.51320537328504, timestamp=2024-09-19 16:56:54
+2024-09-19 16:56:54|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 16:56:54|INFO    | >> Prediction successful for tagname=2
+2024-09-19 16:56:57|ERROR   | >> WebSocket connection error: 1012
+2024-09-19 16:58:25|INFO    | >> Received: tagname=1, value=36.36280595297293, timestamp=2024-09-19 16:58:25
+2024-09-19 16:58:25|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-19 16:58:25|INFO    | >> Received: tagname=2, value=36.581760815824794, timestamp=2024-09-19 16:58:25
+2024-09-19 16:58:25|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-19 16:58:25|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 16:58:25|INFO    | >> Prediction successful for tagname=2
+2024-09-19 16:58:30|INFO    | >> Received: tagname=1, value=37.78005255841347, timestamp=2024-09-19 16:58:30
+2024-09-19 16:58:30|WARNING | >> tagname=1 - Filled count is 2. Not enough data to forecast.
+2024-09-19 16:58:30|INFO    | >> Received: tagname=2, value=37.54098367766219, timestamp=2024-09-19 16:58:30
+2024-09-19 16:58:30|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 16:58:30|INFO    | >> Prediction successful for tagname=2
+2024-09-19 16:58:31|ERROR   | >> WebSocket connection error: 1012
+2024-09-19 16:58:35|INFO    | >> Received: tagname=1, value=37.60184564789379, timestamp=2024-09-19 16:58:35
+2024-09-19 16:58:35|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-19 16:58:35|INFO    | >> Received: tagname=2, value=37.42240859471868, timestamp=2024-09-19 16:58:35
+2024-09-19 16:58:35|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-19 16:58:35|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 16:58:35|INFO    | >> Prediction successful for tagname=2
+2024-09-19 16:58:40|INFO    | >> Received: tagname=1, value=36.54999290208235, timestamp=2024-09-19 16:58:40
+2024-09-19 16:58:40|WARNING | >> tagname=1 - Filled count is 2. Not enough data to forecast.
+2024-09-19 16:58:40|INFO    | >> Received: tagname=2, value=37.500888708679966, timestamp=2024-09-19 16:58:40
+2024-09-19 16:58:40|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 16:58:40|INFO    | >> Prediction successful for tagname=2
+2024-09-19 16:58:45|INFO    | >> Received: tagname=1, value=37.213952162370475, timestamp=2024-09-19 16:58:45
+2024-09-19 16:58:45|WARNING | >> tagname=1 - Filled count is 3. Not enough data to forecast.
+2024-09-19 16:58:45|INFO    | >> Received: tagname=2, value=36.210054600896264, timestamp=2024-09-19 16:58:45
+2024-09-19 16:58:45|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 16:58:45|INFO    | >> Prediction successful for tagname=2
+2024-09-19 16:58:50|INFO    | >> Received: tagname=1, value=36.63339348542311, timestamp=2024-09-19 16:58:50
+2024-09-19 16:58:50|WARNING | >> tagname=1 - Filled count is 4. Not enough data to forecast.
+2024-09-19 16:58:50|INFO    | >> Received: tagname=2, value=36.79382449760528, timestamp=2024-09-19 16:58:50
+2024-09-19 16:58:50|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 16:58:50|INFO    | >> Prediction successful for tagname=2
+2024-09-19 16:58:55|INFO    | >> Received: tagname=1, value=37.28675284282458, timestamp=2024-09-19 16:58:55
+2024-09-19 16:58:55|WARNING | >> tagname=1 - Filled count is 5. Not enough data to forecast.
+2024-09-19 16:58:55|INFO    | >> Received: tagname=2, value=36.03763547306955, timestamp=2024-09-19 16:58:55
+2024-09-19 16:58:55|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 16:58:55|INFO    | >> Prediction successful for tagname=2
+2024-09-19 16:59:00|INFO    | >> Received: tagname=1, value=37.99471099849316, timestamp=2024-09-19 16:59:00
+2024-09-19 16:59:00|WARNING | >> tagname=1 - Filled count is 6. Not enough data to forecast.
+2024-09-19 16:59:00|INFO    | >> Received: tagname=2, value=37.652791961207626, timestamp=2024-09-19 16:59:00
+2024-09-19 16:59:00|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 16:59:00|INFO    | >> Prediction successful for tagname=2
+2024-09-19 16:59:05|INFO    | >> Received: tagname=1, value=37.407115971737284, timestamp=2024-09-19 16:59:05
+2024-09-19 16:59:05|WARNING | >> tagname=1 - Filled count is 7. Not enough data to forecast.
+2024-09-19 16:59:05|INFO    | >> Received: tagname=2, value=37.93341475667606, timestamp=2024-09-19 16:59:05
+2024-09-19 16:59:06|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 16:59:06|INFO    | >> Prediction successful for tagname=2
+2024-09-19 16:59:11|INFO    | >> Received: tagname=1, value=36.41055853263665, timestamp=2024-09-19 16:59:11
+2024-09-19 16:59:11|WARNING | >> tagname=1 - Filled count is 8. Not enough data to forecast.
+2024-09-19 16:59:11|INFO    | >> Received: tagname=2, value=36.078474166477214, timestamp=2024-09-19 16:59:11
+2024-09-19 16:59:11|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 16:59:11|INFO    | >> Prediction successful for tagname=2
+2024-09-19 16:59:16|INFO    | >> Received: tagname=1, value=36.114472500943975, timestamp=2024-09-19 16:59:16
+2024-09-19 16:59:16|WARNING | >> tagname=1 - Filled count is 9. Not enough data to forecast.
+2024-09-19 16:59:16|INFO    | >> Received: tagname=2, value=36.0940995427361, timestamp=2024-09-19 16:59:16
+2024-09-19 16:59:16|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 16:59:16|INFO    | >> Prediction successful for tagname=2
+2024-09-19 16:59:21|INFO    | >> Received: tagname=1, value=36.93207812158018, timestamp=2024-09-19 16:59:21
+2024-09-19 16:59:21|WARNING | >> tagname=1 - Filled count is 10. Not enough data to forecast.
+2024-09-19 16:59:21|INFO    | >> Received: tagname=2, value=36.741852003838886, timestamp=2024-09-19 16:59:21
+2024-09-19 16:59:21|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 16:59:21|INFO    | >> Prediction successful for tagname=2
+2024-09-19 16:59:24|ERROR   | >> WebSocket connection error: 1006
+2024-09-19 17:52:54|INFO    | >> Received: tagname=1, value=36.739455724151235, timestamp=2024-09-19 17:52:54
+2024-09-19 17:52:54|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-19 17:52:54|INFO    | >> Received: tagname=2, value=36.58651965783641, timestamp=2024-09-19 17:52:54
+2024-09-19 17:52:54|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-19 17:52:54|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 17:52:54|INFO    | >> Prediction successful for tagname=2
+2024-09-19 17:52:56|ERROR   | >> WebSocket connection error: 1006
+2024-09-19 18:00:10|INFO    | >> Received: tagname=1, value=37.656540365334244, timestamp=2024-09-19 18:00:10
+2024-09-19 18:00:10|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-19 18:00:10|ERROR   | >> WebSocket connection error: 'list' object has no attribute 'to_csv'
+2024-09-19 18:00:45|INFO    | >> Received: tagname=1, value=37.88075315583885, timestamp=2024-09-19 18:00:45
+2024-09-19 18:00:45|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-19 18:00:45|INFO    | >> Received: tagname=2, value=37.96192721473444, timestamp=2024-09-19 18:00:45
+2024-09-19 18:00:45|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-19 18:00:45|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 18:00:45|INFO    | >> Prediction successful for tagname=2
+2024-09-19 18:00:47|ERROR   | >> WebSocket connection error: 1006
+2024-09-19 18:02:43|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 18:15:38|INFO    | >> Received: tagname=1, value=37.79641326962726, timestamp=2024-09-19 18:15:38
+2024-09-19 18:15:38|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-19 18:15:38|INFO    | >> Received: tagname=2, value=36.04760808741094, timestamp=2024-09-19 18:15:38
+2024-09-19 18:15:38|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-19 18:15:39|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-19 18:15:39|INFO    | >> Prediction successful for tagname=2
+2024-09-19 18:15:40|ERROR   | >> WebSocket connection error: 1006
+2024-09-20 08:38:44|INFO    | >> Received: tagname=1, value=37.61404282751942, timestamp=2024-09-20 08:38:44
+2024-09-20 08:38:44|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 08:38:44|INFO    | >> Received: tagname=2, value=36.29332955422664, timestamp=2024-09-20 08:38:44
+2024-09-20 08:38:45|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 08:38:45|WARNING | >> tagname=2 - Update ignored (time difference <= 5 seconds)
+2024-09-20 08:38:45|ERROR   | >> WebSocket connection error: list indices must be integers or slices, not str
+2024-09-20 08:39:50|INFO    | >> Received: tagname=1, value=37.90832156408692, timestamp=2024-09-20 08:39:50
+2024-09-20 08:39:50|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 08:39:50|INFO    | >> Received: tagname=2, value=36.081601677438314, timestamp=2024-09-20 08:39:50
+2024-09-20 08:39:50|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 08:39:50|WARNING | >> tagname=2 - Filled count is 27. Not enough data to forecast.
+2024-09-20 08:39:50|ERROR   | >> WebSocket connection error: data must be str or bytes-like
+2024-09-20 08:40:19|INFO    | >> Received: tagname=1, value=37.72946522759912, timestamp=2024-09-20 08:40:19
+2024-09-20 08:40:19|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 08:40:19|INFO    | >> Received: tagname=2, value=37.963298127460135, timestamp=2024-09-20 08:40:19
+2024-09-20 08:40:19|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 08:40:19|WARNING | >> tagname=2 - Update ignored (time difference <= 5 seconds)
+2024-09-20 08:40:24|INFO    | >> Received: tagname=1, value=36.14039176533985, timestamp=2024-09-20 08:40:24
+2024-09-20 08:40:24|WARNING | >> tagname=1 - Filled count is 2. Not enough data to forecast.
+2024-09-20 08:40:24|INFO    | >> Received: tagname=2, value=36.346217406236605, timestamp=2024-09-20 08:40:24
+2024-09-20 08:40:24|WARNING | >> tagname=2 - Filled count is 33. Not enough data to forecast.
+2024-09-20 08:40:25|ERROR   | >> WebSocket connection error: 1006
+2024-09-20 08:40:39|INFO    | >> Received: tagname=1, value=36.29734515742523, timestamp=2024-09-20 08:40:39
+2024-09-20 08:40:40|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 08:40:40|INFO    | >> Received: tagname=2, value=37.2845296489555, timestamp=2024-09-20 08:40:39
+2024-09-20 08:40:40|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 08:40:40|WARNING | >> tagname=2 - Update ignored (time difference <= 5 seconds)
+2024-09-20 08:40:43|ERROR   | >> WebSocket connection error: 1006
+2024-09-20 08:41:03|INFO    | >> Received: tagname=1, value=36.92701600504721, timestamp=2024-09-20 08:41:03
+2024-09-20 08:41:03|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 08:41:03|INFO    | >> Received: tagname=2, value=36.601619103651366, timestamp=2024-09-20 08:41:03
+2024-09-20 08:41:03|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 08:41:03|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 08:41:03|INFO    | >> Prediction successful for tagname=2
+2024-09-20 08:41:05|ERROR   | >> WebSocket connection error: 1006
+2024-09-20 08:41:13|INFO    | >> Received: tagname=1, value=37.021501490202574, timestamp=2024-09-20 08:41:13
+2024-09-20 08:41:13|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 08:41:13|INFO    | >> Received: tagname=2, value=36.005104465713025, timestamp=2024-09-20 08:41:13
+2024-09-20 08:41:13|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 08:41:13|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 08:41:13|INFO    | >> Prediction successful for tagname=2
+2024-09-20 08:41:17|ERROR   | >> WebSocket connection error: 1006
+2024-09-20 08:41:25|INFO    | >> Received: tagname=1, value=37.56105423568365, timestamp=2024-09-20 08:41:25
+2024-09-20 08:41:25|WARNING | >> tagname=1 - Filled count is 2. Not enough data to forecast.
+2024-09-20 08:41:25|INFO    | >> Received: tagname=2, value=37.972991391467154, timestamp=2024-09-20 08:41:25
+2024-09-20 08:41:25|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 08:41:25|INFO    | >> Prediction successful for tagname=2
+2024-09-20 08:41:26|ERROR   | >> WebSocket connection error: 1006
+2024-09-20 08:41:31|INFO    | >> Received: tagname=1, value=37.24359663719008, timestamp=2024-09-20 08:41:31
+2024-09-20 08:41:31|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 08:41:31|INFO    | >> Received: tagname=2, value=36.61026625571795, timestamp=2024-09-20 08:41:31
+2024-09-20 08:41:32|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 08:41:32|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 08:41:32|INFO    | >> Prediction successful for tagname=2
+2024-09-20 08:41:33|ERROR   | >> WebSocket connection error: 1006
+2024-09-20 08:54:14|INFO    | >> Received: tagname=1, value=36.669961643789925, timestamp=2024-09-20 08:54:14
+2024-09-20 08:54:14|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 08:54:14|INFO    | >> Received: tagname=2, value=36.30985873448432, timestamp=2024-09-20 08:54:14
+2024-09-20 08:54:14|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 08:54:14|WARNING | >> tagname=2 - Update ignored (time difference <= 5 seconds)
+2024-09-20 08:54:19|INFO    | >> Received: tagname=1, value=37.69859543405011, timestamp=2024-09-20 08:54:19
+2024-09-20 08:54:19|WARNING | >> tagname=1 - Filled count is 2. Not enough data to forecast.
+2024-09-20 08:54:19|INFO    | >> Received: tagname=2, value=36.82420696165169, timestamp=2024-09-20 08:54:19
+2024-09-20 08:54:19|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 08:54:19|INFO    | >> Prediction successful for tagname=2
+2024-09-20 08:54:24|INFO    | >> Received: tagname=1, value=37.3945188974213, timestamp=2024-09-20 08:54:24
+2024-09-20 08:54:24|WARNING | >> tagname=1 - Filled count is 3. Not enough data to forecast.
+2024-09-20 08:54:24|INFO    | >> Received: tagname=2, value=36.444542315716625, timestamp=2024-09-20 08:54:24
+2024-09-20 08:54:24|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 08:54:24|INFO    | >> Prediction successful for tagname=2
+2024-09-20 08:54:29|INFO    | >> Received: tagname=1, value=37.96870154672729, timestamp=2024-09-20 08:54:29
+2024-09-20 08:54:29|WARNING | >> tagname=1 - Filled count is 4. Not enough data to forecast.
+2024-09-20 08:54:29|INFO    | >> Received: tagname=2, value=37.894177393704794, timestamp=2024-09-20 08:54:29
+2024-09-20 08:54:29|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 08:54:29|INFO    | >> Prediction successful for tagname=2
+2024-09-20 08:54:33|ERROR   | >> WebSocket connection error: 1006
+2024-09-20 08:57:59|INFO    | >> Received: tagname=1, value=37.0889691381706, timestamp=2024-09-20 08:57:59
+2024-09-20 08:57:59|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 08:57:59|INFO    | >> Received: tagname=2, value=36.1849737337195, timestamp=2024-09-20 08:57:59
+2024-09-20 08:57:59|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 08:57:59|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 08:57:59|INFO    | >> Prediction successful for tagname=2
+2024-09-20 08:58:01|ERROR   | >> WebSocket connection error: 1006
+2024-09-20 10:15:29|INFO    | >> Received: tagname=1, value=36.651926991852015, timestamp=2024-09-20 10:15:29
+2024-09-20 10:15:30|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 10:15:30|INFO    | >> Received: tagname=2, value=36.11187906618733, timestamp=2024-09-20 10:15:29
+2024-09-20 10:15:30|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 10:15:30|WARNING | >> tagname=2 - Update ignored (time difference <= 5 seconds)
+2024-09-20 10:15:35|INFO    | >> Received: tagname=1, value=37.394669182133356, timestamp=2024-09-20 10:15:35
+2024-09-20 10:15:35|WARNING | >> tagname=1 - Filled count is 2. Not enough data to forecast.
+2024-09-20 10:15:35|INFO    | >> Received: tagname=2, value=36.47332648331216, timestamp=2024-09-20 10:15:35
+2024-09-20 10:15:35|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:15:35|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:15:36|ERROR   | >> WebSocket connection error: 1006
+2024-09-20 10:16:38|INFO    | >> Received: tagname=1, value=36.138219338911625, timestamp=2024-09-20 10:16:38
+2024-09-20 10:16:38|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 10:16:38|INFO    | >> Received: tagname=2, value=37.74701492387625, timestamp=2024-09-20 10:16:38
+2024-09-20 10:16:38|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 10:16:38|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:16:38|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:16:41|ERROR   | >> WebSocket connection error: 1006
+2024-09-20 10:24:33|INFO    | >> Received: tagname=1, value=37.53310951616796, timestamp=2024-09-20 10:24:33
+2024-09-20 10:24:33|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 10:24:33|INFO    | >> Received: tagname=2, value=37.229092722466355, timestamp=2024-09-20 10:24:33
+2024-09-20 10:24:33|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 10:24:33|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:24:33|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:24:38|INFO    | >> Received: tagname=1, value=37.840082665100596, timestamp=2024-09-20 10:24:38
+2024-09-20 10:24:38|WARNING | >> tagname=1 - Filled count is 2. Not enough data to forecast.
+2024-09-20 10:24:38|INFO    | >> Received: tagname=2, value=36.78828669943709, timestamp=2024-09-20 10:24:38
+2024-09-20 10:24:38|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:24:38|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:24:43|INFO    | >> Received: tagname=1, value=37.231808440818035, timestamp=2024-09-20 10:24:43
+2024-09-20 10:24:43|WARNING | >> tagname=1 - Filled count is 3. Not enough data to forecast.
+2024-09-20 10:24:43|INFO    | >> Received: tagname=2, value=36.074540720918186, timestamp=2024-09-20 10:24:43
+2024-09-20 10:24:43|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:24:43|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:24:48|INFO    | >> Received: tagname=1, value=37.591749302329674, timestamp=2024-09-20 10:24:48
+2024-09-20 10:24:48|WARNING | >> tagname=1 - Filled count is 4. Not enough data to forecast.
+2024-09-20 10:24:48|INFO    | >> Received: tagname=2, value=37.87913602369177, timestamp=2024-09-20 10:24:48
+2024-09-20 10:24:48|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:24:48|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:24:53|INFO    | >> Received: tagname=1, value=37.5263972792132, timestamp=2024-09-20 10:24:53
+2024-09-20 10:24:53|INFO    | >> Model training and forecasting successful for tagname=1
+2024-09-20 10:24:53|INFO    | >> Prediction successful for tagname=1
+2024-09-20 10:24:53|INFO    | >> Received: tagname=2, value=37.780134699693726, timestamp=2024-09-20 10:24:53
+2024-09-20 10:24:53|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:24:53|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:24:58|INFO    | >> Received: tagname=1, value=37.03728443802514, timestamp=2024-09-20 10:24:58
+2024-09-20 10:24:58|INFO    | >> Model training and forecasting successful for tagname=1
+2024-09-20 10:24:58|INFO    | >> Prediction successful for tagname=1
+2024-09-20 10:24:58|INFO    | >> Received: tagname=2, value=37.796222387637314, timestamp=2024-09-20 10:24:58
+2024-09-20 10:24:58|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:24:58|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:25:04|INFO    | >> Received: tagname=1, value=36.60476987829465, timestamp=2024-09-20 10:25:04
+2024-09-20 10:25:04|INFO    | >> Model training and forecasting successful for tagname=1
+2024-09-20 10:25:04|INFO    | >> Prediction successful for tagname=1
+2024-09-20 10:25:04|INFO    | >> Received: tagname=2, value=36.568697422669736, timestamp=2024-09-20 10:25:04
+2024-09-20 10:25:04|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:25:04|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:25:09|INFO    | >> Received: tagname=1, value=37.89741168287229, timestamp=2024-09-20 10:25:09
+2024-09-20 10:25:09|INFO    | >> Model training and forecasting successful for tagname=1
+2024-09-20 10:25:09|INFO    | >> Prediction successful for tagname=1
+2024-09-20 10:25:09|INFO    | >> Received: tagname=2, value=36.604775373021916, timestamp=2024-09-20 10:25:09
+2024-09-20 10:25:09|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:25:09|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:25:14|INFO    | >> Received: tagname=1, value=36.79928849861175, timestamp=2024-09-20 10:25:14
+2024-09-20 10:25:14|INFO    | >> Model training and forecasting successful for tagname=1
+2024-09-20 10:25:14|INFO    | >> Prediction successful for tagname=1
+2024-09-20 10:25:14|INFO    | >> Received: tagname=2, value=36.79745340344019, timestamp=2024-09-20 10:25:14
+2024-09-20 10:25:14|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:25:14|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:25:19|INFO    | >> Received: tagname=1, value=37.628423950906914, timestamp=2024-09-20 10:25:19
+2024-09-20 10:25:19|INFO    | >> Model training and forecasting successful for tagname=1
+2024-09-20 10:25:19|INFO    | >> Prediction successful for tagname=1
+2024-09-20 10:25:19|INFO    | >> Received: tagname=2, value=37.41770103703099, timestamp=2024-09-20 10:25:19
+2024-09-20 10:25:19|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:25:19|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:25:24|INFO    | >> Received: tagname=1, value=36.41447372015644, timestamp=2024-09-20 10:25:24
+2024-09-20 10:25:24|INFO    | >> Model training and forecasting successful for tagname=1
+2024-09-20 10:25:24|INFO    | >> Prediction successful for tagname=1
+2024-09-20 10:25:24|INFO    | >> Received: tagname=2, value=35.95650125687011, timestamp=2024-09-20 10:25:24
+2024-09-20 10:25:24|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:25:24|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:25:29|INFO    | >> Received: tagname=1, value=37.94263661618634, timestamp=2024-09-20 10:25:29
+2024-09-20 10:25:29|INFO    | >> Model training and forecasting successful for tagname=1
+2024-09-20 10:25:29|INFO    | >> Prediction successful for tagname=1
+2024-09-20 10:25:29|INFO    | >> Received: tagname=2, value=37.3283489056454, timestamp=2024-09-20 10:25:29
+2024-09-20 10:25:29|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:25:29|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:25:32|ERROR   | >> WebSocket connection error: 1006
+2024-09-20 10:25:40|INFO    | >> Received: tagname=1, value=36.449554247724556, timestamp=2024-09-20 10:25:40
+2024-09-20 10:25:40|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 10:25:40|INFO    | >> Received: tagname=2, value=37.729067394789304, timestamp=2024-09-20 10:25:40
+2024-09-20 10:25:40|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 10:25:40|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:25:40|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:25:42|ERROR   | >> WebSocket connection error: 1006
+2024-09-20 10:25:53|INFO    | >> Received: tagname=1, value=36.265728201541556, timestamp=2024-09-20 10:25:53
+2024-09-20 10:25:53|WARNING | >> tagname=1 - Filled count is 2. Not enough data to forecast.
+2024-09-20 10:25:53|INFO    | >> Received: tagname=2, value=36.93048892390955, timestamp=2024-09-20 10:25:53
+2024-09-20 10:25:53|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:25:53|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:25:58|INFO    | >> Received: tagname=1, value=36.37785016724357, timestamp=2024-09-20 10:25:58
+2024-09-20 10:25:58|WARNING | >> tagname=1 - Filled count is 3. Not enough data to forecast.
+2024-09-20 10:25:58|INFO    | >> Received: tagname=2, value=37.82708561201005, timestamp=2024-09-20 10:25:58
+2024-09-20 10:25:58|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:25:58|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:26:03|INFO    | >> Received: tagname=1, value=36.176540934835806, timestamp=2024-09-20 10:26:03
+2024-09-20 10:26:03|WARNING | >> tagname=1 - Filled count is 4. Not enough data to forecast.
+2024-09-20 10:26:03|INFO    | >> Received: tagname=2, value=36.92336258512445, timestamp=2024-09-20 10:26:03
+2024-09-20 10:26:03|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:26:03|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:26:08|INFO    | >> Received: tagname=1, value=36.044538148444985, timestamp=2024-09-20 10:26:08
+2024-09-20 10:26:08|INFO    | >> Model training and forecasting successful for tagname=1
+2024-09-20 10:26:08|INFO    | >> Prediction successful for tagname=1
+2024-09-20 10:26:08|INFO    | >> Received: tagname=2, value=36.66303073016001, timestamp=2024-09-20 10:26:08
+2024-09-20 10:26:08|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:26:08|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:26:13|INFO    | >> Received: tagname=1, value=36.776698810979845, timestamp=2024-09-20 10:26:13
+2024-09-20 10:26:13|INFO    | >> Model training and forecasting successful for tagname=1
+2024-09-20 10:26:13|INFO    | >> Prediction successful for tagname=1
+2024-09-20 10:26:13|INFO    | >> Received: tagname=2, value=36.20913229122797, timestamp=2024-09-20 10:26:13
+2024-09-20 10:26:13|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:26:13|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:26:18|INFO    | >> Received: tagname=1, value=37.119331642977286, timestamp=2024-09-20 10:26:18
+2024-09-20 10:26:18|INFO    | >> Model training and forecasting successful for tagname=1
+2024-09-20 10:26:18|INFO    | >> Prediction successful for tagname=1
+2024-09-20 10:26:18|INFO    | >> Received: tagname=2, value=36.727835292417936, timestamp=2024-09-20 10:26:18
+2024-09-20 10:26:18|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:26:18|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:26:20|ERROR   | >> WebSocket connection error: 1006
+2024-09-20 10:29:46|INFO    | >> Received: tagname=1, value=36.96843207140582, timestamp=2024-09-20 10:29:46
+2024-09-20 10:29:46|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 10:29:46|INFO    | >> Received: tagname=2, value=37.751056873583615, timestamp=2024-09-20 10:29:46
+2024-09-20 10:29:46|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 10:29:46|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:29:46|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:29:51|INFO    | >> Received: tagname=1, value=37.643993603564006, timestamp=2024-09-20 10:29:51
+2024-09-20 10:29:51|WARNING | >> tagname=1 - Filled count is 2. Not enough data to forecast.
+2024-09-20 10:29:51|INFO    | >> Received: tagname=2, value=36.19626920479384, timestamp=2024-09-20 10:29:51
+2024-09-20 10:29:51|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:29:51|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:29:56|INFO    | >> Received: tagname=1, value=36.0332774647095, timestamp=2024-09-20 10:29:56
+2024-09-20 10:29:56|WARNING | >> tagname=1 - Filled count is 3. Not enough data to forecast.
+2024-09-20 10:29:56|INFO    | >> Received: tagname=2, value=37.66047052169147, timestamp=2024-09-20 10:29:56
+2024-09-20 10:29:56|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:29:56|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:30:01|INFO    | >> Received: tagname=1, value=37.40901186362561, timestamp=2024-09-20 10:30:01
+2024-09-20 10:30:01|WARNING | >> tagname=1 - Filled count is 4. Not enough data to forecast.
+2024-09-20 10:30:01|INFO    | >> Received: tagname=2, value=37.69755759072992, timestamp=2024-09-20 10:30:01
+2024-09-20 10:30:01|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:30:01|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:30:06|INFO    | >> Received: tagname=1, value=37.22974992811456, timestamp=2024-09-20 10:30:06
+2024-09-20 10:30:06|INFO    | >> Model training and forecasting successful for tagname=1
+2024-09-20 10:30:06|INFO    | >> Prediction successful for tagname=1
+2024-09-20 10:30:06|INFO    | >> Received: tagname=2, value=36.18627037689259, timestamp=2024-09-20 10:30:06
+2024-09-20 10:30:06|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:30:07|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:30:12|INFO    | >> Received: tagname=1, value=36.428422289268475, timestamp=2024-09-20 10:30:12
+2024-09-20 10:30:12|INFO    | >> Model training and forecasting successful for tagname=1
+2024-09-20 10:30:12|INFO    | >> Prediction successful for tagname=1
+2024-09-20 10:30:12|INFO    | >> Received: tagname=2, value=37.60669297186503, timestamp=2024-09-20 10:30:12
+2024-09-20 10:30:12|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:30:12|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:30:17|INFO    | >> Received: tagname=1, value=36.31504561891037, timestamp=2024-09-20 10:30:17
+2024-09-20 10:30:17|INFO    | >> Model training and forecasting successful for tagname=1
+2024-09-20 10:30:17|INFO    | >> Prediction successful for tagname=1
+2024-09-20 10:30:17|INFO    | >> Received: tagname=2, value=37.6906119239999, timestamp=2024-09-20 10:30:17
+2024-09-20 10:30:17|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:30:17|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:30:22|INFO    | >> Received: tagname=1, value=37.73601082339061, timestamp=2024-09-20 10:30:22
+2024-09-20 10:30:22|INFO    | >> Model training and forecasting successful for tagname=1
+2024-09-20 10:30:22|INFO    | >> Prediction successful for tagname=1
+2024-09-20 10:30:22|INFO    | >> Received: tagname=2, value=37.66264662520945, timestamp=2024-09-20 10:30:22
+2024-09-20 10:30:22|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:30:22|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:30:27|INFO    | >> Received: tagname=1, value=36.59097490358066, timestamp=2024-09-20 10:30:27
+2024-09-20 10:30:27|INFO    | >> Model training and forecasting successful for tagname=1
+2024-09-20 10:30:27|INFO    | >> Prediction successful for tagname=1
+2024-09-20 10:30:27|INFO    | >> Received: tagname=2, value=36.227845295458756, timestamp=2024-09-20 10:30:27
+2024-09-20 10:30:27|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:30:27|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:30:32|INFO    | >> Received: tagname=1, value=36.165296926095365, timestamp=2024-09-20 10:30:32
+2024-09-20 10:30:32|INFO    | >> Model training and forecasting successful for tagname=1
+2024-09-20 10:30:32|INFO    | >> Prediction successful for tagname=1
+2024-09-20 10:30:32|INFO    | >> Received: tagname=2, value=37.700795975429116, timestamp=2024-09-20 10:30:32
+2024-09-20 10:30:32|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:30:32|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:30:37|INFO    | >> Received: tagname=1, value=37.21604022176404, timestamp=2024-09-20 10:30:37
+2024-09-20 10:30:37|INFO    | >> Model training and forecasting successful for tagname=1
+2024-09-20 10:30:37|INFO    | >> Prediction successful for tagname=1
+2024-09-20 10:30:37|INFO    | >> Received: tagname=2, value=37.268692715489145, timestamp=2024-09-20 10:30:37
+2024-09-20 10:30:37|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:30:37|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:30:40|ERROR   | >> WebSocket connection error: 1006
+2024-09-20 10:31:10|INFO    | >> Received: tagname=1, value=36.54322426939784, timestamp=2024-09-20 10:31:10
+2024-09-20 10:31:10|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 10:31:10|INFO    | >> Received: tagname=2, value=37.67334133591217, timestamp=2024-09-20 10:31:10
+2024-09-20 10:31:11|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 10:31:11|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:31:11|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:31:16|INFO    | >> Received: tagname=1, value=36.228981605862785, timestamp=2024-09-20 10:31:16
+2024-09-20 10:31:16|WARNING | >> tagname=1 - Filled count is 2. Not enough data to forecast.
+2024-09-20 10:31:16|INFO    | >> Received: tagname=2, value=36.22260814231583, timestamp=2024-09-20 10:31:16
+2024-09-20 10:31:16|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:31:16|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:31:21|INFO    | >> Received: tagname=1, value=37.78026228842926, timestamp=2024-09-20 10:31:21
+2024-09-20 10:31:21|WARNING | >> tagname=1 - Filled count is 3. Not enough data to forecast.
+2024-09-20 10:31:21|INFO    | >> Received: tagname=2, value=36.77417157494038, timestamp=2024-09-20 10:31:21
+2024-09-20 10:31:21|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:31:21|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:31:26|INFO    | >> Received: tagname=1, value=36.66128843243926, timestamp=2024-09-20 10:31:26
+2024-09-20 10:31:26|WARNING | >> tagname=1 - Filled count is 4. Not enough data to forecast.
+2024-09-20 10:31:26|INFO    | >> Received: tagname=2, value=37.46701541466551, timestamp=2024-09-20 10:31:26
+2024-09-20 10:31:26|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:31:26|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:31:31|INFO    | >> Received: tagname=1, value=36.82318901432137, timestamp=2024-09-20 10:31:31
+2024-09-20 10:31:31|INFO    | >> Model training and forecasting successful for tagname=1
+2024-09-20 10:31:31|INFO    | >> Prediction successful for tagname=1
+2024-09-20 10:31:31|INFO    | >> Received: tagname=2, value=36.68130930357206, timestamp=2024-09-20 10:31:31
+2024-09-20 10:31:31|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:31:31|INFO    | >> Prediction successful for tagname=2
+2024-09-20 10:31:34|ERROR   | >> WebSocket connection error: 1006
+2024-09-20 10:58:38|INFO    | >> Received: tagname=1, value=37.40488666318573, timestamp=2024-09-20 10:58:38
+2024-09-20 10:58:38|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 10:58:38|INFO    | >> Received: tagname=2, value=36.89056665116972, timestamp=2024-09-20 10:58:38
+2024-09-20 10:58:38|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 10:58:38|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 10:58:38|ERROR   | >> WebSocket connection error: type list doesn't define __round__ method
+2024-09-20 11:00:39|INFO    | >> Received: tagname=1, value=36.6755482313149, timestamp=2024-09-20 11:00:39
+2024-09-20 11:00:39|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 11:00:39|INFO    | >> Received: tagname=2, value=37.93519682845627, timestamp=2024-09-20 11:00:39
+2024-09-20 11:00:39|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 11:00:39|WARNING | >> tagname=2 - Update ignored (time difference <= 5 seconds)
+2024-09-20 11:00:44|INFO    | >> Received: tagname=1, value=36.99608835326255, timestamp=2024-09-20 11:00:44
+2024-09-20 11:00:44|WARNING | >> tagname=1 - Filled count is 2. Not enough data to forecast.
+2024-09-20 11:00:44|INFO    | >> Received: tagname=2, value=37.14946922688007, timestamp=2024-09-20 11:00:44
+2024-09-20 11:00:44|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 11:00:44|ERROR   | >> WebSocket connection error: type list doesn't define __round__ method
+2024-09-20 11:02:21|INFO    | >> Received: tagname=1, value=36.974260350171114, timestamp=2024-09-20 11:02:21
+2024-09-20 11:02:21|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 11:02:21|INFO    | >> Received: tagname=2, value=37.24782479217238, timestamp=2024-09-20 11:02:21
+2024-09-20 11:02:21|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 11:02:21|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 11:02:21|INFO    | >> Prediction successful for tagname=2
+2024-09-20 11:02:21|ERROR   | >> WebSocket connection error: type list doesn't define __round__ method
+2024-09-20 11:02:37|INFO    | >> Received: tagname=1, value=36.38591737618835, timestamp=2024-09-20 11:02:37
+2024-09-20 11:02:37|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 11:02:37|INFO    | >> Received: tagname=2, value=37.10195245307958, timestamp=2024-09-20 11:02:37
+2024-09-20 11:02:37|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 11:02:37|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 11:02:37|INFO    | >> Prediction successful for tagname=2
+2024-09-20 11:02:39|ERROR   | >> WebSocket connection error: 1006
+2024-09-20 11:03:20|INFO    | >> Received: tagname=1, value=37.28653946774579, timestamp=2024-09-20 11:03:20
+2024-09-20 11:03:20|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 11:03:20|INFO    | >> Received: tagname=2, value=36.24377908780727, timestamp=2024-09-20 11:03:20
+2024-09-20 11:03:20|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 11:03:20|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 11:03:20|INFO    | >> Prediction successful for tagname=2
+2024-09-20 11:03:20|ERROR   | >> WebSocket connection error: 1000
+2024-09-20 11:03:39|INFO    | >> Received: tagname=1, value=37.810940195468085, timestamp=2024-09-20 11:03:39
+2024-09-20 11:03:39|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 11:03:39|INFO    | >> Received: tagname=2, value=36.28835352627407, timestamp=2024-09-20 11:03:39
+2024-09-20 11:03:39|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 11:03:39|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 11:03:39|INFO    | >> Prediction successful for tagname=2
+2024-09-20 11:03:40|ERROR   | >> WebSocket connection error: 1006
+2024-09-20 11:03:56|INFO    | >> Received: tagname=1, value=36.245246533169585, timestamp=2024-09-20 11:03:56
+2024-09-20 11:03:56|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 11:03:56|INFO    | >> Received: tagname=2, value=37.78704138285379, timestamp=2024-09-20 11:03:56
+2024-09-20 11:03:56|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 11:03:56|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 11:03:56|INFO    | >> Prediction successful for tagname=2
+2024-09-20 11:03:56|ERROR   | >> WebSocket connection error: 1006
+2024-09-20 11:29:35|INFO    | >> Received: tagname=1, value=36.64591954480181, timestamp=2024-09-20 11:29:35
+2024-09-20 11:29:35|WARNING | >> tagname=1 - Filled count is 2. Not enough data to forecast.
+2024-09-20 11:29:35|INFO    | >> Received: tagname=2, value=36.43131424063209, timestamp=2024-09-20 11:29:35
+2024-09-20 11:29:35|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 11:29:35|INFO    | >> Prediction successful for tagname=2
+2024-09-20 11:29:38|ERROR   | >> WebSocket connection error: 1006
+2024-09-20 14:25:09|INFO    | >> Received: tagname=1, value=36.1618747400131, timestamp=2024-09-20 14:25:09
+2024-09-20 14:25:09|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 14:25:09|INFO    | >> Received: tagname=2, value=36.82187506971349, timestamp=2024-09-20 14:25:09
+2024-09-20 14:25:09|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 14:25:09|WARNING | >> tagname=2 - Filled count is 3. Not enough data to forecast.
+2024-09-20 14:25:09|ERROR   | >> WebSocket connection error: no close frame received or sent
+2024-09-20 14:25:17|INFO    | >> Received: tagname=1, value=37.16718960721469, timestamp=2024-09-20 14:25:17
+2024-09-20 14:25:17|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 14:25:17|INFO    | >> Received: tagname=2, value=36.2741195061612, timestamp=2024-09-20 14:25:17
+2024-09-20 14:25:17|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 14:25:17|WARNING | >> tagname=2 - Filled count is 3. Not enough data to forecast.
+2024-09-20 14:25:22|INFO    | >> Received: tagname=1, value=37.6817256122138, timestamp=2024-09-20 14:25:22
+2024-09-20 14:25:22|WARNING | >> tagname=1 - Filled count is 2. Not enough data to forecast.
+2024-09-20 14:25:22|INFO    | >> Received: tagname=2, value=37.18808651868108, timestamp=2024-09-20 14:25:22
+2024-09-20 14:25:22|WARNING | >> tagname=2 - Filled count is 3. Not enough data to forecast.
+2024-09-20 14:25:26|ERROR   | >> WebSocket connection error: 1006
+2024-09-20 14:26:32|INFO    | >> Received: tagname=1, value=36.19971546815666, timestamp=2024-09-20 14:26:32
+2024-09-20 14:26:32|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 14:26:32|INFO    | >> Received: tagname=2, value=36.236450967809645, timestamp=2024-09-20 14:26:32
+2024-09-20 14:26:32|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 14:26:32|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 14:26:32|INFO    | >> Prediction successful for tagname=2
+2024-09-20 14:26:35|ERROR   | >> WebSocket connection error: 1006
+2024-09-20 14:33:55|INFO    | >> Received: tagname=1, value=37.590696471208, timestamp=2024-09-20 14:33:55
+2024-09-20 14:33:55|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 14:33:55|INFO    | >> Received: tagname=2, value=36.758829593320094, timestamp=2024-09-20 14:33:55
+2024-09-20 14:33:55|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 14:33:55|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 14:33:55|INFO    | >> Prediction successful for tagname=2
+2024-09-20 14:33:58|ERROR   | >> WebSocket connection error: 1006
+2024-09-20 14:35:12|INFO    | >> Received: tagname=1, value=37.25065555997565, timestamp=2024-09-20 14:35:12
+2024-09-20 14:35:12|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 14:35:12|INFO    | >> Received: tagname=2, value=37.06095416426593, timestamp=2024-09-20 14:35:12
+2024-09-20 14:35:12|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 14:35:12|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 14:35:12|ERROR   | >> WebSocket connection error: type numpy.ndarray doesn't define __round__ method
+2024-09-20 14:36:21|INFO    | >> Received: tagname=1, value=37.870508666505785, timestamp=2024-09-20 14:36:21
+2024-09-20 14:36:21|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-20 14:36:21|INFO    | >> Received: tagname=2, value=36.63169707099782, timestamp=2024-09-20 14:36:21
+2024-09-20 14:36:21|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-20 14:36:21|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 14:36:21|INFO    | >> Prediction successful for tagname=2
+2024-09-20 14:36:26|INFO    | >> Received: tagname=1, value=37.99669059105245, timestamp=2024-09-20 14:36:26
+2024-09-20 14:36:26|WARNING | >> tagname=1 - Filled count is 2. Not enough data to forecast.
+2024-09-20 14:36:26|INFO    | >> Received: tagname=2, value=36.49779926916924, timestamp=2024-09-20 14:36:26
+2024-09-20 14:36:26|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 14:36:26|INFO    | >> Prediction successful for tagname=2
+2024-09-20 14:36:31|INFO    | >> Received: tagname=1, value=37.38951738021434, timestamp=2024-09-20 14:36:31
+2024-09-20 14:36:31|WARNING | >> tagname=1 - Filled count is 3. Not enough data to forecast.
+2024-09-20 14:36:31|INFO    | >> Received: tagname=2, value=36.39429249592727, timestamp=2024-09-20 14:36:31
+2024-09-20 14:36:31|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-20 14:36:31|INFO    | >> Prediction successful for tagname=2
+2024-09-20 14:36:33|ERROR   | >> WebSocket connection error: 1006
+2024-09-23 09:14:18|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-23 09:58:25|INFO    | >> Received: tagname=1, value=37.436786509255214, timestamp=2024-09-23 09:58:25
+2024-09-23 09:58:25|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-23 09:58:25|INFO    | >> Received: tagname=2, value=36.68259707034637, timestamp=2024-09-23 09:58:25
+2024-09-23 09:58:26|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-23 09:58:26|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-23 09:58:26|INFO    | >> Prediction successful for tagname=2
+2024-09-23 09:58:28|ERROR   | >> WebSocket connection error: 1006
+2024-09-23 10:09:51|INFO    | >> Received: tagname=1, value=37.88514670628008, timestamp=2024-09-23 10:09:51
+2024-09-23 10:09:51|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-23 10:09:51|INFO    | >> Received: tagname=2, value=36.678582210228534, timestamp=2024-09-23 10:09:51
+2024-09-23 10:09:51|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-23 10:09:51|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-23 10:09:51|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:09:56|INFO    | >> Received: tagname=1, value=36.18271188440854, timestamp=2024-09-23 10:09:56
+2024-09-23 10:09:56|WARNING | >> tagname=1 - Filled count is 2. Not enough data to forecast.
+2024-09-23 10:09:56|INFO    | >> Received: tagname=2, value=37.60345207488955, timestamp=2024-09-23 10:09:56
+2024-09-23 10:09:56|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-23 10:09:56|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:10:02|INFO    | >> Received: tagname=1, value=37.10809512830004, timestamp=2024-09-23 10:10:02
+2024-09-23 10:10:02|WARNING | >> tagname=1 - Filled count is 3. Not enough data to forecast.
+2024-09-23 10:10:02|INFO    | >> Received: tagname=2, value=36.621202383212115, timestamp=2024-09-23 10:10:02
+2024-09-23 10:10:02|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-23 10:10:02|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:10:07|INFO    | >> Received: tagname=1, value=36.33896575852283, timestamp=2024-09-23 10:10:07
+2024-09-23 10:10:07|WARNING | >> tagname=1 - Filled count is 4. Not enough data to forecast.
+2024-09-23 10:10:07|INFO    | >> Received: tagname=2, value=37.224382753651014, timestamp=2024-09-23 10:10:07
+2024-09-23 10:10:07|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-23 10:10:07|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:10:12|INFO    | >> Received: tagname=1, value=37.56591375357958, timestamp=2024-09-23 10:10:12
+2024-09-23 10:10:12|WARNING | >> tagname=1 - Filled count is 5. Not enough data to forecast.
+2024-09-23 10:10:12|INFO    | >> Received: tagname=2, value=35.99306453349266, timestamp=2024-09-23 10:10:12
+2024-09-23 10:10:12|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-23 10:10:12|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:10:17|INFO    | >> Received: tagname=1, value=36.53736986633561, timestamp=2024-09-23 10:10:17
+2024-09-23 10:10:17|WARNING | >> tagname=1 - Filled count is 6. Not enough data to forecast.
+2024-09-23 10:10:17|INFO    | >> Received: tagname=2, value=36.10953545861815, timestamp=2024-09-23 10:10:17
+2024-09-23 10:10:17|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-23 10:10:17|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:10:22|INFO    | >> Received: tagname=1, value=37.003017650123404, timestamp=2024-09-23 10:10:22
+2024-09-23 10:10:22|WARNING | >> tagname=1 - Filled count is 7. Not enough data to forecast.
+2024-09-23 10:10:22|INFO    | >> Received: tagname=2, value=36.37497758281662, timestamp=2024-09-23 10:10:22
+2024-09-23 10:10:22|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-23 10:10:22|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:10:27|INFO    | >> Received: tagname=1, value=36.0627918171293, timestamp=2024-09-23 10:10:27
+2024-09-23 10:10:27|WARNING | >> tagname=1 - Filled count is 8. Not enough data to forecast.
+2024-09-23 10:10:27|INFO    | >> Received: tagname=2, value=37.67024845151948, timestamp=2024-09-23 10:10:27
+2024-09-23 10:10:27|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-23 10:10:27|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:10:32|INFO    | >> Received: tagname=1, value=36.952250904287396, timestamp=2024-09-23 10:10:32
+2024-09-23 10:10:32|WARNING | >> tagname=1 - Filled count is 9. Not enough data to forecast.
+2024-09-23 10:10:32|INFO    | >> Received: tagname=2, value=36.78507697422878, timestamp=2024-09-23 10:10:32
+2024-09-23 10:10:32|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-23 10:10:32|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:10:34|ERROR   | >> WebSocket connection error: 1012
+2024-09-23 10:10:38|INFO    | >> Received: tagname=1, value=37.809451401871065, timestamp=2024-09-23 10:10:38
+2024-09-23 10:10:38|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-23 10:10:38|INFO    | >> Received: tagname=2, value=36.610254169737004, timestamp=2024-09-23 10:10:38
+2024-09-23 10:10:38|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-23 10:10:38|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-23 10:10:38|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:10:44|INFO    | >> Received: tagname=1, value=37.788536574709475, timestamp=2024-09-23 10:10:44
+2024-09-23 10:10:44|WARNING | >> tagname=1 - Filled count is 2. Not enough data to forecast.
+2024-09-23 10:10:44|INFO    | >> Received: tagname=2, value=37.827834012976695, timestamp=2024-09-23 10:10:44
+2024-09-23 10:10:44|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-23 10:10:44|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:10:49|INFO    | >> Received: tagname=1, value=36.73069820978464, timestamp=2024-09-23 10:10:49
+2024-09-23 10:10:49|WARNING | >> tagname=1 - Filled count is 3. Not enough data to forecast.
+2024-09-23 10:10:49|INFO    | >> Received: tagname=2, value=36.420284434165076, timestamp=2024-09-23 10:10:49
+2024-09-23 10:10:49|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-23 10:10:49|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:10:54|INFO    | >> Received: tagname=1, value=36.573510788217476, timestamp=2024-09-23 10:10:54
+2024-09-23 10:10:54|WARNING | >> tagname=1 - Filled count is 4. Not enough data to forecast.
+2024-09-23 10:10:54|INFO    | >> Received: tagname=2, value=37.10961652666396, timestamp=2024-09-23 10:10:54
+2024-09-23 10:10:54|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-23 10:10:54|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:10:59|INFO    | >> Received: tagname=1, value=36.791771960413165, timestamp=2024-09-23 10:10:59
+2024-09-23 10:10:59|WARNING | >> tagname=1 - Filled count is 5. Not enough data to forecast.
+2024-09-23 10:10:59|INFO    | >> Received: tagname=2, value=37.83519521979625, timestamp=2024-09-23 10:10:59
+2024-09-23 10:10:59|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-23 10:10:59|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:11:04|INFO    | >> Received: tagname=1, value=36.78916925582811, timestamp=2024-09-23 10:11:04
+2024-09-23 10:11:04|WARNING | >> tagname=1 - Filled count is 6. Not enough data to forecast.
+2024-09-23 10:11:04|INFO    | >> Received: tagname=2, value=37.605466884475355, timestamp=2024-09-23 10:11:04
+2024-09-23 10:11:04|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-23 10:11:04|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:11:06|ERROR   | >> WebSocket connection error: 1006
+2024-09-23 10:11:31|INFO    | >> Received: tagname=1, value=36.88047419287433, timestamp=2024-09-23 10:11:31
+2024-09-23 10:11:31|WARNING | >> tagname=1 - Filled count is 1. Not enough data to forecast.
+2024-09-23 10:11:31|INFO    | >> Received: tagname=2, value=37.54962623335993, timestamp=2024-09-23 10:11:31
+2024-09-23 10:11:31|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-23 10:11:31|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:11:36|INFO    | >> Received: tagname=1, value=37.03546683722059, timestamp=2024-09-23 10:11:36
+2024-09-23 10:11:36|WARNING | >> tagname=1 - Filled count is 2. Not enough data to forecast.
+2024-09-23 10:11:36|INFO    | >> Received: tagname=2, value=36.98281475240551, timestamp=2024-09-23 10:11:36
+2024-09-23 10:11:36|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:11:41|INFO    | >> Received: tagname=1, value=37.34443532711333, timestamp=2024-09-23 10:11:41
+2024-09-23 10:11:41|WARNING | >> tagname=1 - Filled count is 3. Not enough data to forecast.
+2024-09-23 10:11:41|INFO    | >> Received: tagname=2, value=37.20828160918097, timestamp=2024-09-23 10:11:41
+2024-09-23 10:11:41|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:11:46|INFO    | >> Received: tagname=1, value=37.939858941289884, timestamp=2024-09-23 10:11:46
+2024-09-23 10:11:46|WARNING | >> tagname=1 - Filled count is 4. Not enough data to forecast.
+2024-09-23 10:11:46|INFO    | >> Received: tagname=2, value=36.782533969331475, timestamp=2024-09-23 10:11:46
+2024-09-23 10:11:46|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:11:48|ERROR   | >> WebSocket connection error: 1006
+2024-09-23 10:12:15|INFO    | >> Received: tagname=1, value=36.94826310994484, timestamp=2024-09-23 10:12:15
+2024-09-23 10:12:15|WARNING | >> tagname=1 - Filled count is 1/120. Not enough data to forecast.
+2024-09-23 10:12:15|INFO    | >> Received: tagname=2, value=36.667488626065214, timestamp=2024-09-23 10:12:15
+2024-09-23 10:12:15|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-23 10:12:15|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:12:20|INFO    | >> Received: tagname=1, value=37.439338593435785, timestamp=2024-09-23 10:12:20
+2024-09-23 10:12:20|WARNING | >> tagname=1 - Filled count is 2/120. Not enough data to forecast.
+2024-09-23 10:12:20|INFO    | >> Received: tagname=2, value=36.52796719399571, timestamp=2024-09-23 10:12:20
+2024-09-23 10:12:20|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:12:25|INFO    | >> Received: tagname=1, value=37.08750596498205, timestamp=2024-09-23 10:12:25
+2024-09-23 10:12:25|WARNING | >> tagname=1 - Filled count is 3/120. Not enough data to forecast.
+2024-09-23 10:12:25|INFO    | >> Received: tagname=2, value=36.49332484773847, timestamp=2024-09-23 10:12:25
+2024-09-23 10:12:26|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:12:31|INFO    | >> Received: tagname=1, value=37.09174162367666, timestamp=2024-09-23 10:12:31
+2024-09-23 10:12:31|WARNING | >> tagname=1 - Filled count is 4/120. Not enough data to forecast.
+2024-09-23 10:12:31|INFO    | >> Received: tagname=2, value=37.296856526688515, timestamp=2024-09-23 10:12:31
+2024-09-23 10:12:31|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:12:36|INFO    | >> Received: tagname=1, value=36.49993181125372, timestamp=2024-09-23 10:12:36
+2024-09-23 10:12:36|WARNING | >> tagname=1 - Filled count is 5/120. Not enough data to forecast.
+2024-09-23 10:12:36|INFO    | >> Received: tagname=2, value=36.61723926025828, timestamp=2024-09-23 10:12:36
+2024-09-23 10:12:36|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:12:37|ERROR   | >> WebSocket connection error: 1012
+2024-09-23 10:12:47|INFO    | >> Received: tagname=1, value=37.987370983604954, timestamp=2024-09-23 10:12:47
+2024-09-23 10:12:47|WARNING | >> tagname = 1 - Filled count is 1/120. Not enough data to forecast.
+2024-09-23 10:12:47|INFO    | >> Received: tagname=2, value=37.79618064034651, timestamp=2024-09-23 10:12:47
+2024-09-23 10:12:47|INFO    | >> Loaded initial data from InfluxDB for tagname=2
+2024-09-23 10:12:47|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:12:50|ERROR   | >> WebSocket connection error: 1006
+2024-09-23 10:13:34|INFO    | >> Received: tagname = 1, value=37.69848609132353, timestamp=2024-09-23 10:13:34
+2024-09-23 10:13:34|WARNING | >> tagname = 1 - Filled count is 1/120. Not enough data to forecast.
+2024-09-23 10:13:34|INFO    | >> Received: tagname = 2, value=36.64910523155341, timestamp=2024-09-23 10:13:34
+2024-09-23 10:13:34|INFO    | >> Loaded initial data from InfluxDB for tagname = 2
+2024-09-23 10:13:34|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:13:39|INFO    | >> Received: tagname = 1, value=37.557049712911535, timestamp=2024-09-23 10:13:39
+2024-09-23 10:13:39|WARNING | >> tagname = 1 - Filled count is 2/120. Not enough data to forecast.
+2024-09-23 10:13:39|INFO    | >> Received: tagname = 2, value=36.37344771932464, timestamp=2024-09-23 10:13:39
+2024-09-23 10:13:39|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:13:44|INFO    | >> Received: tagname = 1, value=37.58648444258378, timestamp=2024-09-23 10:13:44
+2024-09-23 10:13:44|WARNING | >> tagname = 1 - Filled count is 3/120. Not enough data to forecast.
+2024-09-23 10:13:44|INFO    | >> Received: tagname = 2, value=36.99156877427095, timestamp=2024-09-23 10:13:44
+2024-09-23 10:13:44|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:13:49|INFO    | >> Received: tagname = 1, value=37.62341560434635, timestamp=2024-09-23 10:13:49
+2024-09-23 10:13:49|WARNING | >> tagname = 1 - Filled count is 4/120. Not enough data to forecast.
+2024-09-23 10:13:49|INFO    | >> Received: tagname = 2, value=36.99914853080152, timestamp=2024-09-23 10:13:49
+2024-09-23 10:13:49|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:13:54|INFO    | >> Received: tagname = 1, value=37.09954938796268, timestamp=2024-09-23 10:13:54
+2024-09-23 10:13:54|WARNING | >> tagname = 1 - Filled count is 5/120. Not enough data to forecast.
+2024-09-23 10:13:54|INFO    | >> Received: tagname = 2, value=37.26706781857989, timestamp=2024-09-23 10:13:54
+2024-09-23 10:13:54|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:13:54|ERROR   | >> WebSocket connection error: no close frame received or sent
+2024-09-23 10:21:23|INFO    | >> Received: tagname = 1, value=37.336325195334645, timestamp=2024-09-23 10:21:23
+2024-09-23 10:21:23|WARNING | >> tagname = 1 - Filled count is 1/120. Not enough data to forecast.
+2024-09-23 10:21:23|INFO    | >> Received: tagname = 2, value=37.7219214449495, timestamp=2024-09-23 10:21:23
+2024-09-23 10:21:23|INFO    | >> Loaded initial data from InfluxDB for tagname = 2
+2024-09-23 10:21:23|INFO    | >> Prediction successful for tagname=2
+2024-09-23 10:21:25|ERROR   | >> WebSocket connection error: 1006
+2024-09-23 10:22:27|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-23 10:23:26|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-23 10:24:19|INFO    | >> Received: tagname = 1, value=36.793142372783194, timestamp=2024-09-23 10:24:19
+2024-09-23 10:24:19|WARNING | >> tagname = 1 - Filled count is 1. Not enough data to forecast.
+2024-09-23 10:24:19|INFO    | >> Received: tagname = 2, value=36.21366097356305, timestamp=2024-09-23 10:24:19
+2024-09-23 10:24:19|INFO    | >> Loaded initial data from InfluxDB for tagname = 2
+2024-09-23 10:24:19|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-23 10:24:19|INFO    | >> Prediction successful for tagname = 2
+2024-09-23 10:24:24|INFO    | >> Received: tagname = 1, value=37.298962352676696, timestamp=2024-09-23 10:24:24
+2024-09-23 10:24:24|WARNING | >> tagname = 1 - Filled count is 2. Not enough data to forecast.
+2024-09-23 10:24:24|INFO    | >> Received: tagname = 2, value=37.61145706147016, timestamp=2024-09-23 10:24:24
+2024-09-23 10:24:24|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-23 10:24:24|INFO    | >> Prediction successful for tagname = 2
+2024-09-23 10:24:28|ERROR   | >> WebSocket connection error: 1006
+2024-09-23 10:25:48|INFO    | >> Received: tagname = 1, value=37.471765898176784, timestamp=2024-09-23 10:25:48
+2024-09-23 10:25:48|WARNING | >> tagname = 1 - Filled count is 3. Not enough data to forecast.
+2024-09-23 10:25:48|INFO    | >> Received: tagname = 2, value=36.7961118935663, timestamp=2024-09-23 10:25:48
+2024-09-23 10:25:48|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-23 10:25:48|INFO    | >> Prediction successful for tagname = 2
+2024-09-23 10:25:53|INFO    | >> Received: tagname = 1, value=37.38325907059934, timestamp=2024-09-23 10:25:53
+2024-09-23 10:25:53|WARNING | >> tagname = 1 - Filled count is 4. Not enough data to forecast.
+2024-09-23 10:25:53|INFO    | >> Received: tagname = 2, value=36.90533389817117, timestamp=2024-09-23 10:25:53
+2024-09-23 10:25:53|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-23 10:25:53|INFO    | >> Prediction successful for tagname = 2
+2024-09-23 10:25:58|INFO    | >> Received: tagname = 1, value=36.4752565601579, timestamp=2024-09-23 10:25:58
+2024-09-23 10:25:58|WARNING | >> tagname = 1 - Filled count is 5. Not enough data to forecast.
+2024-09-23 10:25:58|INFO    | >> Received: tagname = 2, value=36.57384359057038, timestamp=2024-09-23 10:25:58
+2024-09-23 10:25:58|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-23 10:25:58|INFO    | >> Prediction successful for tagname = 2
+2024-09-23 10:26:03|INFO    | >> Received: tagname = 1, value=36.61244805049122, timestamp=2024-09-23 10:26:03
+2024-09-23 10:26:03|WARNING | >> tagname = 1 - Filled count is 6. Not enough data to forecast.
+2024-09-23 10:26:03|INFO    | >> Received: tagname = 2, value=37.361329842879904, timestamp=2024-09-23 10:26:03
+2024-09-23 10:26:03|INFO    | >> Model training and forecasting successful for tagname=2
+2024-09-23 10:26:03|INFO    | >> Prediction successful for tagname = 2
+2024-09-23 10:26:06|ERROR   | >> WebSocket connection error: 1006
+2024-09-23 10:26:53|INFO    | >> Received: tagname = 1, value=36.00619465394615, timestamp=2024-09-23 10:26:53
+2024-09-23 10:26:53|WARNING | >> tagname = 1 - Filled count is 1. Not enough data to forecast.
+2024-09-23 10:26:53|INFO    | >> Received: tagname = 2, value=37.165771574432114, timestamp=2024-09-23 10:26:53
+2024-09-23 10:26:53|INFO    | >> Loaded initial data from InfluxDB for tagname = 2
+2024-09-23 10:26:53|INFO    | >> Prediction successful for tagname = 2
+2024-09-23 10:26:58|INFO    | >> Received: tagname = 1, value=36.81165217205256, timestamp=2024-09-23 10:26:58
+2024-09-23 10:26:58|WARNING | >> tagname = 1 - Filled count is 2. Not enough data to forecast.
+2024-09-23 10:26:58|INFO    | >> Received: tagname = 2, value=37.348782180704355, timestamp=2024-09-23 10:26:58
+2024-09-23 10:26:58|INFO    | >> Prediction successful for tagname = 2
+2024-09-23 10:27:00|ERROR   | >> WebSocket connection error: 1006
+2024-09-23 11:00:03|INFO    | >> Received: tagname = 1, value=36.199519408352174, timestamp=2024-09-23 11:00:03
+2024-09-23 11:00:03|WARNING | >> tagname = 1 - Filled count is 1. Not enough data to forecast.
+2024-09-23 11:00:03|INFO    | >> Received: tagname = 2, value=36.570578576763374, timestamp=2024-09-23 11:00:03
+2024-09-23 11:00:04|INFO    | >> Loaded initial data from InfluxDB for tagname = 2
+2024-09-23 11:00:04|INFO    | >> Prediction successful for tagname = 2
+2024-09-23 11:00:09|INFO    | >> Received: tagname = 1, value=36.23603530579341, timestamp=2024-09-23 11:00:09
+2024-09-23 11:00:09|WARNING | >> tagname = 1 - Filled count is 2. Not enough data to forecast.
+2024-09-23 11:00:09|INFO    | >> Received: tagname = 2, value=36.10637934846703, timestamp=2024-09-23 11:00:09
+2024-09-23 11:00:09|INFO    | >> Prediction successful for tagname = 2
+2024-09-23 11:00:11|ERROR   | >> WebSocket connection error: 1006
+2024-09-23 11:00:18|INFO    | >> Received: tagname = 1, value=36.28443044148025, timestamp=2024-09-23 11:00:18
+2024-09-23 11:00:18|WARNING | >> tagname = 1 - Filled count is 1. Not enough data to forecast.
+2024-09-23 11:00:18|INFO    | >> Received: tagname = 2, value=36.68054769616158, timestamp=2024-09-23 11:00:18
+2024-09-23 11:00:19|INFO    | >> Loaded initial data from InfluxDB for tagname = 2
+2024-09-23 11:00:19|INFO    | >> Prediction successful for tagname = 2
+2024-09-23 11:00:23|INFO    | >> Received: tagname = 1, value=36.55830212527591, timestamp=2024-09-23 11:00:23
+2024-09-23 11:00:23|WARNING | >> tagname = 1 - Filled count is 2. Not enough data to forecast.
+2024-09-23 11:00:23|INFO    | >> Received: tagname = 2, value=37.09009357825996, timestamp=2024-09-23 11:00:23
+2024-09-23 11:00:23|INFO    | >> Prediction successful for tagname = 2
+2024-09-23 11:00:27|INFO    | >> Received: tagname = 1, value=37.1067674458892, timestamp=2024-09-23 11:00:27
+2024-09-23 11:00:27|WARNING | >> tagname = 1 - Filled count is 3. Not enough data to forecast.
+2024-09-23 11:00:27|INFO    | >> Received: tagname = 2, value=37.009150197288804, timestamp=2024-09-23 11:00:27
+2024-09-23 11:00:27|WARNING | >> tagname = 2 - Update ignored (time difference <= 5 seconds)
+2024-09-23 11:00:32|INFO    | >> Received: tagname = 1, value=37.74923509052955, timestamp=2024-09-23 11:00:32
+2024-09-23 11:00:32|WARNING | >> tagname = 1 - Filled count is 4. Not enough data to forecast.
+2024-09-23 11:00:32|INFO    | >> Received: tagname = 2, value=37.91352455226461, timestamp=2024-09-23 11:00:32
+2024-09-23 11:00:32|INFO    | >> Prediction successful for tagname = 2
+2024-09-23 11:00:37|INFO    | >> Received: tagname = 1, value=37.938526016915915, timestamp=2024-09-23 11:00:37
+2024-09-23 11:00:37|WARNING | >> tagname = 1 - Filled count is 5. Not enough data to forecast.
+2024-09-23 11:00:37|INFO    | >> Received: tagname = 2, value=36.17123825804496, timestamp=2024-09-23 11:00:37
+2024-09-23 11:00:37|INFO    | >> Prediction successful for tagname = 2
+2024-09-23 11:00:43|INFO    | >> Received: tagname = 1, value=37.55622858872519, timestamp=2024-09-23 11:00:43
+2024-09-23 11:00:43|WARNING | >> tagname = 1 - Filled count is 6. Not enough data to forecast.
+2024-09-23 11:00:43|INFO    | >> Received: tagname = 2, value=37.24090205396412, timestamp=2024-09-23 11:00:43
+2024-09-23 11:00:44|INFO    | >> Prediction successful for tagname = 2
+2024-09-23 11:00:44|ERROR   | >> WebSocket connection error: 1006
+2024-09-23 13:55:53|INFO    | >> Received: tagname = 1, value=36.58094200825185, timestamp=2024-09-23 13:55:53
+2024-09-23 13:55:53|WARNING | >> tagname = 1 - Filled count is 1. Not enough data to forecast.
+2024-09-23 13:55:53|INFO    | >> Received: tagname = 2, value=36.640598802291926, timestamp=2024-09-23 13:55:53
+2024-09-23 13:55:53|INFO    | >> Loaded initial data from InfluxDB for tagname = 2
+2024-09-23 13:55:53|INFO    | >> Prediction successful for tagname = 2
+2024-09-23 13:55:57|ERROR   | >> WebSocket connection error: 1006
+2024-09-23 14:37:50|WARNING | >> No data available for the given range: 2024-09-23 08:00:00 to 2024-09-23 08:04:00
+2024-09-23 14:39:54|ERROR   | >> WebSocket connection error: 1006
+2024-09-23 14:39:54|ERROR   | >> WebSocket connection error: 1006
+2024-09-23 14:39:54|INFO    | >> Received: tagname = 1, value=37.61174980743832, timestamp=2024-09-23 14:39:54
+2024-09-23 14:39:55|WARNING | >> No data available for the given range: -1h to now
+2024-09-23 14:39:55|WARNING | >> tagname = 1 - Filled count is 1. Not enough data to forecast.
+2024-09-23 14:39:55|INFO    | >> Received: tagname = 2, value=37.87326300320355, timestamp=2024-09-23 14:39:54
+2024-09-23 14:39:55|INFO    | >> Loaded initial data from InfluxDB for tagname = 2
+2024-09-23 14:39:55|INFO    | >> Prediction successful for tagname = 2
+2024-09-23 14:39:59|ERROR   | >> WebSocket connection error: 1006
+2024-09-23 14:40:57|INFO    | >> Received: tagname = 1, value=36.02401682579469, timestamp=2024-09-23 14:40:57
+2024-09-23 14:40:57|WARNING | >> No data available for the given range: -1h to now
+2024-09-23 14:40:57|WARNING | >> tagname = 1 - Filled count is 1 / 120. Not enough data to forecast.
+2024-09-23 14:40:57|INFO    | >> Received: tagname = 2, value=36.13511646792072, timestamp=2024-09-23 14:40:57
+2024-09-23 14:40:58|INFO    | >> Loaded initial data from InfluxDB for tagname = 2
+2024-09-23 14:40:58|INFO    | >> Prediction successful for tagname = 2
+2024-09-23 14:40:59|ERROR   | >> WebSocket connection error: 1006
+2024-09-24 12:42:17|INFO    | >> Received: tagname = 1, value=37.59710529899746, timestamp=2024-09-24 12:42:17
+2024-09-24 12:42:17|WARNING | >> No data available for the given range: -1h to now
+2024-09-24 12:42:17|WARNING | >> tagname = 1 - Filled count is 1 / 120. Not enough data to forecast.
+2024-09-24 12:42:17|INFO    | >> Received: tagname = 2, value=36.15615684996747, timestamp=2024-09-24 12:42:17
+2024-09-24 12:42:17|INFO    | >> Loaded initial data from InfluxDB for tagname = 2
+2024-09-24 12:42:17|WARNING | >> tagname = 2 - Update ignored (time difference <= 5 seconds)
+2024-09-24 12:42:22|INFO    | >> Received: tagname = 1, value=36.7110472224046, timestamp=2024-09-24 12:42:22
+2024-09-24 12:42:22|WARNING | >> tagname = 1 - Filled count is 2 / 120. Not enough data to forecast.
+2024-09-24 12:42:22|INFO    | >> Received: tagname = 2, value=36.40697589882325, timestamp=2024-09-24 12:42:22
+2024-09-24 12:42:22|WARNING | >> tagname = 2 - Filled count is 4 / 120. Not enough data to forecast.
+2024-09-24 12:42:23|ERROR   | >> WebSocket connection error: 1006
+2024-09-24 12:43:00|INFO    | >> Received: tagname = 1, value=36.1134635950361, timestamp=2024-09-24 12:43:00
+2024-09-24 12:43:00|WARNING | >> No data available for the given range: -1h to now
+2024-09-24 12:43:00|WARNING | >> tagname = 1 - Filled count is 1 / 5. Not enough data to forecast.
+2024-09-24 12:43:00|INFO    | >> Received: tagname = 2, value=36.08021676340365, timestamp=2024-09-24 12:43:00
+2024-09-24 12:43:00|INFO    | >> Loaded initial data from InfluxDB for tagname = 2
+2024-09-24 12:43:00|INFO    | >> Prediction successful for tagname = 2
+2024-09-24 12:43:01|ERROR   | >> WebSocket connection error: 1006
+2024-09-24 12:43:18|INFO    | >> Received: tagname = 1, value=36.5973174475483, timestamp=2024-09-24 12:43:18
+2024-09-24 12:43:18|WARNING | >> No data available for the given range: -1h to now
+2024-09-24 12:43:18|WARNING | >> tagname = 1 - Filled count is 1 / 5. Not enough data to forecast.
+2024-09-24 12:43:18|INFO    | >> Received: tagname = 2, value=36.10879436653497, timestamp=2024-09-24 12:43:18
+2024-09-24 12:43:18|INFO    | >> Loaded initial data from InfluxDB for tagname = 2
+2024-09-24 12:43:18|INFO    | >> ARIMA model trained and forecasted 720 steps successfully.
+2024-09-24 12:43:18|INFO    | >> Prediction successful for tagname = 2
+2024-09-24 12:43:21|INFO    | >> Received: tagname = 1, value=36.261829383882976, timestamp=2024-09-24 12:43:21
+2024-09-24 12:43:21|WARNING | >> tagname = 1 - Filled count is 2 / 5. Not enough data to forecast.
+2024-09-24 12:43:21|INFO    | >> Received: tagname = 2, value=37.073799287902666, timestamp=2024-09-24 12:43:21
+2024-09-24 12:43:21|WARNING | >> tagname = 2 - Update ignored (time difference <= 5 seconds)
+2024-09-24 12:43:24|INFO    | >> Received: tagname = 1, value=37.218947439947726, timestamp=2024-09-24 12:43:24
+2024-09-24 12:43:24|WARNING | >> tagname = 1 - Filled count is 3 / 5. Not enough data to forecast.
+2024-09-24 12:43:24|INFO    | >> Received: tagname = 2, value=37.03452538517756, timestamp=2024-09-24 12:43:24
+2024-09-24 12:43:24|INFO    | >> ARIMA model trained and forecasted 720 steps successfully.
+2024-09-24 12:43:24|INFO    | >> Prediction successful for tagname = 2
+2024-09-24 12:43:30|INFO    | >> Received: tagname = 1, value=36.57603480721603, timestamp=2024-09-24 12:43:30
+2024-09-24 12:43:30|WARNING | >> tagname = 1 - Filled count is 4 / 5. Not enough data to forecast.
+2024-09-24 12:43:30|INFO    | >> Received: tagname = 2, value=36.8132516400501, timestamp=2024-09-24 12:43:30
+2024-09-24 12:43:30|INFO    | >> ARIMA model trained and forecasted 720 steps successfully.
+2024-09-24 12:43:30|INFO    | >> Prediction successful for tagname = 2
+2024-09-24 12:43:33|ERROR   | >> WebSocket connection error: 1006
+2024-09-24 12:47:05|INFO    | >> Received: tagname = 1, value=37.544349026596024, timestamp=2024-09-24 12:47:05
+2024-09-24 12:47:05|WARNING | >> No data available for the given range: -1h to now
+2024-09-24 12:47:05|WARNING | >> tagname = 1 - Filled count is 1 / 5. Not enough data to forecast.
+2024-09-24 12:47:05|INFO    | >> Received: tagname = 2, value=37.33024230664062, timestamp=2024-09-24 12:47:05
+2024-09-24 12:47:05|INFO    | >> Loaded initial data from InfluxDB for tagname = 2
+2024-09-24 12:47:06|ERROR   | >> WebSocket connection error: zero-size array to reduction operation maximum which has no identity

@@ -37,7 +37,6 @@ class InfluxConnector(metaclass=SingletonInstance):
 
 
     def load_from_influx(self, tagname: int, start: str, end: str) -> pd.DataFrame:
-        print("Fetching historical data from InfluxDB...")
         query = self.__create_query(tagname, start, end)
         tables = self.query_api.query(query)
         df = self.__parse_influx_res(tables)
@@ -45,8 +44,7 @@ class InfluxConnector(metaclass=SingletonInstance):
             df['_time'] = pd.to_datetime(df['_time'], utc=True)
             df['_time'] = df['_time'].dt.tz_convert('Asia/Seoul')
             df.set_index('_time', inplace=True)
-            resampled_df = df.resample('5S').bfill().dropna()
-            print("Historical data loaded.")
+            resampled_df = df.resample('5S').bfill().dropna()   #10초간격으로 나누기
             return resampled_df
         else:
             return pd.DataFrame()

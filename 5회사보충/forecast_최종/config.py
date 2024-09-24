@@ -23,7 +23,7 @@ SERVER_CONFIG = {
 MODEL_CONFIG = {
     'test_model': {
         #forecast용
-        'window_size': 720,
+        'window_size': 5,
         'step_size'  : 720,    
         'start_date' : "-1h",
         
