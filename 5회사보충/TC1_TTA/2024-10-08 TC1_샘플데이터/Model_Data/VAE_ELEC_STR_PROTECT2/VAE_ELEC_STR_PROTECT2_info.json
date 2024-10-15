@@ -1,0 +1,50 @@
+{
+    "tagnames": [
+        "3370-02-STR-PROTECT-AI001",
+        "3370-02-STR-PROTECT-AI002"
+    ],
+    "target_tagnames": [
+        "3370-02-STR-PROTECT-AI001",
+        "3370-02-STR-PROTECT-AI002"
+    ],
+    "data_params": {
+        "sampling_interval_seconds": 5,
+        "durations": [
+            {
+                "start": "2023-11-24 23:46:49.500",
+                "end": "2023-12-20 05:13:52.887"
+            },
+            {
+                "start": "2023-12-21 03:44:23.862",
+                "end": "2024-05-14 00:04:07.801"
+            },
+            {
+                "start": "2024-05-15 01:04:42.217",
+                "end": "2024-05-29 05:12:30.286"
+            },
+            {
+                "start": "2024-05-31 19:43:56.328",
+                "end": "2024-06-06 08:16:58.738"
+            },
+            {
+                "start": "2024-06-07 11:47:36.596",
+                "end": "2024-06-13 05:20:45.889"
+            },
+            {
+                "start": "2024-06-14 06:21:20.305",
+                "end": "2024-06-29 23:58:51.078"
+            }
+        ]
+    },
+    "model_params": {
+        "window_size": 8,
+        "scaler_type": "MinMaxScaler",
+        "optimizer_type": "ADAM"
+    },
+    "hyper_params": {
+        "num_epochs": 300,
+        "batch_size": 1024,
+        "learning_rate": 0.001,
+        "early_stop_patience": 9223372036854775807
+    }
+}

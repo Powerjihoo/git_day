@@ -1,0 +1,38 @@
+{
+    "tagnames": [
+        "3370-20-AI014",
+        "3370-20-AI015",
+        "3370-22-AI101",
+        "3370-22-AI102",
+        "3370-22-AI103",
+        "3370-22-AI104"
+    ],
+    "target_tagnames": [
+        "3370-20-AI014",
+        "3370-20-AI015",
+        "3370-22-AI101",
+        "3370-22-AI102",
+        "3370-22-AI103",
+        "3370-22-AI104"
+    ],
+    "data_params": {
+        "sampling_interval_seconds": 5,
+        "durations": [
+            {
+                "start": "2023-11-25 00:00:02",
+                "end": "2024-02-24 00:00:00"
+            }
+        ]
+    },
+    "model_params": {
+        "window_size": 8,
+        "scaler_type": "MinMaxScaler",
+        "optimizer_type": "ADAM"
+    },
+    "hyper_params": {
+        "num_epochs": 300,
+        "batch_size": 1024,
+        "learning_rate": 0.001,
+        "early_stop_patience": 9223372036854775807
+    }
+}

@@ -1,0 +1,8 @@
+{
+	"num_rows": 2959,
+	"num_cols": 9,
+	"window_size": 8,
+	"batch_size": 1024,
+	"num_epochs": 300,
+	"metric_mae": 0.8971937407690698
+}

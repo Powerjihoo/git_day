@@ -1,0 +1,56 @@
+{
+    "tagnames": [
+        "3370-02-EAB72",
+        "3370-02-EAB73",
+        "3370-02-G-MODE",
+        "3370-02-GEN-AI049",
+        "3370-02-GEN-AI050",
+        "3370-02-P-MODE",
+        "3370-02-GEN-AI051",
+        "3370-02-GEN-AI052",
+        "3370-02-GEN-AI053"
+    ],
+    "target_tagnames": [
+        "3370-02-EAB72",
+        "3370-02-EAB73",
+        "3370-02-G-MODE",
+        "3370-02-GEN-AI049",
+        "3370-02-GEN-AI050",
+        "3370-02-P-MODE",
+        "3370-02-GEN-AI051",
+        "3370-02-GEN-AI052",
+        "3370-02-GEN-AI053"
+    ],
+    "data_params": {
+        "sampling_interval_seconds": 5,
+        "durations": [
+            {
+                "start": "2023-11-25 00:00:02.486",
+                "end": "2024-03-20 02:31:27.022"
+            },
+            {
+                "start": "2024-03-21 07:25:48.091",
+                "end": "2024-05-14 03:31:17.862"
+            },
+            {
+                "start": "2024-05-15 11:19:05.038",
+                "end": "2024-05-28 17:16:56.793"
+            },
+            {
+                "start": "2024-07-17 02:25:20.610",
+                "end": "2024-09-04 00:00:00.000"
+            }
+        ]
+    },
+    "model_params": {
+        "window_size": 8,
+        "scaler_type": "MinMaxScaler",
+        "optimizer_type": "ADAM"
+    },
+    "hyper_params": {
+        "num_epochs": 300,
+        "batch_size": 1024,
+        "learning_rate": 0.001,
+        "early_stop_patience": 9223372036854775807
+    }
+}
