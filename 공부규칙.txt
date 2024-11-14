@@ -1,8 +1,12 @@
-월요일 논물 or 공모전 공유코드 리뷰
+월요일 논문 or 공모전 공유코드 리뷰
+하기싫으면 애플코딩 유튜브라도 보기(새로운 기술)
+https://www.youtube.com/@codingapple
 
 화요일 코딩테스트 and 알고리즘 공부
+https://school.programmers.co.kr/learn/challenges?order=recent&page=1&levels=0&languages=python3
 
 수요일 Github Excel 등 실무에 필요한것들 위주로 공부
+https://www.youtube.com/@Oppadu
 
 목요일 딥러닝 공부
 
