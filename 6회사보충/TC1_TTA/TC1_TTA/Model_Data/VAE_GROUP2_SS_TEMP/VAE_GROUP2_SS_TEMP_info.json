@@ -1,0 +1,48 @@
+{
+    "tagnames": [
+        "3370-02-AI060",
+        "3370-02-AI061",
+        "3370-02-AI061-1",
+        "3370-02-AI062",
+        "3370-02-G-MODE",
+        "3370-02-P-MODE",
+        "3370-02-AI060-1"
+    ],
+    "target_tagnames": [
+        "3370-02-AI060",
+        "3370-02-AI061",
+        "3370-02-AI061-1",
+        "3370-02-AI062",
+        "3370-02-G-MODE",
+        "3370-02-P-MODE",
+        "3370-02-AI060-1"
+    ],
+    "data_params": {
+        "sampling_interval_seconds": 5,
+        "durations": [
+            {
+                "start": "2023-11-25 00:00:05.489",
+                "end": "2024-05-13 15:57:33.435"
+            },
+            {
+                "start": "2024-05-15 05:32:12.824",
+                "end": "2024-05-28 17:16:56.793"
+            },
+            {
+                "start": "2024-07-10 08:32:58.625",
+                "end": "2024-09-04 00:00:00.000"
+            }
+        ]
+    },
+    "model_params": {
+        "window_size": 8,
+        "scaler_type": "MinMaxScaler",
+        "optimizer_type": "ADAM"
+    },
+    "hyper_params": {
+        "num_epochs": 300,
+        "batch_size": 1024,
+        "learning_rate": 0.001,
+        "early_stop_patience": 9223372036854775807
+    }
+}

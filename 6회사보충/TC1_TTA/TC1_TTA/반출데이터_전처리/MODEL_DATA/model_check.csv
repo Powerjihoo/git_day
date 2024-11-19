@@ -1,0 +1,16 @@
+using_model,data_size,
+common comp,"(60, 18)",16
+group1 cwp press,"(60, 8)",6
+group1 gen wind,"(60, 20)",18
+group1 ss press1 ,"(60, 6)",4
+group1 temp concat,"(60, 7)",5
+group1 turbine bearing2,"(60, 5)",3
+group1 turbine oil ,"(60, 11)",9
+group1 turbine press2,"(60, 7)",5
+group2 ss press1 ,"(60, 6)",4
+group2 ss temp,"(60, 7)",5
+group2 turbine oil,"(60, 11)",9
+group2 turbine press2,"(60, 7)",5
+group2 turbine temp,"(60, 7)",5
+,,
+13개 모델그룹,120개 태그 사용,

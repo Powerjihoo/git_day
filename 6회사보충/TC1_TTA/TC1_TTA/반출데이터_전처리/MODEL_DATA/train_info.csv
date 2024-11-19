@@ -1,0 +1,15 @@
+using_model,data_size
+common comp, 2023.11.25 ~ 2024.09.04
+group1 cwp press, 2023.11.25 ~ 2024.09.04
+group1 gen wind, 2023.11.25 ~ 2024.09.04
+group1 ss press1, 2023.11.25 ~ 2024.02.24
+group1 temp concat, 2023.11.25 ~ 2024.09.04
+group1 turbine bearing2, 2023.11.25 ~ 2024.02.24
+group1 turbine oil, 2023.11.25 ~ 2024.09.04
+group1 turbine press2, 2023.11.25 ~ 2024.02.24
+group2 ss press1, 2023.11.25 ~ 2024.02.24
+group2 ss temp, 2023.11.25 ~ 2024.09.04
+group2 turbine oil, 2023.11.25 ~ 2024.09.04
+group2 turbine press2, 2023.11.25 ~ 2024.02.24 
+group2 turbine temp, 2023.11.25 ~ 2024.09.04
+13개 모델그룹, 120개 태그 사용

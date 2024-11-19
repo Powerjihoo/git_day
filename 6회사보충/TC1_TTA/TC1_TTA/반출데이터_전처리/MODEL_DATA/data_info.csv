@@ -1,0 +1,89 @@
+using_model,using_tag
+common comp,"Index(['3370-20-COMP-C-LCP-AI002', '3370-20-E2F29', '3370-20-E2F30',
+       '3370-20-E2F31', '3370-20-E2F21', '3370-20-E2F25', '3370-20-E2F26',
+       '3370-20-E2F27', '3370-20-E2F23', '3370-20-COMP-C-LCP-AI001',
+       '3370-20-COMP-A-LCP-AI001', '3370-20-E2F22', '3370-20-COMP-B-LCP-AI001',
+       '3370-20-COMP-B-LCP-AI002', '3370-20-COMP-B-LCP-AI003',
+       '3370-20-COMP-C-LCP-AI003', '3370-20-COMP-A-LCP-AI002',
+       '3370-20-COMP-A-LCP-AI003'],
+      dtype='object')"
+group1 cwp press,"Index(['3370-01-AI099', '3370-01-AI202', '3370-01-AI202-1', '3370-01-AI201',
+       '3370-01-AI098', '3370-01-EA5G5', '3370-01-P-MODE', '3370-01-G-MODE'],
+      dtype='object')"
+group1 gen core,"Index(['3370-01-GEN-AI029', '3370-01-GEN-AI030', '3370-01-GEN-AI028',
+       '3370-01-AI210', '3370-01-AI211', '3370-01-GEN-AI024',
+       '3370-01-GEN-AI021', '3370-01-GEN-AI035', '3370-01-GEN-AI038',
+       '3370-01-GEN-AI023', '3370-01-GEN-AI036', '3370-01-GEN-AI025',
+       '3370-01-GEN-AI034', '3370-01-GEN-AI019', '3370-01-GEN-AI027',
+       '3370-01-GEN-AI031', '3370-01-GEN-AI032', '3370-01-GEN-AI020',
+       '3370-01-GEN-AI037', '3370-01-GEN-AI026', '3370-01-GEN-AI022',
+       '3370-01-GEN-AI033', '3370-01-P-MODE', '3370-01-G-MODE'],
+      dtype='object')"
+group1 gen wind,"Index(['3370-01-GEN-AI015', '3370-01-GEN-AI012', '3370-01-GEN-AI005',
+       '3370-01-GEN-AI009', '3370-01-GEN-AI013', '3370-01-GEN-AI011',
+       '3370-01-GEN-AI004', '3370-01-GEN-AI006', '3370-01-GEN-AI016',
+       '3370-01-GEN-AI017', '3370-01-GEN-AI014', '3370-01-GEN-AI005-1',
+       '3370-01-GEN-AI002', '3370-01-GEN-AI010', '3370-01-GEN-AI008',
+       '3370-01-GEN-AI003', '3370-01-GEN-AI018', '3370-01-GEN-AI001',
+       '3370-01-P-MODE', '3370-01-G-MODE'],
+      dtype='object')"
+group1 ss press1 ,"Index(['3370-01-AI035', '3370-01-AI036', '3370-01-AI145', '3370-01-AI037',
+       '3370-01-P-MODE', '3370-01-G-MODE'],
+      dtype='object')"
+group1 temp concat,"Index(['3370-01-AI081', '3370-01-AI084', '3370-01-AI082', '3370-01-AI085',
+       '3370-01-AI083', '3370-01-P-MODE', '3370-01-G-MODE'],
+      dtype='object')"
+group1 turbine bearing2,"Index(['3370-01-CAVITATION', '3370-01-TBNBRG-VIB-Y', '3370-01-TBNBRG-VIB-X',
+       '3370-01-P-MODE', '3370-01-G-MODE'],
+      dtype='object')"
+group1 turbine oil ,"Index(['3370-01-AI024', '3370-01-AI026', '3370-01-AI027', '3370-01-AI028',
+       '3370-01-AI079', '3370-01-AI025', '3370-01-DTGATE-AI002',
+       '3370-01-AI078-1', '3370-01-AI029', '3370-01-P-MODE', '3370-01-G-MODE'],
+      dtype='object')"
+group1 turbine press2,"Index(['3370-01-AI110', '3370-01-AI156', '3370-01-EBB08', '3370-01-AI153',
+       '3370-01-AI109', '3370-01-P-MODE', '3370-01-G-MODE'],
+      dtype='object')"
+group2 gen core,"Index(['3370-02-GEN-AI028', '3370-02-GEN-AI022', '3370-02-GEN-AI024',
+       '3370-02-AI211', '3370-02-GEN-AI020', '3370-02-GEN-AI021',
+       '3370-02-GEN-AI026', '3370-02-GEN-AI023', '3370-02-GEN-AI019',
+       '3370-02-GEN-AI031', '3370-02-GEN-AI032', '3370-02-GEN-AI027',
+       '3370-02-GEN-AI036', '3370-02-GEN-AI029', '3370-02-GEN-AI030',
+       '3370-02-AI210', '3370-02-GEN-AI035', '3370-02-GEN-AI038',
+       '3370-02-GEN-AI034', '3370-02-GEN-AI037', '3370-02-GEN-AI033',
+       '3370-02-P-MODE', '3370-02-G-MODE'],
+      dtype='object')"
+group2 gen temp,"Index(['3370-02-AI086', '3370-02-AI087', '3370-02-AI090', '3370-02-AI094',
+       '3370-02-GEN-AI041', '3370-02-AI095', '3370-02-GEN-AI044',
+       '3370-02-AI091', '3370-02-GEN-AI045', '3370-02-GEN-AI046',
+       '3370-02-GEN-AI047', '3370-02-AI088', '3370-02-AI092', '3370-02-AI093',
+       '3370-02-GEN-AI039', '3370-02-GEN-AI040', '3370-02-GEN-AI042',
+       '3370-02-GEN-AI043', '3370-02-AI213', '3370-02-GEN-AI048',
+       '3370-02-AI214', '3370-02-AI212', '3370-02-P-MODE', '3370-02-G-MODE'],
+      dtype='object')"
+group2 gen wind,"Index(['3370-02-GEN-AI017', '3370-02-GEN-AI004', '3370-02-GEN-AI009',
+       '3370-02-GEN-AI005', '3370-02-GEN-AI011', '3370-02-GEN-AI010',
+       '3370-02-GEN-AI007', '3370-02-GEN-AI001', '3370-02-GEN-AI013',
+       '3370-02-GEN-AI014', '3370-02-GEN-AI015', '3370-02-GEN-AI008',
+       '3370-02-GEN-AI018', '3370-02-GEN-AI003', '3370-02-GEN-AI016',
+       '3370-02-GEN-AI006', '3370-02-GEN-AI002', '3370-02-P-MODE',
+       '3370-02-G-MODE'],
+      dtype='object')"
+group2 ss press1 ,"Index(['3370-02-AI035', '3370-02-AI036', '3370-02-AI037',
+       '3370-02-PT-SHAFTSEAL-LCP-AI01', '3370-02-P-MODE', '3370-02-G-MODE'],
+      dtype='object')"
+group2 ss temp,"Index(['3370-02-AI060', '3370-02-AI062', '3370-02-AI061', '3370-02-AI060-1',
+       '3370-02-AI061-1', '3370-02-P-MODE', '3370-02-G-MODE'],
+      dtype='object')"
+group2 turbine oil,"Index(['3370-02-AI027', '3370-02-AI028', '3370-02-AI029', '3370-02-AI079',
+       '3370-02-AI078-1', '3370-02-AI025', '3370-02-DTGATE-AI002',
+       '3370-02-AI026', '3370-02-AI024', '3370-02-P-MODE', '3370-02-G-MODE'],
+      dtype='object')"
+group2 turbine press2,"Index(['3370-02-AI109', '3370-02-AI110', '3370-02-AI156', '3370-02-EBB08',
+       '3370-02-AI153', '3370-02-P-MODE', '3370-02-G-MODE'],
+      dtype='object')"
+group2 turbine temp,"Index(['3370-02-AI085', '3370-02-AI081', '3370-02-AI084', '3370-02-AI082',
+       '3370-02-AI083', '3370-02-P-MODE', '3370-02-G-MODE'],
+      dtype='object')"
+group2 turbine temp,"Index(['3370-02-AI085', '3370-02-AI081', '3370-02-AI084', '3370-02-AI082',
+       '3370-02-AI083', '3370-02-P-MODE', '3370-02-G-MODE'],
+      dtype='object')"
