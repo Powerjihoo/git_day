@@ -1,0 +1,40 @@
+main.py
+# 글로벌 변수
+1. CustomScriptManager()객체 생성 - 스크립트 로드, 실행, 결과관리
+2. PROC_NAME - 현재 실행 중인 프로세스 이름저장(디버깅시 어떤 프로세스에서 실행되는지 확인)
+3. STOP_CONSUMER - 스레드간 동기화를 시키기
+	STOP_CONSUMER().set() : 신호 상태를 True로 설정하여 스레드 종료시키기
+	STOP_CONSUMER().is_set() : 현재 신호가 True인지 확인
+
+
+# 함수 역할 확인
+- collect_kafka_script_values - 카프카에서 데이터 불러오기
+	stop_consumer.is_set() -> 종료신호가 들어올때까지 계속 수신
+
+- calc_scripts - 카프카에서 불러온 데이터로 CustomScriptManager 사용하기
+	MessageProducer -> 메세지 전송 객체 생성
+	calc_manaver.calc_scripts -> 스크립트 실행 및 결과 생성
+	update_only() -> 업데이트된 결과만 추출
+	send_message -> 결과를 kafka로 전송
+
+- thr_calc_script - 비동기 루프에서 스크립트 실행 쓰레드
+
+- thr_kafka_modelvalues_collector -> kafka에서 모델 데이터 수집하는 쓰레드
+
+- run_api_server - API준비
+	api_config_get_api_ip -> API서버의 기본 IP주소 불러오기
+	get_available_port -> 사용 가능한 포트를 동적으로 할달
+	api_config로 FASTAPI 객체 생성
+	라우터 추가
+	uvicorn.run() -> API서버 실행
+
+- thr_cleanup_debug_session - 오래된 디버그 세션데이터 삭제
+
+- signal_handler
+	SIGING, SIGTERM신호를 받으면 모든 쓰레드 종료
+
+1. run_server호출
+2. kafka데이터 수집
+3. 스크립트 계산 후 kafka로 전송
+4. 오래된 디버그 데이터 정리
+5. 종료

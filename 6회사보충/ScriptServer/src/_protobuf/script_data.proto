@@ -1,0 +1,38 @@
+syntax = 'proto3';
+
+package messages;
+
+message FromIPCM{
+    message ScriptData {
+        message Data {
+            string tagname = 1;
+            int64 timestamp = 2;
+            double value = 3;
+            uint32 status_code = 4;
+            bool is_ignored = 5;
+        }
+
+        string script_id = 1;
+        repeated Data data = 2;
+    }
+
+    repeated ScriptData script_data = 1;
+}
+
+
+message ToIPCM{
+    message ScriptData {
+        message Data {
+            string tagname = 1;
+            int64 timestamp = 2;
+            double value = 3;
+            uint32 status_code = 4;
+        }
+
+        string script_id = 1;
+        repeated Data data = 2;
+    }
+
+    repeated ScriptData script_data = 1;
+}
+

@@ -1,0 +1,86 @@
+- CustomScript
+스크립트 초기화 및 실행
+스크립트 코드 컴파일 후 실행
+입출력태그 데이터 관리
+
+- CustomScriptManager
+스크립트를 PosgtreDB에서 로드하고 메모리에 등록
+스크립트를 통해 업데이트된 태그 데이터 관리
+
+load_custom_script = DB에서 스크립트 설정을 불러와 메모리에 등록
+save_custom_tag = 새로운 스크립트 저장
+create_custom_tag_obj = CustomScript객체 생성
+register_calc_tag = 새로운 스크립트는 등록하고 
+unregister_calc_tag = 스크립트 제거
+calc_scripts = 스크립트 실행
+
+
+전체 흐름
+1. CustomManager가 스크립트를 메모리에 등록
+2. 등록한 정보로 CustomScript객체 생성
+3. Kafka에서 최신 데이터를 가져와 태그 값 업데이트
+4. 등록된 스크립트 실행으로 결과 생성
+5. 스크립트 추가 혹은 제거
+
+
+
+CustomScriptManager
+df_calc_tag_script_setting_input = 
+script_id, script_name,  input_tagnames, initialization_code, calculation_code
+13, 2235_calctest, [2235-1,2235-2,2235-3], import random , result = a+b
+ 
+df_calc_tag_script_setting_output = 
+output_tagnames, script_id, display_tagname, description, output_tagcode
+2235-Sumtest, 13, 2235-Sumtest, decsript, result[0]
+
+for script_id, row in intput.interrows()를 통해 반복문 진행
+script_id는 [13,7,24,14,28]순으로 되어있음
+	input에 있는 script_id와 동일한 output의 데이터를 가져옴
+	output_tags
+	tagname, output_tag_code
+	2235-1, result[0]
+
+	반복문을 통해 CustomScript객체 생성
+	script, script_name, calculation_code, initialization_code, input_tagnames, output_tags
+
+CustomScript과정
+위에서 만든 객체를 self.변수에 입력
+script_id, script_name, initialization_code, calculation_code, output_code, intput_tagnames, output_tags
+
+exec할 코드 만들기
+create_output_code #가져온 정보 문자열로 만들기
+	self.result_output['output_tagname'] = output_tag_script
+	= "self.result_output['2235-CALC1_1'] = result[0]
+	\n self.result_output['2235-CALC1_2'] = result[1]"
+create_combine_code  # 기존 calculation_code와 만든 output_code 합치기
+	calculation_code + output_code
+'import random
+result = []
+v1 = Value["2235-RCT112CC"].value
+v2 = Value["2235-RCT112CD"].value
+v3 = Value["2235-RCT112CJ"].value
+v4 = Value["2235-RCT112CK"].value
+values = np.array([v1,v2,v3,v4])
+sum_ab = np.sum(values[:2])  # a + b
+sin_c = np.sin(values[2])# sin(c)
+log_d = np.log(values[3])# log(d)
+prod_abcd = np.prod(values)  # a * b * c * d
+# 최종 계산
+_result = (sum_ab * sin_c) / log_d + np.sqrt(prod_abcd)
+result.append(sum_ab)
+result.append(sum_ab + random.uniform(-5,5))
+self.result_output[\'2235-CALC1_1\'] = result[0]
+self.result_output[\'2235-CALC1_2\'] = result[1]\nNone'
+
+
+execute_variables # 초기화 코드 실행
+	수정필요
+compile_code # 결합된 코드 컴파일
+	combine_code를 exec모드로 compile해두기
+last_data # 데이터 구조 생성
+
+Custom_script완성
+	CustomScript(13 : 2235-Sumtest)
+
+
+
