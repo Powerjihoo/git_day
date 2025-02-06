@@ -1,0 +1,52 @@
+## AI테스트용
+
+import asyncio
+import datetime
+import json
+import random
+
+import websockets
+
+
+async def send_data():
+    uri = 'ws://localhost:1113/forecast'
+    inc = 0.005
+    async with websockets.connect(uri) as websocket:
+        while True:
+            random_value1 = random.uniform(36, 38)+inc
+            random_value2 = random.uniform(36, 38)-inc
+            random_value3 = random.uniform(36, 38)+inc
+            random_value4 = random.uniform(36, 38)-inc
+            inc+=0.005
+            data = [
+                {
+                    'tagname': 1,
+                    'values': random_value1,
+                    'timestamp': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")},
+                {
+                    'tagname': 2,
+                    'values': random_value2,
+                    'timestamp': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")},
+                {
+                    'tagname': 3,
+                    'values': random_value3,
+                    'timestamp': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")},
+                {
+                    'tagname': 4,
+                    'values': random_value4,
+                    'timestamp': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
+            ]
+            await websocket.send(json.dumps(data))
+            print(f"Sent({data[0]['tagname']}) : {data[0]['values']}")
+            print(f"Sent({data[1]['tagname']}) : {data[1]['values']}")
+            print(f"Sent({data[2]['tagname']}) : {data[2]['values']}")
+            print(f"Sent({data[3]['tagname']}) : {data[3]['values']}")
+
+            response = await websocket.recv()
+            result = json.loads(response)
+
+            #결과 출력
+            print(f"Received result from server: {result}")
+            await asyncio.sleep(5)
+
+asyncio.get_event_loop().run_until_complete(send_data())

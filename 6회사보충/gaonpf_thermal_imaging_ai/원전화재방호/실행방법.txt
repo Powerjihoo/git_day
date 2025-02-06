@@ -1,0 +1,33 @@
+##########################################환경 정보##########################################
+conda 23.1.0
+Python 3.11.0
+다른 패키지 정보는 requirements.txt확인
+pip install -r requirements.txt
+
+
+
+##########################################실행방법##########################################
+main.py파일 실행만 하고 websocket으로 데이터만 전송하면 됨
+Websocket에서 데이터를 send하면 receive한 후 계산되서 결과를 다시 websocket으로 전송
+만약 계산이 안되는 경우(이전시간과 5초이내차이, nan값포함된경우) [None, None]으로 result를 전송
+
+#현재 influx데이터는 안쓰게끔 해놓은 상태, 빠른 확인을 위해 미래 25초(step_size = 5)로 설정해둠
+#influx데이터를 쓸수 있다면 model.py의 update_data아래 부분 주석 해제, config.py에서 test_model의 설정값 변경   window_size = 받을시간, step_size = 예측할 시간
+
+
+
+##########################################파일 설명##########################################
+#main.py
+python main.py
+를 통해 실행시키면 모든것들이 연결되어 FastAPI구축
+
+#app.py
+PostgreDB에서 데이터를 불러와 객체를 생성한 후 websocket에서 데이터 receive, send를 하는 파일
+- app.py에서 postgre의 정보를 불러오는데 현재 안쓰고 예시 DB = [(1,), (2,)] 로 설정해둔 상태
+- PostgreDB설정할 수 있다면 app.py의 주석 해제하기
+
+#model.py
+app.py를 통해 update_data로 넘어와 예측 값을 계산하는 파일
+
+#influx.py
+influx데이터를 불러와야할때 사용할 쿼리문 관리 및 데이터를 구축하는 파일
