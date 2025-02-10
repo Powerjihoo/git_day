@@ -11,6 +11,7 @@
 필요시 스크립트를 등록, 갱신 및 삭제하는 기능을 포함합니다.
 """
 
+import copy
 import re
 import sys
 import types
@@ -19,6 +20,7 @@ from queue import Empty as QueueEmpty
 import numpy as np
 import pandas as pd
 
+from _protobuf.script_data_pb2 import ToIPCM
 from api_client.apis.tagvalue import tagvalue_api
 from api_server.models.calctags import _ScriptInfo, _ScriptOutputTags
 from config import settings
@@ -165,6 +167,46 @@ class CustomScript:
         self.__create_last_data()
         self.last_calc_time = 0
 
+    def __create_output_code(self) -> None:
+        """
+        출력 코드를 생성합니다.
+        """
+        _codes = []
+        for output_tag in self._output_tags:
+            _code = f"self.result_output['{output_tag.tagname}'] = {{'value': {output_tag.script}}}"
+            _codes.append(_code)
+        self.output_code = "\n".join(_codes)
+
+    def __create_combine_code(self) -> None:
+        """
+        계산 코드와 출력 코드를 결합합니다.
+        """
+        self._combined_code = "\n".join([
+            self.calculation_code,
+            self.output_code,
+            "None",
+        ])
+        
+    def execute_static_variables(self) -> None:
+        """
+        초기화 코드를 실행합니다.
+        """
+        # FIXME: 객체 생성시가 아닌, 최초 계산시에 한번 실행하도록 수정 필요
+        if self.initialization_code:
+            exec(
+                self.initialization_code,
+                CustomScript.allowed_builtins,
+                self._initializeation_code_var,
+            )
+        
+    def compile_code(self) -> None:
+        """
+        결합된 코드를 컴파일합니다.
+        """
+        self.compiled_code = compile(
+            source=self._combined_code, filename=str(self.script_id), mode="exec"
+        )
+
     def __create_last_data(self) -> None:
         """
         마지막 데이터 구조를 생성합니다.
@@ -173,6 +215,36 @@ class CustomScript:
             self.last_data[tagname] = ScriptInputTagData(
                 timestamp=-1, value=np.nan, status_code=-1, tagname=tagname
             )
+            
+    def __repr__(self) -> str:
+        """
+        객체의 문자열 표현을 반환합니다.
+
+        Returns:
+            str: 객체의 문자열 표현.
+        """
+        return f"{self.__class__.__name__}({self.script_id}: {self.script_name})"
+
+    def __get_exclude_variable_names(self) -> list[str]:
+        """
+        제외할 변수 이름 목록을 반환합니다.
+
+        Returns:
+            list[str]: 제외할 변수 이름 목록.
+        """
+        return [""].extend(list(self.allowed_builtins.keys()))
+
+    def verify_code_rule(self) -> bool:
+        """
+        코드 규칙을 검증합니다.
+
+        Returns:
+            bool: 검증 결과.
+        """
+        # 사용불가 함수, 라이브러리 검증
+        # 사용불가 변수명, 함수명 검증 (클래스 내부 속성, 메서드명 중복되지 않도록)
+        # Code Syntax
+        ...
 
     def update_last_data(self, tag_data_list: list[_TagDataFromKafka]) -> bool:
         """
@@ -198,77 +270,8 @@ class CustomScript:
             )
             updated = True
         return updated
-
-    def __create_output_code(self) -> None:
-        """
-        출력 코드를 생성합니다.
-        """
-        _codes = []
-        for output_tag in self._output_tags:
-            _code = f"self.result_output['{output_tag.tagname}'] = {output_tag.script}"
-            _codes.append(_code)
-        self.output_code = "\n".join(_codes)
-
-    def __get_exclude_variable_names(self) -> list[str]:
-        """
-        제외할 변수 이름 목록을 반환합니다.
-
-        Returns:
-            list[str]: 제외할 변수 이름 목록.
-        """
-        return [""].extend(list(self.allowed_builtins.keys()))
-
-    def __repr__(self) -> str:
-        """
-        객체의 문자열 표현을 반환합니다.
-
-        Returns:
-            str: 객체의 문자열 표현.
-        """
-        return f"{self.__class__.__name__}({self.script_id}: {self.script_name})"
-
-    def execute_static_variables(self) -> None:
-        """
-        초기화 코드를 실행합니다.
-        """
-        # FIXME: 객체 생성시가 아닌, 최초 계산시에 한번 실행하도록 수정 필요
-        if self.initialization_code:
-            exec(
-                self.initialization_code,
-                CustomScript.allowed_builtins,
-                self._initializeation_code_var,
-            )
-
-    def verify_code_rule(self) -> bool:
-        """
-        코드 규칙을 검증합니다.
-
-        Returns:
-            bool: 검증 결과.
-        """
-        # 사용불가 함수, 라이브러리 검증
-        # 사용불가 변수명, 함수명 검증 (클래스 내부 속성, 메서드명 중복되지 않도록)
-        # Code Syntax
-        ...
-
-    def __create_combine_code(self) -> None:
-        """
-        계산 코드와 출력 코드를 결합합니다.
-        """
-        self._combined_code = "\n".join([
-            self.calculation_code,
-            self.output_code,
-            "None",
-        ])
-
-    def compile_code(self) -> None:
-        """
-        결합된 코드를 컴파일합니다.
-        """
-        self.compiled_code = compile(
-            source=self._combined_code, filename=str(self.script_id), mode="exec"
-        )
-
+    
+    #calc.py
     def trace_execution(self, Value, specific_vars=None, line_number=None):
         """
         코드 실행을 추적합니다.
@@ -385,22 +388,13 @@ class CustomScript:
                     df.at[i, "Result"] = f"{expression_name}: {variable_value}"
 
         return df[df.Code != "None"]
-
-    def debug_code(self, Value: dict, specific_vars=None, line_number=None) -> any:
-        """
-        디버그 코드를 실행합니다.
-
-        Args:
-            Value (dict): 실행 시 사용할 값.
-            specific_vars (list[str], optional): 추적할 특정 변수 목록.
-            line_number (int, optional): 추적할 특정 라인 번호.
-
-        Returns:
-            any: 디버그 결과.
-        """
-        traced_df = self.trace_execution(Value, specific_vars, line_number)
-        return traced_df
-
+    
+    def update_result_output(self, script_data: dict):
+        max_timestamp = max([tag_data.timestamp for tag_data in script_data.values()])
+        for output_tag in self._output_tags:
+            self.result_output[output_tag.tagname]["timestamp"] = max_timestamp
+            self.result_output[output_tag.tagname]["status_code"] = 192
+            
     def calc(self, script_data: dict) -> any:
         """
         계산을 수행합니다.
@@ -416,10 +410,30 @@ class CustomScript:
             CustomScript.allowed_builtins,
             self._initializeation_code_var | {"Value": script_data},
         )
+        self.update_result_output(script_data)
         return self.result_output
 
+    def debug_code(self, Value: dict, specific_vars=None, line_number=None) -> any:
+        """
+        디버그 코드를 실행합니다.
+
+        Args:
+            Value (dict): 실행 시 사용할 값.
+            specific_vars (list[str], optional): 추적할 특정 변수 목록.
+            line_number (int, optional): 추적할 특정 라인 번호.
+
+        Returns:
+            any: 디버그 결과.
+        """
+        traced_df = self.trace_execution(Value, specific_vars, line_number)
+        self.update_result_output(Value)
+        return traced_df
+
+        
 
 psql_connector = PostgreSQLConnector(settings.databases["ipcm"].db_url)
+
+
 
 
 class CustomScriptManager(dict, metaclass=SingletonInstance):
@@ -427,7 +441,7 @@ class CustomScriptManager(dict, metaclass=SingletonInstance):
         super().__init__()
         self.load_custom_scripts()
         self.cnt_calc = 0
-
+        
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(cnt={len(self)})"
 
@@ -464,6 +478,48 @@ class CustomScriptManager(dict, metaclass=SingletonInstance):
             except Exception as e:
                 logger.error(e)
 
+    def create_custom_tag_obj(
+        self,
+        script_id: str,
+        script_name: str,
+        calculation_code: str,
+        initialization_code: str,
+        input_tagnames: list[str],
+        output_tags: list[dict],
+    ) -> CustomScript:
+        return CustomScript(
+            script_id=script_id,
+            script_name=script_name,
+            calculation_code=calculation_code,
+            initialization_code=initialization_code,
+            input_tagnames=input_tagnames,
+            output_tags=output_tags,
+        )
+
+    def register_calc_tag(
+        self, custom_script: CustomScript, logging: bool = False
+    ) -> None:
+        _update = False
+        if custom_script.script_id in self:
+            _update = True
+        try:
+            self[custom_script.script_id] = custom_script
+            if logging:
+                if _update:
+                    logger.info(f"Updated custom tag ({custom_script.script_id})")
+                else:
+                    logger.debug(f"Registerd custom tag ({custom_script.script_id})")
+        except Exception as e:
+            logger.exception(e)
+
+    def unregister_calc_tag(self, script_id: str) -> None:
+        try:
+            del self[script_id]
+            logger.debug(f"Unregisterd custom tag ({script_id})")
+        except KeyError:
+            raise CanNotFindTagError(f"Requested tagname is not in {str(self)}")
+   
+   #script.py
     def _save_custom_tag_input(self, custom_tag: _ScriptInfo) -> dict:
         table = "calc_tag_setting_input"
         fields = [
@@ -510,47 +566,8 @@ class CustomScriptManager(dict, metaclass=SingletonInstance):
         self._save_custom_tag_output(script_id=script_id, custom_tag=custom_tag)
         return script_id
 
-    def create_custom_tag_obj(
-        self,
-        script_id: str,
-        script_name: str,
-        calculation_code: str,
-        initialization_code: str,
-        input_tagnames: list[str],
-        output_tags: list[dict],
-    ) -> CustomScript:
-        return CustomScript(
-            script_id=script_id,
-            script_name=script_name,
-            calculation_code=calculation_code,
-            initialization_code=initialization_code,
-            input_tagnames=input_tagnames,
-            output_tags=output_tags,
-        )
 
-    def register_calc_tag(
-        self, custom_script: CustomScript, logging: bool = False
-    ) -> None:
-        _update = False
-        if custom_script.script_id in self:
-            _update = True
-        try:
-            self[custom_script.script_id] = custom_script
-            if logging:
-                if _update:
-                    logger.info(f"Updated custom tag ({custom_script.script_id})")
-                else:
-                    logger.debug(f"Registerd custom tag ({custom_script.script_id})")
-        except Exception as e:
-            logger.exception(e)
-
-    def unregister_calc_tag(self, script_id: str) -> None:
-        try:
-            del self[script_id]
-            logger.debug(f"Unregisterd custom tag ({script_id})")
-        except KeyError:
-            raise CanNotFindTagError(f"Requested tagname is not in {str(self)}")
-
+    #main.py
     def _calc_script(self, custom_script: CustomScript) -> None:
         is_data_updated = False
 
@@ -581,14 +598,22 @@ class CustomScriptManager(dict, metaclass=SingletonInstance):
 
     def create_calc_result_updated_only(self) -> dict:
         custom_script: CustomScript
-
+        response = ToIPCM()
         for custom_script in list(self.values()):
             try:
-                ...
+                if custom_script.result_output:
+                    script_result = response.script_data.add()
+                    script_result.script_id = str(custom_script.script_id)
+                    for tagname, script_tag_data in custom_script.result_output.items():
+                        script_result_tag = script_result.data.add()
+                        script_result_tag.tagname = tagname
+                        script_result_tag.value = script_tag_data["value"]
+                        script_result_tag.timestamp = script_tag_data["timestamp"]
+                        script_result_tag.status_code = script_tag_data["status_code"]
 
             except Exception as e:
                 logger.error(e)
-
+        return response
 
 class CanNotFindTagError(Exception):
     def __init__(self, message):

@@ -23,24 +23,6 @@ PROC_NAME = mp.current_process().name
 STOP_CONSUMER = threading.Event()
 
 
-def collect_kafka_script_values(initial_sleep: int = 5) -> None:
-    time.sleep(initial_sleep)
-
-    consumer = StreamDataCollector(
-        broker=settings.kafka.brokers,
-        topic=settings.kafka.topic_model_values,
-    )
-
-    while not STOP_CONSUMER.is_set():
-        try:
-            consumer.receive_message()
-        except Exception as e:
-            logger.error(e)
-
-    consumer.close()  # Close the consumer properly
-    logger.info("Consumer closed gracefully.")
-
-
 def run_api_server(host: str = None, port: int = None) -> None:
     global IS_RUN_APP
     import uvicorn
@@ -69,6 +51,29 @@ def run_api_server(host: str = None, port: int = None) -> None:
     )
 
 
+def collect_kafka_script_values(initial_sleep: int = 5) -> None:
+    time.sleep(initial_sleep)
+
+    consumer = StreamDataCollector(
+        broker=settings.kafka.brokers,
+        topic=settings.kafka.topic_model_values,
+    )
+
+    while not STOP_CONSUMER.is_set():
+        try:
+            consumer.receive_message()
+        except Exception as e:
+            logger.error(e)
+
+    consumer.close()  # Close the consumer properly
+    logger.info("Consumer closed gracefully.")
+
+def thr_kafka_modelvalues_collector():
+    logger.debug(f"{'Initializing':12} | Lastvalue collector is starting...")
+    collect_kafka_script_values(initial_sleep=5)
+    logger.error("Rawvalues collector is terminated")
+
+
 async def calc_scripts(interval: int = 0.1) -> None:
     producer = MessageProducer(
         broker=settings.kafka.brokers,
@@ -80,8 +85,8 @@ async def calc_scripts(interval: int = 0.1) -> None:
         calc_manager.calc_scripts()
         if (calc_cnt := calc_manager.cnt_calc) == 0:
             return
-        updated_data = calc_manager.create_cacl_result_updated_only()
-        updated_data_serialized = updated_data.SerializeToString
+        updated_data = calc_manager.create_calc_result_updated_only()
+        updated_data_serialized = updated_data.SerializeToString()
         if len(updated_data_serialized) == 0:
             return
         producer.send_message(updated_data_serialized)
@@ -120,11 +125,6 @@ def thr_cleanup_debug_sessions(interval: float = 5.0):
             "Can not initialize debug session cleanup thread"
         ) from err
 
-
-def thr_kafka_modelvalues_collector():
-    logger.debug(f"{'Initializing':12} | Lastvalue collector is starting...")
-    collect_kafka_script_values(initial_sleep=5)
-    logger.error("Rawvalues collector is terminated")
 
 
 def run_server(port: int) -> None:

@@ -141,13 +141,12 @@ async def unregister(script_id: str):
 
     Args:
         script_id (str): 등록 해제할 커스텀 태그 스크립트의 ID.
-
+A
     Returns:
         상태 코드 204로 응답합니다.
     """
     try:
         calc_manager.unregister_calc_tag(script_id)
-
         return Response(status_code=status.HTTP_204_NO_CONTENT)
     except CanNotFindTagError as e:
         raise ex_api.NotFoundScriptError(script_key=script_id, message=e.args[0])

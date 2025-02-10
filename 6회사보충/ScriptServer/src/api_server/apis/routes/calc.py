@@ -16,8 +16,8 @@
 - DebugSessionManager를 사용하여 디버그 세션을 추가하거나 조회할 수 있습니다.
 - 웹소켓 엔드포인트를 통해 Python 코드를 실시간 계산 결과를 응답할 수 있습니다.
 """
-
 import asyncio
+import copy
 import datetime
 import io
 import math
@@ -57,26 +57,7 @@ calc_manager = CustomScriptManager()
 CLIENT_TIMEOUT = 600
 TIMEZONE = pytz.timezone("Asia/Seoul")
 
-
-def get_last_data(tagnames: list[str]) -> dict:
-    res = tagvalue_api.get_current_value(tagnames=tagnames)
-    _data = res.json()
-
-    for tagname in tagnames:
-        if not _data[tagname]:
-            raise ValueError(f"No data {tagname}")
-
-    data = {}
-    for tagname, tag_data in _data.items():
-        data[tagname] = ScriptInputTagData(
-            timestamp=tag_data["timestamp"],
-            value=tag_data["value"],
-            status_code=tag_data["statusCodeEnum"],
-        )
-
-    return data
-
-
+    
 def convert_df2dict(
     df: pd.DataFrame, tagnames: list[str]
 ) -> list[dict[str, ScriptInputTagData]]:
@@ -92,7 +73,25 @@ def convert_df2dict(
         result_data.append(_values)
     return result_data
 
+def get_last_data(tagnames: list[str]) -> dict:
+    res = tagvalue_api.get_current_value(tagnames=tagnames, timeout=10)
+    _data = res.json()
 
+    for tagname in tagnames:
+        if not _data[tagname]:
+            raise ValueError(f"No data {tagname}")
+
+    data = {}
+    for tagname, tag_data in _data.items():
+        data[tagname] = ScriptInputTagData(
+            timestamp=tag_data["timestamp"],
+            value=tag_data["value"],
+            status_code=tag_data["statusCodeEnum"],
+        )
+
+    return data
+    
+    
 @router.post("/syntax_validation")
 async def validate_code_syntax(
     request: _ScriptInfo = Body(None, examples=validation_example),
@@ -154,7 +153,16 @@ async def calculate_script_once(
     """
 
     try:
-        custom_script: CustomScript = calc_manager[int(request.script_id)]
+        calc_manager.load_custom_scripts()
+        __custom_script: CustomScript = calc_manager[int(request.script_id)]
+        custom_script = CustomScript(
+            script_id=-1,
+            script_name=__custom_script.script_name,
+            initialization_code=__custom_script.initialization_code,
+            calculation_code=__custom_script.calculation_code,
+            input_tagnames=__custom_script.input_tagnames,
+            output_tags=__custom_script._output_tags,
+        )
         current_time = datetime.datetime.now()
         data = get_last_data(custom_script.input_tagnames)
 
@@ -163,7 +171,7 @@ async def calculate_script_once(
         calc_time_taken = perf_counter() - s
 
         result = {
-            "script_id": custom_script.script_id,
+            "script_id": request.script_id,
             "script_name": custom_script.script_name,
             "input_data": data,
             "calc_result": calc_result,
@@ -190,7 +198,16 @@ async def calculate_script_once_debug(
     """
 
     try:
-        custom_script: CustomScript = calc_manager[int(request.script_id)]
+        calc_manager.load_custom_scripts()
+        __custom_script: CustomScript = calc_manager[int(request.script_id)]
+        custom_script = CustomScript(
+            script_id=-1,
+            script_name=__custom_script.script_name,
+            initialization_code=__custom_script.initialization_code,
+            calculation_code=__custom_script.calculation_code,
+            input_tagnames=__custom_script.input_tagnames,
+            output_tags=__custom_script._output_tags,
+        )
         current_time = datetime.datetime.now()
         data = get_last_data(custom_script.input_tagnames)
 
@@ -199,7 +216,7 @@ async def calculate_script_once_debug(
         calc_time_taken = perf_counter() - s
 
         result = {
-            "script_id": custom_script.script_id,
+            "script_id": request.script_id,
             "script_name": custom_script.script_name,
             "input_data": data,
             "calc_result": custom_script.result_output.copy(),
@@ -226,6 +243,7 @@ async def test_script_calculation_execution_time(
         Response: 계산 결과를 포함한 응답 객체입니다.
     """
     try:
+        calc_manager.load_custom_scripts()
         custom_script: CustomScript = calc_manager[int(request.script_id)]
         data = get_last_data(custom_script.input_tagnames)
 
@@ -247,7 +265,7 @@ async def test_script_calculation_execution_time(
 
             result = {
                 "message": "Success",
-                "script_id": custom_script.script_id,
+                "script_id": request.script_id,
                 "script_name": custom_script.script_name,
                 "details": {
                     "value": custom_script.result_output,
@@ -273,8 +291,16 @@ async def calculate_script_multiple_point(request: ScriptDataPlot = Body(None)):
     Returns:
         Response: 계산 결과를 포함한 응답 객체입니다.
     """
-
-    custom_script: CustomScript = calc_manager[request.script_id]
+    calc_manager.load_custom_scripts()
+    __custom_script: CustomScript = calc_manager[int(request.script_id)]
+    custom_script = CustomScript(
+        script_id=-1,
+        script_name=__custom_script.script_name,
+        initialization_code=__custom_script.initialization_code,
+        calculation_code=__custom_script.calculation_code,
+        input_tagnames=__custom_script.input_tagnames,
+        output_tags=__custom_script._output_tags,
+    )
     output_tagnames = [tag.tagname for tag in custom_script._output_tags]
 
     df_data = DataLoader.load_from_influx_raw(
@@ -296,38 +322,44 @@ async def calculate_script_multiple_point(request: ScriptDataPlot = Body(None)):
         for tagname in custom_script.input_tagnames
     }
 
-    for _, row in df_data.iterrows():
-        script_input_data[row.tagname] = ScriptInputTagData(
-            timestamp=row.time.value, value=row.value, status_code=row.quality
-        )
-        custom_script.calc(script_input_data)
-        _result = custom_script.result_output.copy()
-        for tagname in output_tagnames:
-            if math.isnan(_result[tagname]):
-                continue
-            test_result[tagname]["x"].append(
-                np.max([tag_data.timestamp for tag_data in script_input_data.values()])
+    try:
+        max_ts_old = -1
+        for _, row in df_data.iterrows():
+            script_input_data[row.tagname] = ScriptInputTagData(
+                timestamp=row.time.value, value=row.value, status_code=row.quality
             )
-            test_result[tagname]["y"].append(_result[tagname])
+            max_ts_new = max([tag_data.timestamp for tag_data in script_input_data.values()])
+            if max_ts_new < max_ts_old + 1_000_000_000:
+                continue
+            custom_script.calc(script_input_data)
+            _result = custom_script.result_output.copy()
+            for tagname in output_tagnames:
+                if math.isnan(_result[tagname]["value"]):
+                    continue
+                test_result[tagname]["x"].append(_result[tagname]["timestamp"])
+                test_result[tagname]["y"].append(_result[tagname]["value"])
+            max_ts_old = max_ts_new
 
-    first_timestamp = (
-        pd.to_datetime(request.data_params.duration_start)
-        .tz_localize(tz=TIMEZONE)
-        .value
-    )
-    last_timestamp = (
-        pd.to_datetime(request.data_params.duration_end).tz_localize(tz=TIMEZONE).value
-    )
-    for tagname in list(test_result.keys()):
-        if not test_result[tagname]["x"][0] == first_timestamp:
-            firstvalue = test_result[tagname]["y"][0]
-            test_result[tagname]["x"].insert(0, first_timestamp)
-            test_result[tagname]["y"].insert(0, firstvalue)
+        first_timestamp = (
+            pd.to_datetime(request.data_params.duration_start)
+            .tz_localize(tz=TIMEZONE)
+            .value
+        )
+        last_timestamp = (
+            pd.to_datetime(request.data_params.duration_end).tz_localize(tz=TIMEZONE).value
+        )
+        for tagname in list(test_result.keys()):
+            if not test_result[tagname]["x"][0] == first_timestamp:
+                firstvalue = test_result[tagname]["y"][0]
+                test_result[tagname]["x"].insert(0, first_timestamp)
+                test_result[tagname]["y"].insert(0, firstvalue)
 
-        if not test_result[tagname]["x"][-1] == last_timestamp:
-            lastvalue = test_result[tagname]["y"][-1]
-            test_result[tagname]["x"].append(last_timestamp)
-            test_result[tagname]["y"].append(lastvalue)
+            if not test_result[tagname]["x"][-1] == last_timestamp:
+                lastvalue = test_result[tagname]["y"][-1]
+                test_result[tagname]["x"].append(last_timestamp)
+                test_result[tagname]["y"].append(lastvalue)
+    except Exception as e:
+        logger.error(e)
 
     plot_result = {
         "data_input": input_data,
@@ -348,8 +380,16 @@ async def calculate_script_multiple_point_debug(request: ScriptDataPlot = Body(N
     Returns:
         Response: 디버깅 결과를 포함한 응답 객체입니다.
     """
-
-    custom_script: CustomScript = calc_manager[request.script_id]
+    calc_manager.load_custom_scripts()
+    __custom_script: CustomScript = calc_manager[int(request.script_id)]
+    custom_script = CustomScript(
+        script_id=-1,
+        script_name=__custom_script.script_name,
+        initialization_code=__custom_script.initialization_code,
+        calculation_code=__custom_script.calculation_code,
+        input_tagnames=__custom_script.input_tagnames,
+        output_tags=__custom_script._output_tags,
+    )
     output_tagnames = [tag.tagname for tag in custom_script._output_tags]
 
     df_data = DataLoader.load_from_influx_raw(
@@ -372,39 +412,45 @@ async def calculate_script_multiple_point_debug(request: ScriptDataPlot = Body(N
     }
 
     calc_result_logs = []
-    for _, row in df_data.iterrows():
-        script_input_data[row.tagname] = ScriptInputTagData(
-            timestamp=row.time.value, value=row.value, status_code=row.quality
-        )
-        calc_result_log: pd.DataFrame = custom_script.debug_code(script_input_data)
-        calc_result_logs.append(calc_result_log.to_dict("records"))
-        _result = custom_script.result_output.copy()
-        for tagname in output_tagnames:
-            if math.isnan(_result[tagname]):
-                continue
-            test_result[tagname]["x"].append(
-                np.max([tag_data.timestamp for tag_data in script_input_data.values()])
+    try:
+        max_ts_old = -1
+        for _, row in df_data.iterrows():
+            script_input_data[row.tagname] = ScriptInputTagData(
+                timestamp=row.time.value, value=row.value, status_code=row.quality
             )
-            test_result[tagname]["y"].append(_result[tagname])
+            max_ts_new = max([tag_data.timestamp for tag_data in script_input_data.values()])
+            if max_ts_new < max_ts_old + 1_000_000_000:
+                continue
+            calc_result_log: pd.DataFrame = custom_script.debug_code(script_input_data)
+            calc_result_logs.append(calc_result_log.to_dict("records"))
+            _result = custom_script.result_output.copy()
+            for tagname in output_tagnames:
+                if math.isnan(_result[tagname]["value"]):
+                    continue
+                test_result[tagname]["x"].append(_result[tagname]["timestamp"])
+                test_result[tagname]["y"].append(_result[tagname]["value"])
+            max_ts_old = max_ts_new
 
-    first_timestamp = (
-        pd.to_datetime(request.data_params.duration_start)
-        .tz_localize(tz=TIMEZONE)
-        .value
-    )
-    last_timestamp = (
-        pd.to_datetime(request.data_params.duration_end).tz_localize(tz=TIMEZONE).value
-    )
-    for tagname in list(test_result.keys()):
-        if not test_result[tagname]["x"][0] == first_timestamp:
-            firstvalue = test_result[tagname]["y"][0]
-            test_result[tagname]["x"].insert(0, first_timestamp)
-            test_result[tagname]["y"].insert(0, firstvalue)
+        first_timestamp = (
+            pd.to_datetime(request.data_params.duration_start)
+            .tz_localize(tz=TIMEZONE)
+            .value
+        )
+        last_timestamp = (
+            pd.to_datetime(request.data_params.duration_end).tz_localize(tz=TIMEZONE).value
+        )
+        for tagname in list(test_result.keys()):
+            if not test_result[tagname]["x"][0] == first_timestamp:
+                firstvalue = test_result[tagname]["y"][0]
+                test_result[tagname]["x"].insert(0, first_timestamp)
+                test_result[tagname]["y"].insert(0, firstvalue)
 
-        if not test_result[tagname]["x"][-1] == last_timestamp:
-            lastvalue = test_result[tagname]["y"][-1]
-            test_result[tagname]["x"].append(last_timestamp)
-            test_result[tagname]["y"].append(lastvalue)
+            if not test_result[tagname]["x"][-1] == last_timestamp:
+                lastvalue = test_result[tagname]["y"][-1]
+                test_result[tagname]["x"].append(last_timestamp)
+                test_result[tagname]["y"].append(lastvalue)
+    except Exception as e:
+        logger.error(e)
 
     debug_result = {
         "data_input": input_data,
