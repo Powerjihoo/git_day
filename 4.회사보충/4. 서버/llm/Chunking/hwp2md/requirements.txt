@@ -1,0 +1,5 @@
+pyhwp==0.1b15
+python-pcre==0.7
+fire==0.6.0
+lxml==4.9.1
+structlog==24.1.0

@@ -1,0 +1,27 @@
+{
+    "models": {
+        "llm": "gaon",
+        "retrieval": "intfloat/multilingual-e5-large"
+    },
+    "db": 
+    {
+    "dir":"./db",
+    "file":[
+        "moamob",
+        "nuclear",
+        "operation",
+        "handcraft"
+    ]
+    },
+
+    "bm25": 
+    {
+        "dir":"./bm25",
+        "file":[
+            "moamob",
+            "nuclear",
+            "operation",
+            "handcraft"
+        ]
+    }
+}

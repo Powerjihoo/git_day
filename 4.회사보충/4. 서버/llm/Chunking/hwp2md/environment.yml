@@ -1,0 +1,10 @@
+name: hwp2md
+channels:
+  - defaults
+dependencies:
+  - python=3.8
+  - pcre=8.45
+  - gcc_linux-64=11.2.0
+  - pip
+  - pip:
+    - -r requirements.txt

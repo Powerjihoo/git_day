@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지능형 예지보전 시스템</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .document-text {
+            background-color: #f8f9fa;
+            padding: 5px;
+            border-left: 5px solid #6c757d;
+            border-radius: 5px;
+            color: gray;
+            font-weight: bold;
+            max-height: 200px;
+            overflow-y: scroll;
+            margin-bottom: 10px;
+        }
+
+        .results hr {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .result-section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+        }
+
+        .result-section h2 {
+            margin-bottom: 20px;
+            color: #800020;
+        }
+
+        .result-section .output {
+            padding: 15px;
+            border-radius: 5px;
+            border: 3.5px solid #DC3545;
+            background-color: #f8f9fa;
+            color: #000;
+            margin-top: 10px;
+        }
+
+        .result-section p {
+            margin-bottom: 10px;
+        }
+
+        .model-label {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .model-option {
+            font-size: 18px;
+            margin-right: 10px;
+        }
+
+        .disable-element {
+            display: none;
+        }
+
+        .query-text {
+            font-size: 20px;
+            font-weight: bold;
+            color: #000;
+            /* Set text color to black */
+            margin-bottom: 20px;
+        }
+
+        .input-text {
+            width: 100% !important;
+            height: 400px !important;
+            resize: none;
+            box-sizing: border-box;
+            padding 10px;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-group {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+    </style>
+    <script>
+        // Disable form buttons when the form is submitted
+        function disableSubmit() {
+            document.getElementById("submit-btn").disabled = true;
+            document.getElementById("refresh-btn").disabled = true;
+        }
+
+        // Re-enable form buttons on page load
+        function enableSubmit() {
+            document.getElementById("submit-btn").disabled = false;
+            document.getElementById("refresh-btn").disabled = false;
+        }
+
+        // Reset the form and re-enable buttons
+        function resetForm() {
+            document.querySelector('form').reset();
+            document.querySelector('textarea[name="text"]').value = '';
+            const resultsDiv = document.querySelector('.results');
+            if (resultsDiv) {
+                resultsDiv.innerHTML = '';
+            }
+            enableSubmit();
+            // Clear the db-select stored value
+            localStorage.removeItem('selectedDb');
+        }
+
+        // Handle when a preset option is selected
+        function handleSelectChange() {
+            const inputField = document.querySelector('textarea[name="text"]');
+            const selectBox = document.getElementById('preset-select');
+            const selectedText = selectBox.options[selectBox.selectedIndex].value;
+            inputField.value = selectedText;
+        }
+
+        // Save selected db-select value in local storage
+        function saveDbSelectValue() {
+            var dbSelect = document.getElementById('db-select');
+            localStorage.setItem('selectedDb', dbSelect.value);
+        }
+
+        // Restore selected db-select value from local storage
+        function restoreDbSelectValue() {
+            var selectedDb = localStorage.getItem('selectedDb');
+            if (selectedDb !== null) {
+                var dbSelect = document.getElementById('db-select');
+                dbSelect.value = selectedDb;
+            }
+        }
+
+        // Attach event listeners on page load
+        document.addEventListener("DOMContentLoaded", () => {
+            enableSubmit();
+            document.getElementById('main-form').addEventListener('submit', () => {
+                disableSubmit();
+                saveDbSelectValue();
+            });
+            document.getElementById('preset-select').addEventListener('change', handleSelectChange);
+            restoreDbSelectValue();
+        });
+    </script>
+</head>
+
+<body class="container">
+    <h1 class="mt-5 text-center">[GAON] 지능형 예지보전 시스템</h1>
+    <br></br>
+    <form method="POST" id="main-form" class="form-container">
+        <div class="form-row mb-3">
+            <div class="col-md-6">
+                <select id="db-select" name="database" class="form-control" required>
+                    <option value="" .disabled> 데이터베이스를 선택하세요</option>
+                    <option value="none">NONE</option>
+                    <option value="moamob">MOA/MOB</option>
+                    <option value="nuclear">NUCLEAR</option>
+                    <option value="operation">OPERATION</option>
+                    <option value="handcraft">HANDCRAFT</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <select id="preset-select" class="form-control">
+                    <option value="">질문 예제를 선택하거나 직접 입력하세요</option>
+                    <option value="용적형펌프 가동중 시험 A군 시험 절차가 뭐지?">[MOA/MOB] Example1</option>
+                    <option value="발전사업자의 책임에 대해 알려줘">[MOA/MOB] Example2</option>
+                    <option value="신월성2호기의 증기발생기 저수위에 의한 원자로 자동정지에 어떻게 대처했어?">[Nuclear] Example1</option>
+                    <option value="자료수집서버의 풍속저장 프로그램 오류 수정을 언제 했어?">[Nuclear] Example2</option>
+                    <option value="ST Nominal Speed Release를 위한 조건을 알려주세요">[Operation] Example1</option>
+                    <option value="원자로발전소가 무엇인지 자세하게 설명해줄래?">[QA] Example1</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <textarea id="text-input" name="text" class="form-control input-text" placeholder="여기에 텍스트를 입력하세요" required></textarea>
+        </div>
+        <div class="btn-group mb-4">
+            <button type="submit" id="submit-btn" class="btn btn-primary">Submit</button>
+            <button type="button" id="refresh-btn" class="btn btn-secondary" onclick="resetForm();">Refresh</button>
+        </div>
+    </form>
+    <div>
+        {% if results %}
+        <hr>
+        <div class="row results">
+            <div class="col-md-12">
+                {% for key, result in results.items() %}
+                <div class="result-section">
+                    <h2>
+                        {% if result['database'] == 'none' %}
+                        {{ result['database']|upper }}
+                        {% elif result['database'] == 'moamob' %}
+                        {{ result['database']|upper }}
+                        {% elif result['database'] == 'nuclear' %}
+                        NUCLEAR
+                        {% elif result['database'] == 'operation' %}
+                        Operation
+                        {% elif result['database'] == 'handcraft' %}
+                        Handcraft
+                        {% else %}
+                        {{ result['database'] }}
+                        {% endif %}
+                    </h2>
+                    <div class="query-text">{{ result['query'] }}</div>
+                    {% if result.get('document') %}
+                    <p class="document-text">{{ result['document'] }}</p>
+                    {% endif %}
+                    <div class="output">{{ result['output'] }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>
